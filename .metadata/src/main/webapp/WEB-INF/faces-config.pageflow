@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15172554717070" configfile="/Sifis-1.0.0/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="8050" id="pf15173660306770" outlinks="pf15173660306781 pf15173660306782 pf15173660306783 pf15173660306784 pf15173660306785 pf15173660306786 pf15173660306787 pf15173660306788 pf15173660306789 pf151736603067810 pf151736603067811 pf151736603067812 pf151736603067813 pf151736603067814 pf151736603067815 pf151736603067816 pf151736603067817 pf151736603067818 pf151736603067819 pf151736603067820 pf151736603067821 pf151736603067822 pf151736603067823 pf151736603067824 pf151736603067825 pf151736603067826 pf151736603067827 pf151736603067828 pf151736603067829 pf151736603067830 pf151736603067831 pf151736603067832 pf151736603067833 pf151736603067834 pf151736603067835 pf151736603067836 pf151736603067837 pf151736603067838 pf151736603067839 pf151736603067840 pf151736603067841 pf151736603067842" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="338" y="178" id="pf151736603067943" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf15173660306781" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="usuarios-list.xhtml" x="338" y="946" id="pf151736603067944" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf15173660306782" path="/usuarios-list.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="usuarios-details.xhtml" x="338" y="1330" id="pf151736603067945" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf15173660306783" path="/usuarios-details.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="usuarios-new.xhtml" x="338" y="1714" id="pf151736603067946" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" inlinks="pf15173660306784" path="/usuarios-new.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="categorias-list.xhtml" x="338" y="2098" id="pf151736603067947" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" inlinks="pf15173660306785" path="/categorias-list.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="categorias-new.xhtml" x="338" y="2482" id="pf151736603067948" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" inlinks="pf15173660306786" path="/categorias-new.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="feriados-list.xhtml" x="338" y="2866" id="pf151736603067949" referenceLink="//@navigationRule.7/@navigationCase.0/@toViewId|" inlinks="pf15173660306787" path="/feriados-list.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="feriados-new.xhtml" x="338" y="3250" id="pf151736603067950" referenceLink="//@navigationRule.8/@navigationCase.0/@toViewId|" inlinks="pf15173660306788" path="/feriados-new.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inspetorias-list.xhtml" x="338" y="3634" id="pf151736603067951" referenceLink="//@navigationRule.9/@navigationCase.0/@toViewId|" inlinks="pf15173660306789" path="/inspetorias-list.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inspetorias-details.xhtml" x="338" y="4018" id="pf151736603067952" referenceLink="//@navigationRule.10/@navigationCase.0/@toViewId|" inlinks="pf151736603067810" path="/inspetorias-details.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inspetorias-details-rota.xhtml" x="338" y="4402" id="pf151736603067953" referenceLink="//@navigationRule.11/@navigationCase.0/@toViewId|" inlinks="pf151736603067811" path="/inspetorias-details-rota.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inspetorias-new.xhtml" x="338" y="4786" id="pf151736603067954" referenceLink="//@navigationRule.12/@navigationCase.0/@toViewId|" inlinks="pf151736603067812" path="/inspetorias-new.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="cidades-list.xhtml" x="338" y="5170" id="pf151736603067955" referenceLink="//@navigationRule.13/@navigationCase.0/@toViewId|" inlinks="pf151736603067813" path="/cidades-list.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="cidades-details.xhtml" x="338" y="5554" id="pf151736603067956" referenceLink="//@navigationRule.14/@navigationCase.0/@toViewId|" inlinks="pf151736603067814" path="/cidades-details.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="cidades-new.xhtml" x="338" y="5938" id="pf151736603067957" referenceLink="//@navigationRule.15/@navigationCase.0/@toViewId|" inlinks="pf151736603067815" path="/cidades-new.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="cidades-new-jurisdicao.xhtml" x="338" y="6322" id="pf151736603067958" referenceLink="//@navigationRule.16/@navigationCase.0/@toViewId|" inlinks="pf151736603067816" path="/cidades-new-jurisdicao.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="cidades-new-feriadomunicipal.xhtml" x="338" y="6706" id="pf151736603068059" referenceLink="//@navigationRule.17/@navigationCase.0/@toViewId|" inlinks="pf151736603067817" path="/cidades-new-feriadomunicipal.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="cidades-new-feriadomunicipal-new.xhtml" x="338" y="7090" id="pf151736603068060" referenceLink="//@navigationRule.18/@navigationCase.0/@toViewId|" inlinks="pf151736603067818" path="/cidades-new-feriadomunicipal-new.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="fiscais-list.xhtml" x="338" y="7474" id="pf151736603068061" referenceLink="//@navigationRule.19/@navigationCase.0/@toViewId|" inlinks="pf151736603067819" path="/fiscais-list.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="fiscais-new.xhtml" x="338" y="7858" id="pf151736603068062" referenceLink="//@navigationRule.20/@navigationCase.0/@toViewId|" inlinks="pf151736603067820" path="/fiscais-new.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="fiscais-details.xhtml" x="338" y="8242" id="pf151736603068063" referenceLink="//@navigationRule.21/@navigationCase.0/@toViewId|" inlinks="pf151736603067821" path="/fiscais-details.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="fiscais-details-viagem.xhtml" x="338" y="8626" id="pf151736603068064" referenceLink="//@navigationRule.22/@navigationCase.0/@toViewId|" inlinks="pf151736603067822" path="/fiscais-details-viagem.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="fiscais-new-ferias.xhtml" x="338" y="9010" id="pf151736603068065" referenceLink="//@navigationRule.23/@navigationCase.0/@toViewId|" inlinks="pf151736603067823" path="/fiscais-new-ferias.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="rotas-list.xhtml" x="338" y="9394" id="pf151736603068066" referenceLink="//@navigationRule.24/@navigationCase.0/@toViewId|" inlinks="pf151736603067824" path="/rotas-list.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="rotas-inspetoria-selection.xhtml" x="338" y="9778" id="pf151736603068067" referenceLink="//@navigationRule.25/@navigationCase.0/@toViewId|" inlinks="pf151736603067825" path="/rotas-inspetoria-selection.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="rotas-new.xhtml" x="338" y="10162" id="pf151736603068068" referenceLink="//@navigationRule.26/@navigationCase.0/@toViewId|" inlinks="pf151736603067826" path="/rotas-new.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="rotas-details.xhtml" x="338" y="10546" id="pf151736603068069" referenceLink="//@navigationRule.27/@navigationCase.0/@toViewId|" inlinks="pf151736603067827" path="/rotas-details.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="rotas-details-viagem.xhtml" x="338" y="10930" id="pf151736603068070" referenceLink="//@navigationRule.28/@navigationCase.0/@toViewId|" inlinks="pf151736603067828" path="/rotas-details-viagem.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="viagens-list.xhtml" x="338" y="11314" id="pf151736603068071" referenceLink="//@navigationRule.29/@navigationCase.0/@toViewId|" inlinks="pf151736603067829" path="/viagens-list.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="viagens-new.xhtml" x="338" y="11698" id="pf151736603068072" referenceLink="//@navigationRule.30/@navigationCase.0/@toViewId|" inlinks="pf151736603067830" path="/viagens-new.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="viagens-details.xhtml" x="338" y="12082" id="pf151736603068073" referenceLink="//@navigationRule.31/@navigationCase.0/@toViewId|" inlinks="pf151736603067831" path="/viagens-details.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="viagens-schedule.xhtml" x="338" y="12466" id="pf151736603068074" referenceLink="//@navigationRule.32/@navigationCase.0/@toViewId|" inlinks="pf151736603067832" path="/viagens-schedule.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ordem-list.xhtml" x="338" y="12850" id="pf151736603068075" referenceLink="//@navigationRule.33/@navigationCase.0/@toViewId|" inlinks="pf151736603067833" path="/ordem-list.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ordem-new.xhtml" x="338" y="13234" id="pf151736603068076" referenceLink="//@navigationRule.34/@navigationCase.0/@toViewId|" inlinks="pf151736603067834" path="/ordem-new.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ordem-details.xhtml" x="338" y="13618" id="pf151736603068077" referenceLink="//@navigationRule.35/@navigationCase.0/@toViewId|" inlinks="pf151736603067835" path="/ordem-details.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ordem-schedule.xhtml" x="338" y="14002" id="pf151736603068078" referenceLink="//@navigationRule.36/@navigationCase.0/@toViewId|" inlinks="pf151736603067836" path="/ordem-schedule.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="procedimentos-list.xhtml" x="338" y="14386" id="pf151736603068079" referenceLink="//@navigationRule.37/@navigationCase.0/@toViewId|" inlinks="pf151736603067837" path="/procedimentos-list.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="procedimentos-new.xhtml" x="338" y="14770" id="pf151736603068080" referenceLink="//@navigationRule.38/@navigationCase.0/@toViewId|" inlinks="pf151736603067838" path="/procedimentos-new.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="procedimentos-details.xhtml" x="338" y="15154" id="pf151736603068181" referenceLink="//@navigationRule.39/@navigationCase.0/@toViewId|" inlinks="pf151736603067839" path="/procedimentos-details.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="procedimentos-edit.xhtml" x="338" y="15538" id="pf151736603068182" referenceLink="//@navigationRule.40/@navigationCase.0/@toViewId|" inlinks="pf151736603067840" path="/procedimentos-edit.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="insere-memorando.xhtml" x="338" y="15922" id="pf151736603068183" referenceLink="//@navigationRule.41/@navigationCase.0/@toViewId|" inlinks="pf151736603067841" path="/insere-memorando.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" id="pf151736603068184" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf151736603067842" path="/login.xhtml"/>
+  <links id="pf15173660306781" target="pf151736603067943" source="pf15173660306770" outcome="index" redirect="true"/>
+  <links id="pf15173660306782" target="pf151736603067944" source="pf15173660306770" outcome="usuarios-list" redirect="true"/>
+  <links id="pf15173660306783" target="pf151736603067945" source="pf15173660306770" outcome="usuarios-details" redirect="true"/>
+  <links id="pf15173660306784" target="pf151736603067946" source="pf15173660306770" outcome="usuarios-new" redirect="true"/>
+  <links id="pf15173660306785" target="pf151736603067947" source="pf15173660306770" outcome="categorias-list" redirect="true"/>
+  <links id="pf15173660306786" target="pf151736603067948" source="pf15173660306770" outcome="categorias-new" redirect="true"/>
+  <links id="pf15173660306787" target="pf151736603067949" source="pf15173660306770" outcome="feriados-list" redirect="true"/>
+  <links id="pf15173660306788" target="pf151736603067950" source="pf15173660306770" outcome="feriados-new" redirect="true"/>
+  <links id="pf15173660306789" target="pf151736603067951" source="pf15173660306770" outcome="inspetorias-list" redirect="true"/>
+  <links id="pf151736603067810" target="pf151736603067952" source="pf15173660306770" outcome="inspetorias-details" redirect="true"/>
+  <links id="pf151736603067811" target="pf151736603067953" source="pf15173660306770" outcome="inspetorias-details-rota" redirect="true"/>
+  <links id="pf151736603067812" target="pf151736603067954" source="pf15173660306770" outcome="inspetorias-new" redirect="true"/>
+  <links id="pf151736603067813" target="pf151736603067955" source="pf15173660306770" outcome="cidades-list" redirect="true"/>
+  <links id="pf151736603067814" target="pf151736603067956" source="pf15173660306770" outcome="cidades-details" redirect="true"/>
+  <links id="pf151736603067815" target="pf151736603067957" source="pf15173660306770" outcome="cidades-new" redirect="true"/>
+  <links id="pf151736603067816" target="pf151736603067958" source="pf15173660306770" outcome="cidades-new-jurisdicao" redirect="true"/>
+  <links id="pf151736603067817" target="pf151736603068059" source="pf15173660306770" outcome="cidades-new-feriadomunicipal" redirect="true"/>
+  <links id="pf151736603067818" target="pf151736603068060" source="pf15173660306770" outcome="cidades-new-feriadomunicipal-new" redirect="true"/>
+  <links id="pf151736603067819" target="pf151736603068061" source="pf15173660306770" outcome="fiscais-list" redirect="true"/>
+  <links id="pf151736603067820" target="pf151736603068062" source="pf15173660306770" outcome="fiscais-new" redirect="true"/>
+  <links id="pf151736603067821" target="pf151736603068063" source="pf15173660306770" outcome="fiscais-details" redirect="true"/>
+  <links id="pf151736603067822" target="pf151736603068064" source="pf15173660306770" outcome="fiscais-details-viagem" redirect="true"/>
+  <links id="pf151736603067823" target="pf151736603068065" source="pf15173660306770" outcome="fiscais-new-ferias" redirect="true"/>
+  <links id="pf151736603067824" target="pf151736603068066" source="pf15173660306770" outcome="rotas-list" redirect="true"/>
+  <links id="pf151736603067825" target="pf151736603068067" source="pf15173660306770" outcome="rotas-inspetoria-selection" redirect="true"/>
+  <links id="pf151736603067826" target="pf151736603068068" source="pf15173660306770" outcome="rotas-new" redirect="true"/>
+  <links id="pf151736603067827" target="pf151736603068069" source="pf15173660306770" outcome="rotas-details" redirect="true"/>
+  <links id="pf151736603067828" target="pf151736603068070" source="pf15173660306770" outcome="rotas-details-viagem" redirect="true"/>
+  <links id="pf151736603067829" target="pf151736603068071" source="pf15173660306770" outcome="viagens-list" redirect="true"/>
+  <links id="pf151736603067830" target="pf151736603068072" source="pf15173660306770" outcome="viagens-new" redirect="true"/>
+  <links id="pf151736603067831" target="pf151736603068073" source="pf15173660306770" outcome="viagens-details" redirect="true"/>
+  <links id="pf151736603067832" target="pf151736603068074" source="pf15173660306770" outcome="viagens-schedule" redirect="true"/>
+  <links id="pf151736603067833" target="pf151736603068075" source="pf15173660306770" outcome="ordem-list" redirect="true"/>
+  <links id="pf151736603067834" target="pf151736603068076" source="pf15173660306770" outcome="ordem-new" redirect="true"/>
+  <links id="pf151736603067835" target="pf151736603068077" source="pf15173660306770" outcome="ordem-details" redirect="true"/>
+  <links id="pf151736603067836" target="pf151736603068078" source="pf15173660306770" outcome="ordem-schedule" redirect="true"/>
+  <links id="pf151736603067837" target="pf151736603068079" source="pf15173660306770" outcome="procedimentos-list" redirect="true"/>
+  <links id="pf151736603067838" target="pf151736603068080" source="pf15173660306770" outcome="procedimentos-new" redirect="true"/>
+  <links id="pf151736603067839" target="pf151736603068181" source="pf15173660306770" outcome="procedimentos-details" redirect="true"/>
+  <links id="pf151736603067840" target="pf151736603068182" source="pf15173660306770" outcome="procedimentos-edit" redirect="true"/>
+  <links id="pf151736603067841" target="pf151736603068183" source="pf15173660306770" outcome="insere-memorando" redirect="true"/>
+  <links id="pf151736603067842" target="pf151736603068184" source="pf15173660306770" outcome="login" redirect="true"/>
+</pageflow:Pageflow>
