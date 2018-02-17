@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <style>
+        .ui-widget,
+        .ui-widget .ui-widget {
+            font-size: 15px !important;
+        }
+    </style>
+    <h:body>
+        <ui:composition template="common/common-layout.xhtml">
+            <ui:define name="content">
+                <h1 class="page-heading"><i class="fa fa-building-o icon-sidebar"></i> Cidade de #{cidadeBean.selectedCidade.nome}</h1>
+                <!-- End page heading -->
+
+                <!-- Begin breadcrumb -->
+                <ol class="breadcrumb default square rsaquo sm">
+                    <li><a href="index.xhtml"><i class="fa fa-home"></i></a></li>
+                    <li><a href="cidades-list.xhtml">Lista de cidades</a></li>
+                    <li class="active">Detalhes da cidade</li>
+                </ol>
+                <!-- End breadcrumb -->
+
+                <!-- BEGIN PANEL COLLAPSE -->
+                <div class="panel with-nav-tabs panel-primary">
+                    <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#panel-jurisdicoes" data-toggle="tab"><i class="fa fa-map-marker icon-sidebar"></i> Jurisdições</a></li>
+                            <li><a href="#panel-feriados" data-toggle="tab"><i class="fa fa-calendar-o icon-sidebar"></i> Feriados Municipais</a></li>
+                        </ul>
+                    </div>
+                    <div id="panel-collapse-1" class="collapse in">
+                        <div class="panel-body">
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active" id="panel-jurisdicoes">
+                                    <h:form id="setoresForm">
+                                        <p:growl id="messages" showDetail="false"/>
+                                        <p:dataTable id="setoresTable"
+                                                     var="setores"
+                                                     value="#{cidadeBean.selectedCidade.jurisdicaos}"
+                                                     emptyMessage="Nenhuma jurisdição cadastrada"
+                                                     widgetVar="setoresTable"
+                                                     paginator="true"
+                                                     style="text-align: center;"
+                                                     rows="10"
+                                                     editable="true"
+                                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+                                            <f:facet name="header">
+                                                <div align="right">
+                                                    <p:outputPanel>
+                                                        <h:outputText value="Pesquisa: " />
+                                                        <p:inputText id="globalFilter"
+                                                                     onkeyup="PF('setoresTable').filter()"
+                                                                     style="width:250px"
+                                                                     placeholder="Digite sua busca aqui..."/>
+                                                    </p:outputPanel>
+                                                </div>
+                                            </f:facet>
+
+                                            <p:ajax event="rowEdit" listener="#{cidadeBean.onRowEditJurisdicao}" update=":setoresForm:messages" />
+                                            <p:ajax event="rowEditCancel" listener="#{cidadeBean.onCancelJurisdicao}" update=":setoresForm:messages" />
+
+                                            <p:column headerText="JURISDIÇÃO"
+                                                      filterBy="#{setores.nome}"
+                                                      filterMatchMode="contains"
+                                                      filterStyle="display:none">
+                                                <p:cellEditor>
+                                                    <f:facet name="output">
+                                                        <h:outputText value="#{setores.nome}" />
+                                                    </f:facet>
+                                                    <f:facet name="input">
+                                                        <p:inputText id="nomeSetor"
+                                                                     required="true"
+                                                                     style="width:100%"
+                                                                     value="#{setores.nome}"
+                                                                     requiredMessage="Informe o nome do setor"/>
+                                                    </f:facet>
+                                                </p:cellEditor>
+                                            </p:column>
+                                            <p:column style="width:37px;">
+                                                <f:facet name="header">
+                                                    <span class="ui-icon ui-icon-pencil" title="Atualizar"></span>
+                                                </f:facet>
+                                                <p:rowEditor id="editor" />
+                                                <p:tooltip for="editor" value="Atualizar"/>
+                                            </p:column>
+
+                                            <p:column style="width:37px;">
+                                                <f:facet name="header">
+                                                    <span class="ui-icon ui-icon-trash" title="Excluir"></span>
+                                                </f:facet>
+                                                <p:commandLink id="deletButtonSetor"
+                                                               update=":setoresForm"
+                                                               action="#{cidadeBean.removeJurisdicao()}"
+                                                               styleClass="ui-icon ui-icon-trash"
+                                                               title="Excluir">
+                                                    <f:setPropertyActionListener value="#{setores}"
+                                                                                 target="#{cidadeBean.selectedJurisdicao}" />
+                                                </p:commandLink>
+                                            </p:column>
+
+                                            <f:facet name="footer">
+                                                <div align="left" style="padding: 15px 25px;">
+                                                    <p:commandButton id="novoSetor"
+                                                                     value="Adicionar Jurisdição"
+                                                                     styleClass="btn btn-rounded-lg"
+                                                                     action="#{cidadeBean.newJurisdicao()}"
+                                                                     ajax="false">
+
+                                                    </p:commandButton>
+                                                </div>
+                                            </f:facet>
+                                        </p:dataTable>
+                                    </h:form>
+                                </div>
+                                <div class="tab-pane fade" id="panel-feriados">
+                                    <h:form id="feriadosForm">
+                                        <p:growl id="messages" showDetail="false"/>
+                                        <p:dataTable id="feriadosTable"
+                                                     var="feriados"
+                                                     value="#{cidadeBean.selectedCidade.feriados}"
+                                                     emptyMessage="Nenhum feriado cadastrado para essa cidade"
+                                                     widgetVar="feriadosTable"
+                                                     paginator="true"
+                                                     style="text-align: center;"
+                                                     rows="10"
+                                                     editable="true"
+                                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+                                            <f:facet name="header">
+                                                <div align="right">
+                                                    <p:outputPanel>
+                                                        <h:outputText value="Pesquisa: " />
+                                                        <p:inputText id="globalFilter"
+                                                                     onkeyup="PF('feriadosTable').filter()"
+                                                                     style="width:250px"
+                                                                     placeholder="Digite sua busca aqui..."/>
+                                                    </p:outputPanel>
+                                                </div>
+                                            </f:facet>
+
+                                            <p:column id="dataFNacional"
+                                                      headerText="DATA"
+                                                      rendered="true"
+                                                      filterBy="#{feriados.data}"
+                                                      filterMatchMode="contains"
+                                                      filterStyle="display:none">
+                                                <h:outputText value="#{feriados.data}">
+                                                    <f:convertDateTime pattern="EEEE, dd/MM/yyyy"
+                                                                       timeZone="America/Sao_Paulo"/>
+                                                </h:outputText>
+                                            </p:column>
+                                            <p:column id="nomeFNacional"
+                                                      headerText="FERIADO"
+                                                      rendered="true"
+                                                      filterBy="#{feriados.nome}"
+                                                      filterMatchMode="contains"
+                                                      filterStyle="display:none">
+                                                <h:outputText value="#{feriados.nome}"/>
+                                            </p:column>
+                                            <p:column id="dataFixa"
+                                                      headerText="DATA FIXA"
+                                                      style="width:120px;">
+                                                <h:outputText value="SIM" rendered="#{feriados.isFixo}"/>
+                                                <h:outputText value="NÃO" rendered="#{not feriados.isFixo}"/>
+                                            </p:column>
+
+                                            <f:facet name="footer">
+                                                <div align="left" style="padding: 15px 25px;">
+                                                    <p:commandButton id="novoSetor"
+                                                                     value="Adicionar Feriado"
+                                                                     styleClass="btn btn-rounded-lg"
+                                                                     action="#{cidadeBean.newFeriado()}"
+                                                                     ajax="false">
+
+                                                    </p:commandButton>
+                                                </div>
+                                            </f:facet>
+                                        </p:dataTable>
+                                    </h:form>
+                                </div>
+                            </div><!-- /.tab-content -->
+                        </div><!-- /.panel-body -->
+                    </div><!-- /.collapse in -->
+                </div>
+                <!-- END PANEL COLLAPSE -->
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

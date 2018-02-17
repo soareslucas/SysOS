@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/03/2015 11:54:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="creago.dfisc.afg.sifis.planejamento.entities.Inspetoria" table="inspetoria" catalog="sifis" optimistic-lock="version">
+        <id name="idinspetoria" type="java.lang.Long">
+            <column name="idinspetoria" />
+            <generator class="identity" />
+        </id>
+        <property name="nome" type="string">
+            <column name="nome" length="45" />
+        </property>
+        <set name="fiscals" table="fiscal" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="inspetoria_idinspetoria" not-null="true" />
+            </key>
+            <one-to-many class="creago.dfisc.afg.sifis.planejamento.entities.Fiscal" />
+        </set>
+        <set name="rotas" table="rota" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="inspetoria_idinspetoria" not-null="true" />
+            </key>
+            <one-to-many class="creago.dfisc.afg.sifis.planejamento.entities.Rota" />
+        </set>
+        <set name="cidades" table="cidade" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="inspetoria_idinspetoria" not-null="true" />
+            </key>
+            <one-to-many class="creago.dfisc.afg.sifis.planejamento.entities.Cidade" />
+        </set>
+    </class>
+</hibernate-mapping>

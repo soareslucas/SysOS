@@ -1,0 +1,340 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="common/common-layout.xhtml">
+            <ui:define name="content">
+                <h1 class="page-heading"><i class="fa fa-users icon-sidebar"></i> #{fiscalBean.selectedFiscal.sigla} 
+                    <small>#{fiscalBean.selectedFiscal.nome} #{fiscalBean.selectedFiscal.sobrenome}</small></h1>
+                <!-- End page heading -->
+
+                <!-- Begin breadcrumb -->
+                <ol class="breadcrumb default square rsaquo sm">
+                    <li><a href="index.xhtml"><i class="fa fa-home"></i></a></li>
+                    <li><a href="fiscais-list.xhtml">Lista de fiscais</a></li>
+                    <li class="active">Detalhes do fiscal</li>
+                </ol>
+                <!-- End breadcrumb -->
+
+                <div class="the-box">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <i class="fa fa-user icon-sidebar"></i>
+                            DETALHES DO FISCAL
+                            <br/>
+                        </div>
+                    </div>
+                    <h:panelGrid columns="2">
+                        <h:outputText value="NOME:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="#{fiscalBean.selectedFiscal.nome} #{fiscalBean.selectedFiscal.sobrenome}" style="padding-left:20px;"/>
+
+                        <h:outputText value="SIGLA:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="#{fiscalBean.selectedFiscal.sigla}" style="padding-left:20px;"/>
+
+                        <h:outputText value="MATRÍCULA:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="#{fiscalBean.selectedFiscal.matricula}" style="padding-left:20px;"/>
+
+                        <h:outputText value="LOTAÇÃO:" style="font-weight:bold;padding-left:20px;" />
+                        <h:outputText value="#{fiscalBean.selectedFiscal.inspetoria.nome}" style="padding-left:20px;"/>
+
+                        <h:outputText value="SITUAÇÃO:" style="font-weight:bold;padding-left:20px;" />
+                        <h:outputText value="ATIVO" rendered="#{fiscalBean.selectedFiscal.isAtivo}" style="padding-left:20px;"/>
+                        <h:outputText value="INATIVO" rendered="#{not fiscalBean.selectedFiscal.isAtivo}" style="padding-left:20px;"/>
+                    </h:panelGrid>
+                    <br/>
+                    <div class="panel with-nav-tabs panel-primary">
+                        <div class="panel-heading">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#panel-ferias" data-toggle="tab"><i class="fa fa-suitcase icon-sidebar"></i> Férias</a></li>
+                                <li><a href="#panel-viagens" data-toggle="tab"><i class="fa fa-car icon-sidebar"></i> Viagens</a></li>
+                                <li><a href="#panel-ordens" data-toggle="tab"><i class="fa fa-car icon-sidebar"></i> Ordens</a></li>
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="panel-ferias">
+                                <h:form id="feriasForm">
+                                    <p:growl id="messages" showDetail="false"/>
+                                    <p:dataTable id="feriasTable"
+                                                 var="ferias"
+                                                 value="#{fiscalBean.selectedFiscal.feriases}"
+                                                 emptyMessage="Férias não cadastradas para este fiscal"
+                                                 widgetVar="feriasTable"
+                                                 paginator="true"
+                                                 style="text-align: center;"
+                                                 rows="10"
+                                                 editable="true"
+                                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+                                        <p:ajax event="rowEdit" listener="#{fiscalBean.onRowEditFerias}" update=":feriasForm:messages" />
+                                        <p:ajax event="rowEditCancel" listener="#{fiscalBean.onCancelFerias}" update=":feriasForm:messages" />
+
+                                        <p:column headerText="INÍCIO"
+                                                  filterBy="#{ferias.inicio}"
+                                                  filterMatchMode="contains"
+                                                  filterStyle="display:none">
+                                            <p:cellEditor>
+                                                <f:facet name="output">
+                                                    <h:outputText value="#{ferias.inicio}">
+                                                        <f:convertDateTime pattern="EEEE, dd/MM/yyyy"
+                                                                           timeZone="America/Sao_Paulo"/>
+                                                    </h:outputText>
+                                                </f:facet>
+                                                <f:facet name="input">
+                                                    <p:calendar id="inputFerias"
+                                                                locale="pt_BR"
+                                                                style="width:100%"
+                                                                showButtonPanel="true"
+                                                                effect="explode"
+                                                                navigator="true"
+                                                                required="true"
+                                                                requiredMessage="Informe a data de início das férias"
+                                                                pattern="dd/MM/yyyy"
+                                                                value="#{ferias.inicio}"
+                                                                label="dataInicio"/>
+                                                </f:facet>
+                                            </p:cellEditor>
+                                        </p:column>
+                                        <p:column headerText="FIM"
+                                                  filterBy="#{ferias.fim}"
+                                                  filterMatchMode="contains"
+                                                  filterStyle="display:none">
+                                            <p:cellEditor>
+                                                <f:facet name="output">
+                                                    <h:outputText value="#{ferias.fim}">
+                                                        <f:convertDateTime pattern="EEEE, dd/MM/yyyy"
+                                                                           timeZone="America/Sao_Paulo"/>
+                                                    </h:outputText>
+                                                </f:facet>
+                                                <f:facet name="input">
+                                                    <p:calendar id="inputFimFerias"
+                                                                locale="pt_BR"
+                                                                style="width:100%"
+                                                                showButtonPanel="true"
+                                                                effect="explode"
+                                                                navigator="true"
+                                                                required="true"
+                                                                requiredMessage="Informe a data de término das férias"
+                                                                pattern="dd/MM/yyyy"
+                                                                value="#{ferias.fim}"
+                                                                label="dataFim"/>
+                                                </f:facet>
+                                            </p:cellEditor>
+                                        </p:column>
+                                        <p:column style="width:37px;">
+                                            <f:facet name="header">
+                                                <span class="ui-icon ui-icon-pencil" title="Editar"></span>
+                                            </f:facet>
+                                            <p:rowEditor id="editor" />
+                                            <p:tooltip for="editor" value="Editar"/>
+                                        </p:column>
+
+                                        <!-- Coluna com o botao de exclusão do feriado nacional (renderizada) -->
+                                        <p:column style="width:37px;">
+                                            <f:facet name="header">
+                                                <span class="ui-icon ui-icon-trash" title="Excluir"></span>
+                                            </f:facet>
+                                            <p:commandLink id="deletButtonFerias"
+                                                           update=":feriasForm"
+                                                           action="#{fiscalBean.removeFerias()}"
+                                                           styleClass="ui-icon ui-icon-trash"
+                                                           title="Excluir">
+                                                <f:setPropertyActionListener value="#{ferias}"
+                                                                             target="#{fiscalBean.selectedFerias}" />
+                                            </p:commandLink>
+                                        </p:column>
+
+                                        <f:facet name="footer">
+                                            <div align="left" style="padding: 15px 25px;">
+                                                <p:commandButton id="novasFerias"
+                                                                 value="Adicionar Férias"
+                                                                 styleClass="btn btn-rounded-lg"
+                                                                 action="#{fiscalBean.newFerias()}"/>
+                                            </div>
+                                        </f:facet>
+                                    </p:dataTable>
+                                </h:form>
+                            </div>
+                            <div class="tab-pane fade" id="panel-viagens">
+                                <h:form id="viagensForm">
+                                    <p:growl id="messages" showDetail="false"/>
+                                    <p:dataTable var="viagens"
+                                                 value="#{fiscalBean.selectedFiscal.viagems}"
+                                                 editable="true"
+                                                 widgetVar="viagensTable"
+                                                 emptyMessage="Nenhuma viagem encontrada"
+                                                 paginator="true"
+                                                 style="text-align: center;"
+                                                 rows="15"
+                                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+                                        <f:facet name="header">
+                                            <div align="right">
+                                                <p:outputPanel>
+                                                    <h:outputText value="Pesquisa: " />
+                                                    <p:inputText id="globalFilter"
+                                                                 onkeyup="PF('viagensTable').filter()"
+                                                                 style="width:250px"
+                                                                 placeholder="Digite sua busca aqui..."/>
+                                                </p:outputPanel>
+                                            </div>
+                                        </f:facet>
+
+                                        <p:column headerText="INSPETORIA"
+                                                  rendered="true"
+                                                  filterBy="#{viagens.rota.inspetoria.nome}"
+                                                  filterMatchMode="contains"
+                                                  filterStyle="display:none">
+                                            <h:outputText value="#{viagens.rota.inspetoria.nome}"/>
+                                        </p:column>
+                                        <p:column headerText="ROTA"
+                                                  rendered="true"
+                                                  filterBy="#{viagens.rota.nome}"
+                                                  filterMatchMode="contains"
+                                                  filterStyle="display:none">
+                                            <h:outputText value="#{viagens.rota.nome}"/>
+                                        </p:column>
+
+                                        <p:column id="inicioViagem"
+                                                  headerText="INÍCIO"
+                                                  rendered="true"
+                                                  filterBy="#{viagens.inicio}"
+                                                  filterMatchMode="contains"
+                                                  filterStyle="display:none">
+                                            <h:outputText value="#{viagens.inicio}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"
+                                                                   timeZone="America/Sao_Paulo"/>
+                                            </h:outputText>
+                                        </p:column>
+
+                                        <p:column id="fimViagem"
+                                                  headerText="FIM"
+                                                  rendered="true"
+                                                  filterBy="#{viagens.fim}"
+                                                  filterMatchMode="contains"
+                                                  filterStyle="display:none">
+                                            <h:outputText value="#{viagens.fim}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"
+                                                                   timeZone="America/Sao_Paulo"/>
+                                            </h:outputText>
+                                        </p:column>
+
+                                        <p:column style="width:37px">
+                                            <f:facet name="header">
+                                                <span class="ui-icon ui-icon-search" title="Detalhes"></span>
+                                            </f:facet>
+                                            <p:commandLink id="selectButton"
+                                                           update=":viagensForm"
+                                                           styleClass="ui-icon ui-icon-search"
+                                                           title="Detalhes"
+                                                           action="fiscais-details-viagem">
+                                                <f:setPropertyActionListener value="#{viagens}"
+                                                                             target="#{fiscalBean.selectedViagem}" />
+                                            </p:commandLink>
+                                        </p:column>
+                                    </p:dataTable>
+                                </h:form>
+                            </div>
+
+                            <div class="tab-pane fade" id="panel-ordens">
+                                <h:form id="ordensForm">
+                                    <p:growl id="messages" showDetail="false"/>
+                                    <p:dataTable var="ordens"
+                                                 value="#{fiscalBean.selectedFiscal.ordems}"
+                                                 editable="true"
+                                                 widgetVar="viagensTable"
+                                                 emptyMessage="Nenhuma ordem encontrada"
+                                                 paginator="true"
+                                                 style="text-align: center;"
+                                                 rows="15"
+                                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+                                        <f:facet name="header">
+                                            <div align="right">
+                                                <p:outputPanel>
+                                                    <h:outputText value="Pesquisa: " />
+                                                    <p:inputText id="globalFilter"
+                                                                 onkeyup="PF('ordensTable').filter()"
+                                                                 style="width:250px"
+                                                                 placeholder="Digite sua busca aqui..."/>
+                                                </p:outputPanel>
+                                            </div>
+                                        </f:facet>
+
+                                <p:column headerText="CIDADES"
+                                          rendered="true"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+                                    <p:dataList value="#{ordens.jurisdicaos}" var="cidades" type="definition">
+
+                                        #{cidades.cidade.nome}
+                                    </p:dataList>
+                                </p:column>
+
+                                        <p:column id="inicioViagem"
+                                                  headerText="INÍCIO"
+                                                  rendered="true"
+                                                  filterBy="#{ordens.inicio}"
+                                                  filterMatchMode="contains"
+                                                  filterStyle="display:none">
+                                            <h:outputText value="#{ordens.inicio}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"
+                                                                   timeZone="America/Sao_Paulo"/>
+                                            </h:outputText>
+                                        </p:column>
+
+                                        <p:column id="fimViagem"
+                                                  headerText="FIM"
+                                                  rendered="true"
+                                                  filterBy="#{ordens.fim}"
+                                                  filterMatchMode="contains"
+                                                  filterStyle="display:none">
+                                            <h:outputText value="#{ordens.fim}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"
+                                                                   timeZone="America/Sao_Paulo"/>
+                                            </h:outputText>
+                                        </p:column>
+
+
+                                        <p:column headerText="VALOR"
+                                                  rendered="true"
+                                                  filterBy="#{ordens.valorTotal}"
+                                                  filterMatchMode="contains"
+                                                  filterStyle="display:none">
+                                            <h:outputText value="R$ #{ordens.valorTotal}"/>
+                                        </p:column>
+
+
+
+                                        <p:column style="width:37px">
+                                            <f:facet name="header">
+                                                <span class="ui-icon ui-icon-search" title="Detalhes"></span>
+                                            </f:facet>
+                                            <p:commandLink id="selectButton"
+                                                           update=":ordensForm"
+                                                           styleClass="ui-icon ui-icon-search"
+                                                           title="Detalhes"
+                                                           action="ordem-details">
+                                                <f:setPropertyActionListener value="#{ordens}"
+                                                                             target="#{ordemBean.selectedOrdem}" />
+                                            </p:commandLink>
+                                        </p:column>
+
+                                    </p:dataTable>
+                                </h:form>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

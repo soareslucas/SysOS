@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/03/2015 11:54:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="creago.dfisc.afg.sifis.planejamento.entities.Ferias" table="ferias" catalog="sifis" optimistic-lock="version">
+        <id name="idferias" type="java.lang.Long">
+            <column name="idferias" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="fiscal" class="creago.dfisc.afg.sifis.planejamento.entities.Fiscal" fetch="select">
+            <column name="fiscal_idfiscal" not-null="true" />
+        </many-to-one>
+        <property name="inicio" type="timestamp">
+            <column name="inicio" length="19" />
+        </property>
+        <property name="fim" type="timestamp">
+            <column name="fim" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

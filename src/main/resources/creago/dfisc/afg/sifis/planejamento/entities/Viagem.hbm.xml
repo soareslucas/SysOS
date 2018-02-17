@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/03/2015 11:54:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="creago.dfisc.afg.sifis.planejamento.entities.Viagem" table="viagem" catalog="sifis" optimistic-lock="version">
+        <id name="idviagem" type="java.lang.Long">
+            <column name="idviagem" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="categoria" class="creago.dfisc.afg.sifis.planejamento.entities.Categoria" fetch="select">
+            <column name="categoria_idcategoria" not-null="true" />
+        </many-to-one>
+        <many-to-one name="fiscal" class="creago.dfisc.afg.sifis.planejamento.entities.Fiscal" fetch="select">
+            <column name="fiscal_idfiscal" not-null="true" />
+        </many-to-one>
+        <many-to-one name="rota" class="creago.dfisc.afg.sifis.planejamento.entities.Rota" fetch="select">
+            <column name="rota_idrota" not-null="true" />
+        </many-to-one>
+        <property name="inicio" type="timestamp">
+            <column name="inicio" length="19" />
+        </property>
+        <property name="fim" type="timestamp">
+            <column name="fim" length="19" />
+        </property>
+        <property name="observacao" type="string">
+            <column name="observacao" length="65535" />
+        </property>
+        <property name="gerouOrdem" type="boolean">
+            <column name="gerou_ordem" />
+        </property>
+        
+        
+    </class>
+</hibernate-mapping>

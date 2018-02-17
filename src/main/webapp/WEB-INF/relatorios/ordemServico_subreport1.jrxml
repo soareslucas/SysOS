@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ordemServico_subreport1" printOrder="Horizontal" pageWidth="485" pageHeight="802" whenNoDataType="BlankPage" columnWidth="485" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="6d0b3604-9d76-453f-a47e-3dc54af7e365">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="NUMERO_OS" class="java.lang.String">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     cidades.`cidade` AS cidades_cidade,
+     cidades.`jurisdicao` AS cidades_jurisdicao
+FROM
+     `fiscal` fiscal INNER JOIN `ordem_de_servico` ordem_de_servico ON fiscal.`codigo` = ordem_de_servico.`FISCAL_codigo`
+     INNER JOIN `informacoes` informacoes ON ordem_de_servico.`INFORMACOES_id_informacoes` = informacoes.`id_informacoes`
+     INNER JOIN `ordem_de_servico_has_cidades` ordem_de_servico_has_cidades ON ordem_de_servico.`id_ordem_de_servico` = ordem_de_servico_has_cidades.`ORDEM_DE_SERVICO_id_ordem_de_servico`
+     INNER JOIN `cidades` cidades ON ordem_de_servico_has_cidades.`CIDADES_id_cidades` = cidades.`id_cidades`
+WHERE
+     ordem_de_servico.`numero` = $P{NUMERO_OS}]]>
+	</queryString>
+	<field name="cidades_cidade" class="java.lang.String"/>
+	<field name="cidades_jurisdicao" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="17" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="ca99a84c-cf02-4da2-8c91-2b16d981a897" x="19" y="2" width="77" height="15"/>
+				<textElement markup="html">
+					<font fontName="Times New Roman" isBold="false" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Local a fiscalizar:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3ea017ed-037f-495d-89e4-3cf455c4c520" x="6" y="2" width="13" height="15"/>
+				<textElement markup="html">
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[c)]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="398dd6dd-312c-46ed-838d-d4a8510200a9" stretchType="RelativeToBandHeight" x="0" y="1" width="485" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="7ef7ceaa-a106-4947-8c91-a1a97183c4dc" x="0" y="2" width="1" height="15"/>
+			</line>
+			<line>
+				<reportElement uuid="6b072d63-4e1f-44d6-996a-4b5875575279" x="484" y="2" width="1" height="15"/>
+			</line>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="b80659eb-6f2c-420f-977d-dfafab0370c0" x="59" y="0" width="201" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement markup="html">
+					<font fontName="Times New Roman" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cidades_cidade}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="7d7a5047-1689-4fac-99a8-0b0adf26795c" x="193" y="0" width="219" height="15" isRemoveLineWhenBlank="true"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cidades_jurisdicao}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="0e5df727-d806-4845-89cb-179b50ef164f" x="0" y="0" width="1" height="15"/>
+			</line>
+			<line>
+				<reportElement uuid="047e82c1-d9ab-41e0-bd5a-5c26fc96da0e" x="484" y="0" width="1" height="15"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="9">
+			<line>
+				<reportElement uuid="ce54d0f0-49ae-4d63-a05c-9fb7f4825ede" x="0" y="0" width="1" height="6"/>
+			</line>
+			<line>
+				<reportElement uuid="381668f8-67c7-4853-ba47-b5f557ebcee1" x="484" y="0" width="1" height="6"/>
+			</line>
+			<line>
+				<reportElement uuid="86f8cffb-1174-4c4c-b12c-ab642a2f6794" stretchType="RelativeToBandHeight" x="0" y="6" width="485" height="1"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

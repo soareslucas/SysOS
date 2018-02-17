@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <ui:composition template="common/common-layout.xhtml">
+            <ui:define name="content">
+                <h1 class="page-heading"><i class="fa fa-building-o icon-sidebar"></i>  Lista de cidades</h1>
+                <!-- End page heading -->
+
+                <!-- Begin breadcrumb -->
+                <ol class="breadcrumb default square rsaquo sm">
+                    <li><a href="index.xhtml"><i class="fa fa-home"></i></a></li>
+                    <li class="active">Lista de cidades</li>
+                </ol>
+                <!-- End breadcrumb -->
+
+                <!-- BEGIN DATA TABLE -->
+                <div class="the-box">
+                    <div class="table-responsive">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <i class="fa fa-building-o icon-sidebar"></i>
+                                LISTA DE CIDADES
+                                <br/>
+                            </div>
+                        </div>
+                        <h:form id="cidadesForm" >
+                            <p:growl id="messages" showDetail="false"/>
+                            <p:dataTable id="cidadesTable"
+                                         var="cidades"
+                                         value="#{cidadeBean.cidades}"
+                                         widgetVar="cidadesTable"
+                                         emptyMessage="Nenhuma cidade encontrada"
+                                         paginator="true"
+                                         style="text-align: center;"
+                                         rows="50"
+                                         editable="true"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="10, 25, 50, 100"
+                                         filteredValue="#{cidadeBean.filteredCidades}">
+
+                                <f:facet name="header">
+                                    <div align="right">
+                                        <p:outputPanel>
+                                            <h:outputText value="Pesquisa: " />
+                                            <p:inputText id="globalFilter"
+                                                         onkeyup="PF('cidadesTable').filter()"
+                                                         style="width:250px"
+                                                         placeholder="Digite sua busca aqui..."/>
+                                        </p:outputPanel>
+                                    </div>
+                                </f:facet>
+
+                                <p:ajax event="rowEdit" listener="#{cidadeBean.onRowEdit}" update=":cidadesForm:messages" />
+                                <p:ajax event="rowEditCancel" listener="#{cidadeBean.onCancel}" update=":cidadesForm:messages" />
+
+                                <!-- Coluna com as cidades cadastradas -->
+                                <p:column id="nomeCidade"
+                                          headerText="NOME"
+                                          rendered="true"
+                                          filterBy="#{cidades.nome}"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{cidades.nome}"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText required="true"
+                                                         style="width:100%"
+                                                         value="#{cidades.nome}"
+                                                         requiredMessage="Informe o nome da nova cidade"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column id="inspetoriaCidade"
+                                          headerText="INSPETORIA"
+                                          rendered="true"
+                                          filterBy="#{cidades.inspetoria.nome}"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{cidades.inspetoria.nome}"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <h:selectOneMenu  id="inspetoria"
+                                                              styleClass="form-control"
+                                                              required="true"
+                                                              value="#{cidades.inspetoria.idinspetoria}"
+                                                              requiredMessage="Selecione a inspetoria resposável pela nova cidade"
+                                                              label="lotacao"
+                                                              style="width:100%">
+                                                <f:selectItem itemLabel="Selecione" />
+                                                <f:selectItems value="#{inspetoriaBean.inspetorias}"
+                                                               var="inspetoria"
+                                                               itemLabel="#{inspetoria.nome}"
+                                                               itemValue="#{inspetoria.idinspetoria}"/>
+                                            </h:selectOneMenu>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column style="width:37px;">
+                                    <f:facet name="header">
+                                        <span class="ui-icon ui-icon-search" title="Ver Detalhes"></span>
+                                    </f:facet>
+                                    <p:commandLink update=":cidadesForm"
+                                                   action="cidades-details"
+                                                   styleClass="ui-icon ui-icon-search"
+                                                   title="Ver detalhes">
+                                        <f:setPropertyActionListener value="#{cidades}"
+                                                                     target="#{cidadeBean.selectedCidade}" />
+                                    </p:commandLink>
+                                </p:column>
+
+                                <p:column style="width:37px;">
+                                    <f:facet name="header">
+                                        <span class="ui-icon ui-icon-pencil" title="Editar"></span>
+                                    </f:facet>
+                                    <p:rowEditor id="editor" />
+                                    <p:tooltip for="editor" value="Editar"/>
+                                </p:column>
+
+                                <p:column style="width:37px">
+                                    <f:facet name="header">
+                                        <span class="ui-icon ui-icon-trash" title="Excluir"></span>
+                                    </f:facet>
+                                    <p:commandLink id="deletButton"
+                                                   update=":cidadesForm"
+                                                   action="#{cidadeBean.remove()}"
+                                                   styleClass="ui-icon ui-icon-trash"
+                                                   title="Excluir">
+                                        <f:setPropertyActionListener value="#{cidades}"
+                                                                     target="#{cidadeBean.selectedCidade}" />
+                                    </p:commandLink>
+                                </p:column>
+                                <f:facet name="footer">
+                                    <div align="left" style="padding: 15px 25px;">
+                                        <p:commandButton id="cadastrar"
+                                                         value="Cadastrar nova cidade"
+                                                         styleClass="btn btn-rounded-lg"
+                                                         action="#{cidadeBean.newCidade()}"
+                                                         ajax="false"/>
+                                    </div>
+                                </f:facet>
+                            </p:dataTable>
+                        </h:form>
+
+                    </div>
+                </div>
+
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

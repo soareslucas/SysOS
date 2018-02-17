@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+        <ui:composition template="common/common-layout.xhtml">
+            <ui:define name="content">
+                <h1 class="page-heading"><i class="fa fa-map-marker icon-sidebar"></i> Cadastro de jurisdição<small> para #{cidadeBean.selectedCidade.nome}</small></h1>
+                <!-- End page heading -->
+
+                <!-- Begin breadcrumb -->
+                <ol class="breadcrumb default square rsaquo sm">
+                    <li><a href="index.xhtml"><i class="fa fa-home"></i></a></li>
+                    <li><a href="cidades-list.xhtml">Lista de cidades</a></li>
+                    <li><a href="cidades-details.xhtml">Detalhes da cidade</a></li>
+                    <li class="active">Cadastro de jurisdição</li>
+                </ol>
+                <!-- End breadcrumb -->
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <i class="fa fa-map-marker icon-sidebar"></i>
+                        CADASTRO DE JURISDIÇÃO
+                        <br/>
+                    </div>
+                    <h:form id="setorForm">
+                        <div class="the-box" style="border: none">
+                            <div class="form-group">
+                                <h:outputLabel for="nome"
+                                               value="JURISDIÇÃO:"
+                                               style="font-weight: bold"/><br/>
+                                <p:inputText id="nome"
+                                             required="true" style="width: 100%"
+                                             value="#{cidadeBean.jurisdicao.nome}"
+                                             requiredMessage="Informe a nova jurisdição"
+                                             label="nome"/>
+                                <p:message for="nome" />
+                            </div>
+
+                            <p:commandButton id="cadastrar"
+                                             value="Cadastrar"
+                                             styleClass="btn btn-primary btn-rounded-lg"
+                                             action="#{cidadeBean.createJurisdicao()}"
+                                             ajax="false"/>&nbsp;
+                            <p:commandButton id="resetar"
+                                             styleClass="btn btn-danger btn-rounded-lg"
+                                             value="Limpar"
+                                             type="reset"
+                                             ajax="false"/>
+                        </div>
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

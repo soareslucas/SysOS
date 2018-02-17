@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="common/common-layout.xhtml">
+            <ui:define name="content">
+                <h1 class="page-heading"><i class="fa fa-users icon-sidebar"></i> Cadastro de fiscal</h1>
+                <!-- End page heading -->
+
+                <!-- Begin breadcrumb -->
+                <ol class="breadcrumb default square rsaquo sm">
+                    <li><a href="index.xhtml"><i class="fa fa-home"></i></a></li>
+                    <li><a href="usuarios-list.xhtml">Lista de usuários</a></li>
+                    <li class="active">Cadastro de fiscal</li>
+                </ol>
+                <!-- End breadcrumb -->
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <i class="fa fa-users icon-sidebar"></i>
+                        CADASTRO DE FISCAL
+                        <br/>
+                    </div>
+                    <h:form id="novoFiscalForm">
+                        <div class="the-box" style="border: none">
+                            <div class="form-group">
+                                <!-- Nome do Fiscal -->
+                                <h:outputLabel for="nome"
+                                               value="NOME:"
+                                               style="font-weight: bold"/>
+                                <p:inputText id="nome"
+                                             required="true" style="width: 100%"
+                                             value="#{fiscalBean.fiscal.nome}"
+                                             requiredMessage="Informe o nome do novo fiscal"
+                                             label="nome"/>
+                                <p:message for="nome" />
+                            </div>
+
+                            <div class="form-group">
+                                <!-- Sobrenome do Fiscal -->
+                                <h:outputLabel for="sobrenome"
+                                               value="SOBRENOME:"
+                                               style="font-weight: bold"/>
+                                <p:inputText id="sobrenome"
+                                             required="true" style="width: 100%"
+                                             value="#{fiscalBean.fiscal.sobrenome}"
+                                             requiredMessage="Informe o sobrenome do novo fiscal"
+                                             label="sobrenome"/>
+                                <p:message for="sobrenome" />
+                            </div>
+
+                            <div class="form-group">
+                                <!-- Sigla do Fiscal -->
+                                <h:outputLabel for="sigla"
+                                               value="SIGLA:"
+                                               style="font-weight: bold"/>
+                                <p:inputText id="sigla"
+                                             required="true" style="width: 100%"
+                                             value="#{fiscalBean.fiscal.sigla}"
+                                             requiredMessage="Informe a sigla do novo fiscal"
+                                             label="sigla"
+                                             size="50"/>
+                                <p:message for="sigla" />
+                            </div>
+
+                            <div class="form-group">
+                                <!-- Matricula do Fiscal -->
+                                <h:outputLabel for="matricula"
+                                               value="MATRÍCULA:"
+                                               style="font-weight: bold"/>
+                                <p:inputText id="matricula"
+                                             required="true" style="width: 100%"
+                                             value="#{fiscalBean.fiscal.matricula}"
+                                             requiredMessage="Informe a matrícula do novo fiscal"
+                                             label="matricula"
+                                             size="50">
+                                    <f:convertNumber integerOnly="true"/>
+                                </p:inputText>
+                                <p:message for="matricula" />
+                            </div>
+
+                            <div class="form-group">
+                                <!-- Matricula do Fiscal -->
+                                <h:outputLabel for="lotacao"
+                                               value="LOTAÇÃO:"
+                                               style="font-weight: bold"/><br/>
+                                <h:selectOneMenu  id="lotacao"
+                                                  required="true"
+                                                  styleClass="form-control"
+                                                  value="#{fiscalBean.fiscal.inspetoria.idinspetoria}"
+                                                  requiredMessage="Informe a lotação do novo fiscal"
+                                                  label="lotacao">
+                                    <f:selectItem itemLabel="Selecione" itemValue="" />
+                                    <f:selectItems value="#{inspetoriaBean.inspetorias}"
+                                                   var="inspetoria"
+                                                   itemLabel="#{inspetoria.nome}"
+                                                   itemValue="#{inspetoria.idinspetoria}"/>
+                                </h:selectOneMenu>
+                                <p:message for="lotacao" />
+                            </div>
+
+                            <div class="form-group">
+                                <p:selectBooleanCheckbox id="fiscalAtivo"
+                                                         value="#{fiscalBean.fiscal.isAtivo}"
+                                                         label="fiscalAtivo"/>&nbsp;
+                                <h:outputLabel for="fiscalAtivo"
+                                               value="Fiscal ativo"
+                                               style="font-weight: bold"/>
+                                <p:message for="fiscalAtivo" />
+                            </div>
+
+                            <p:commandButton id="cadastrar"
+                                             value="Cadastrar"
+                                             action="#{fiscalBean.create()}"
+                                             styleClass="btn btn-primary btn-rounded-lg"
+                                             ajax="false"/>&nbsp;
+                            <p:commandButton id="resetar"
+                                             value="Limpar"
+                                             type="reset"
+                                             styleClass="btn btn-danger btn-rounded-lg"
+                                             ajax="false"/>
+                        </div>
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

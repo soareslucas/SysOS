@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ordemServico" pageWidth="595" pageHeight="842" whenNoDataType="BlankPage" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="60" bottomMargin="60" uuid="6157a238-60f0-4ec4-9e9f-d94b52085d5d">
+	<property name="ireport.zoom" value="1.464100000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="1520"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="dataset1" uuid="a89ff297-a244-45fc-9b65-f5ee140cef0f">
+		<field name="cidade" class="java.lang.String">
+			<fieldDescription><![CDATA[_THIS]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="dataset2" uuid="6312d467-7f80-4c90-9111-0f1c697f2449"/>
+	<parameter name="NUMERO_OS" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$F{idOrdemServico}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="idOrdemServico" class="java.lang.String">
+		<fieldDescription><![CDATA[idOrdemServico]]></fieldDescription>
+	</field>
+	<field name="nomeFiscal" class="java.lang.String">
+		<fieldDescription><![CDATA[nomeFiscal]]></fieldDescription>
+	</field>
+	<field name="matricula" class="java.lang.Integer">
+		<fieldDescription><![CDATA[matricula]]></fieldDescription>
+	</field>
+	<field name="lotacao" class="java.lang.String">
+		<fieldDescription><![CDATA[lotacao]]></fieldDescription>
+	</field>
+	<field name="quilometragem" class="java.lang.String">
+		<fieldDescription><![CDATA[quilometragem]]></fieldDescription>
+	</field>
+	<field name="inicio" class="java.util.Date">
+		<fieldDescription><![CDATA[inicio]]></fieldDescription>
+	</field>
+	<field name="fim" class="java.util.Date">
+		<fieldDescription><![CDATA[fim]]></fieldDescription>
+	</field>
+	<field name="dataCadastro" class="java.util.Date">
+		<fieldDescription><![CDATA[dataCadastro]]></fieldDescription>
+	</field>
+	<field name="diarias" class="java.lang.String">
+		<fieldDescription><![CDATA[diarias]]></fieldDescription>
+	</field>
+	<field name="almocos" class="java.lang.String">
+		<fieldDescription><![CDATA[almocos]]></fieldDescription>
+	</field>
+	<field name="valorKm" class="java.lang.String">
+		<fieldDescription><![CDATA[valorKm]]></fieldDescription>
+	</field>
+	<field name="valorDiaria" class="java.lang.String">
+		<fieldDescription><![CDATA[valorDiaria]]></fieldDescription>
+	</field>
+	<field name="valorTotalKm" class="java.lang.String">
+		<fieldDescription><![CDATA[valorTotalKm]]></fieldDescription>
+	</field>
+	<field name="valorTotalDiaria" class="java.lang.String">
+		<fieldDescription><![CDATA[valorTotalDiaria]]></fieldDescription>
+	</field>
+	<field name="valorTotal" class="java.lang.String">
+		<fieldDescription><![CDATA[valorTotal]]></fieldDescription>
+	</field>
+	<field name="observacao" class="java.lang.String">
+		<fieldDescription><![CDATA[observacao]]></fieldDescription>
+	</field>
+	<field name="cidades" class="java.lang.String">
+		<fieldDescription><![CDATA[cidades]]></fieldDescription>
+	</field>
+	<field name="numMemo" class="java.lang.String">
+		<fieldDescription><![CDATA[numMemo]]></fieldDescription>
+	</field>
+	<title>
+		<band height="1" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="720" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="52154593-a694-408d-afa7-f3cfc6ecc214" mode="Transparent" x="30" y="357" width="484" height="123"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="19a5cc69-65bd-46a8-936c-373b50583d62" mode="Transparent" x="30" y="494" width="484" height="123"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="04de1e35-8cb3-47d5-b3f2-63a0cdca1e0b" x="30" y="202" width="484" height="39"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="34072331-f026-4fd5-af3c-a3576485bcf3" mode="Transparent" x="30" y="151" width="484" height="35"/>
+			</rectangle>
+			<textField>
+				<reportElement uuid="787e9088-ea58-4691-a796-b13ef59f02c7" positionType="Float" x="42" y="364" width="472" height="17"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" isBold="true" isItalic="false" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ESCLARECIMENTOS NECESSÁRIOS*"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="862c799d-baee-4d34-82b1-58a02d7df553" positionType="Float" x="42" y="457" width="472" height="16"/>
+				<textElement markup="html">
+					<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>6.</b> Entrar em contato com o inspetor da cidade a ser fiscalizada, quando iniciar e terminar a fiscalização da mesma."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="642591c9-b1b0-461f-9ca4-d26e04c3226c" positionType="Float" x="42" y="424" width="472" height="11"/>
+				<textElement markup="html">
+					<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>3.</b> Informamos também que: os relatórios de manutenção/inspeção exigem a comprovação documental do fato gerador."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0c1fba55-d3a3-49b8-8f1d-7a635ad777eb" positionType="Float" x="42" y="435" width="472" height="11"/>
+				<textElement markup="html">
+					<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>4.</b> Utilizar sempre a câmera digital para fotografar obra/serviço, projeto, placa, etc."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="186f93db-57c0-47be-9fb2-33b4b4e673fa" positionType="Float" x="42" y="383" width="472" height="11"/>
+				<textElement markup="html">
+					<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>1.</b> Consultar DS-08_parâmetros de fiscalização: onde e o que fiscalizar?"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3af2ec21-7218-4b86-b47e-56d63d8118ab" positionType="Float" x="42" y="446" width="472" height="11"/>
+				<textElement markup="html">
+					<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>5.</b> Fazer no sistema e na listagem a atualização de fases da(s) obra(s), conforme determinação do departamento de fiscalização – DFISC."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ad85a0d9-3a3a-4900-bf03-6d4f7c18a6a0" positionType="Float" x="42" y="394" width="472" height="31"/>
+				<textElement markup="html">
+					<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>2.</b> Da Elaboração dos  RMO's, fazê-lo de forma bem detalhada, e ao Gerar as ocorrências, antes de efetuá-las, sejam  criteriosos(as), certificando-se com documentos que comprovem se as pessoas: Empresas, Profissionais ou leigos envolvidos, participaram da obra/serviço, evitando assim o desconforto de retornos desnecessários."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="48871f67-1cc6-470b-b488-b57cdceee6e3" positionType="Float" x="76" y="76" width="311" height="20"/>
+				<textElement markup="none">
+					<font fontName="Times New Roman" isBold="true" isUnderline="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["1 *ORDEM DE SERVIÇO Nº: "+$F{idOrdemServico}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement uuid="508fd5be-be97-4045-9fd6-52d9e99002cf" positionType="Float" x="371" y="153" width="54" height="20"/>
+				<textElement markup="html">
+					<font pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inicio}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement uuid="508fd5be-be97-4045-9fd6-52d9e99002cf" positionType="Float" x="436" y="153" width="94" height="20"/>
+				<textElement markup="html">
+					<font pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fim}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="b7a278af-ad01-4664-a299-614a845889d5" positionType="Float" x="42" y="96" width="247" height="20"/>
+				<textElement markup="none">
+					<font fontName="Times New Roman" isItalic="true" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Nome do Servidor: "+$F{nomeFiscal}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="85ba1e93-1579-49aa-b99f-d3231948b38e" positionType="Float" x="307" y="96" width="137" height="20"/>
+				<textElement markup="none">
+					<font fontName="Times New Roman" isItalic="true" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Matrícula:"+$F{matricula}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="df4f510a-ccd3-43f4-b105-ca8c20761140" positionType="Float" x="379" y="96" width="165" height="20"/>
+				<textElement markup="none">
+					<font fontName="Times New Roman" isItalic="true" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Lotação: "+$F{lotacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b011b0a8-6c08-4b55-bf73-2ad5ca231211" positionType="Float" x="37" y="122" width="483" height="29"/>
+				<textElement markup="none">
+					<font fontName="Times New Roman" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["                 Fica o servidor(a) acima comprometido(a) a executar o serviço de fiscalização de acordo com a seguinte programação:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7797d289-f809-4cae-8584-73af43d6b431" x="-227" y="40" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement uuid="508fd5be-be97-4045-9fd6-52d9e99002cf" positionType="Float" x="276" y="153" width="93" height="20"/>
+				<textElement markup="html">
+					<font pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>b)</b> Período a fiscalizar: <b>"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="abd63707-8691-4e1f-85cd-50c81bf84609" positionType="Float" x="35" y="153" width="238" height="33"/>
+				<textElement markup="html">
+					<font fontName="Times New Roman" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>a)</b> Km adiantados de trevo a trevo da cidade de origem do fiscal até a cidade a ser fiscalizada: <b>" +$F{quilometragem}+ " Km</b>"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="05ea8191-aaf8-4b27-a1d8-f41c14cf6dfd" positionType="Float" x="37" y="629" width="60" height="20"/>
+				<textElement markup="html">
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[RG. 059/06]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="03028fa3-e24d-4db0-8345-25cb99d4cca3" x="423" y="75" width="39" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Data:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e4dae1d1-e93a-4965-9f56-df8002ceba42" positionType="Float" x="42" y="619" width="446" height="20"/>
+				<textElement markup="html">
+					<font fontName="Times New Roman" size="8" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[* O não cumprimento destas informações é de inteira responsabilidade do analista/agente de fiscalização.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a25b8708-b785-44d4-8398-156a8eb1af9f" x="3" y="11" width="555" height="16"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="8" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[SERVIÇO PÚBLICO FEDERAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e4624151-4591-40a4-9ea4-73347be92dcf" x="0" y="23" width="555" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="8" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[CONSELHO REGIONAL DE ENGENHARIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8f2cf431-4082-4db7-b1c5-2a35196de9b4" x="0" y="34" width="555" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="8" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[E AGRONOMIA DE GOIÁS]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="b5821d66-32f7-4efd-a631-f737200673bd" x="454" y="1" width="67" height="60"/>
+				<imageExpression><![CDATA["C:\\Users\\creago\\Documents\\NetBeansProjects\\fiscalizacao\\web\\WEB-INF\\relatorios\\minerva.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement uuid="44b2075c-469f-4667-886d-e575d575d2a2" x="48" y="1" width="67" height="60"/>
+				<imageExpression><![CDATA["C:\\Users\\creago\\Documents\\NetBeansProjects\\fiscalizacao\\web\\WEB-INF\\relatorios\\armas.jpg"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement uuid="579a6908-ac7e-495c-a259-5c337577fca9" x="3" y="68" width="552" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="af7b9084-f4f8-4556-916a-c12709c99d3d" x="3" y="66" width="552" height="1"/>
+			</line>
+			<frame>
+				<reportElement uuid="78f77e49-540e-43cf-93f9-e3b7e7ba5cac" x="24" y="123" width="100" height="20"/>
+			</frame>
+			<rectangle>
+				<reportElement uuid="44f06d6d-f7df-47b4-b57d-0d606932b777" mode="Transparent" x="30" y="254" width="484" height="87"/>
+			</rectangle>
+			<line>
+				<reportElement uuid="dc12e0fd-752c-4155-87cd-12e43d37aba0" x="270" y="151" width="1" height="35"/>
+			</line>
+			<staticText>
+				<reportElement uuid="92f3c176-c092-4700-9261-112302e2e9fa" x="423" y="153" width="8" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[a]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="285a495d-31ca-4a34-b148-93fe4e71536d" x="37" y="202" width="100" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<text><![CDATA[c) Local a fiscalizar:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="3bf2f3a1-7c03-496b-81af-e89b22166715" positionType="Float" x="310" y="264" width="182" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["R$ "+$F{valorTotalDiaria}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="6a945285-6cdb-4935-89ab-e4dbfee245a4" positionType="Float" x="310" y="286" width="144" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["R$ "+$F{valorTotalKm}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d28fe6ce-bd44-4118-8b8e-98cdef9f7c87" positionType="Float" x="235" y="264" width="8" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[x]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="da3b0102-1163-4a8e-bf09-f4b49f222c99" positionType="Float" x="253" y="286" width="84" height="20"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valorKm}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="e78a1216-efda-4574-b20a-9b47010919ce" positionType="Float" x="76" y="269" width="10" height="20"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diarias}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="02cd0e77-8ecf-40be-bc07-cdd2dbecbacc" positionType="Float" x="207" y="264" width="28" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{almocos}+"/4"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="7c67aaed-2846-4672-a00c-b3a8a734558c" positionType="Float" x="86" y="269" width="28" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{almocos}+"/4"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1f179597-89f5-4798-81e6-d482ef06c0b9" positionType="Float" x="115" y="264" width="74" height="20"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Diária:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8a856c53-5b84-4008-8ea2-786702ba27ed" positionType="Float" x="286" y="286" width="10" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[=]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="20671f4d-e674-4a8d-95c7-45c1a41df5a8" positionType="Float" x="235" y="286" width="8" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[x]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="6236eafe-11f1-4fac-8de6-81e65591e96e" positionType="Float" x="83" y="288" width="38" height="20"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quilometragem}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="65d87a2a-2933-491a-b8fa-478f34f3e66d" positionType="Float" x="200" y="286" width="23" height="20"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quilometragem}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="3df4ff85-438a-4d33-9aac-c2fb3e21bf4b" positionType="Float" x="76" y="308" width="113" height="20"/>
+				<textElement markup="none">
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Total: R$ "+$F{valorTotal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2705249d-419d-448d-8523-ba114b09daac" positionType="Float" x="286" y="264" width="10" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[=]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="af90cd3b-6959-48aa-847a-5e5ff4059374" positionType="Float" x="248" y="264" width="189" height="20"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valorDiaria}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="542efa40-7493-4ff8-bb63-6004e5543cf8" positionType="Float" x="198" y="264" width="10" height="20"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diarias}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="18fc0d6a-0965-462d-9a5a-3245bb2208c1" positionType="Float" x="115" y="286" width="74" height="20"/>
+				<textElement textAlignment="Left">
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Quilometragem:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8b7863d6-41e6-4a5a-a08d-a6c870e51b9b" positionType="Float" x="128" y="198" width="386" height="43"/>
+				<textElement markup="none">
+					<font fontName="Times New Roman" isItalic="true" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cidades}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement uuid="3f3b3e63-0745-47dc-b0eb-f4012ed66542" positionType="Float" x="446" y="74" width="100" height="20"/>
+				<textElement markup="html">
+					<font pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dataCadastro}]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement uuid="55ae99af-65f5-491a-b1c5-083faff207a2" x="35" y="643" width="477" height="77"/>
+			</frame>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="227083e8-d009-48ae-bee8-1bdca55df174" positionType="Float" x="112" y="494" width="342" height="15"/>
+				<textElement markup="none">
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["INFORMAÇÕES AO ANALISTA/AGENTE DE FISCALIZAÇÃO"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="4b4a2b64-d1f6-4593-a529-147b268c6807" positionType="Float" x="43" y="509" width="469" height="95"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="false" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{observacao}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="406" splitType="Stretch">
+			<textField>
+				<reportElement uuid="14ea23a6-2a2e-45fe-85b5-8ad7838f91e5" x="45" y="88" width="86" height="20"/>
+				<textElement markup="html">
+					<font fontName="Courier New" size="10" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Data:</b>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="453b2dd6-968f-468f-a4a9-3c90b7b9a4c5" x="45" y="99" width="86" height="20"/>
+				<textElement markup="html">
+					<font fontName="Courier New" size="10" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{dataCadastro})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f71ead13-83fa-4f3a-96cb-2a6048911d83" x="45" y="62" width="86" height="20"/>
+				<textElement markup="html">
+					<font fontName="Courier New" size="10" isBold="false" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Memo nº:</b>"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="fb155842-24bd-4e3b-b9a3-85ddd0ffb6ba" positionType="Float" x="94" y="263" width="13" height="20"/>
+				<textElement textAlignment="Left" markup="html">
+					<font fontName="Courier New" size="10" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diarias}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bbe8c1e5-ffdf-44fc-828f-35812047b6a3" positionType="Float" x="94" y="283" width="24" height="20"/>
+				<textElement textAlignment="Left" markup="html">
+					<font fontName="Courier New" size="10" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quilometragem}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="17d349c9-f72c-409a-8751-365ac7da0262" positionType="Float" x="138" y="263" width="86" height="20"/>
+				<textElement textAlignment="Left" markup="html">
+					<font fontName="Courier New" size="10" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Diária]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="235d0f5e-8fdb-4ddc-aca7-8cd24f1e90b8" positionType="Float" x="138" y="283" width="86" height="20"/>
+				<textElement textAlignment="Left" markup="html">
+					<font fontName="Courier New" size="10" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Quilometragem]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="546bc034-00a2-49a0-a167-dc438b6c2d37" positionType="Float" x="230" y="263" width="13" height="20"/>
+				<textElement textAlignment="Left" markup="html">
+					<font fontName="Courier New" size="10" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diarias}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f56eed9c-2734-4cab-8ba1-f592150dfb4f" positionType="Float" x="230" y="283" width="41" height="20"/>
+				<textElement textAlignment="Left" markup="html">
+					<font fontName="Courier New" size="10" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quilometragem}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="fb26f308-328e-466d-b0ee-fdb3da6546a5" positionType="Float" x="274" y="263" width="8" height="20"/>
+				<textElement textAlignment="Left" markup="html">
+					<font fontName="Courier New" size="10" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8c3994e4-770c-416f-8a56-fef1d6847856" positionType="Float" x="274" y="283" width="8" height="20"/>
+				<textElement textAlignment="Left" markup="html">
+					<font fontName="Courier New" size="10" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[x]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="d4488c82-75a7-4728-9888-932ea07561b3" positionType="Float" x="293" y="263" width="44" height="20"/>
+				<textElement textAlignment="Left" markup="html">
+					<font fontName="Courier New" size="10" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valorDiaria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="345a443a-cc5d-4e3e-ade5-0db637b0ccbc" positionType="Float" x="293" y="283" width="44" height="20"/>
+				<textElement textAlignment="Left" markup="html">
+					<font fontName="Courier New" size="10" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valorKm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ffe71468-4f3d-4243-ad84-b908bade3283" x="132" y="62" width="123" height="20"/>
+				<textElement markup="html">
+					<font fontName="Courier New" size="10" isBold="false" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>De:</b>"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7d02f63b-73c8-4cf0-8f82-e65f94ca9b1a" x="325" y="61" width="112" height="20"/>
+				<textElement markup="html">
+					<font fontName="Courier New" size="10" isBold="false" pdfFontName="Courier-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA["<b>Para:</b>"]]></textFieldExpression>
+			</textField>
+			<elementGroup>
+				<textField>
+					<reportElement uuid="be64b898-0652-4ac2-99c2-c9371d8872f1" x="71" y="132" width="417" height="49"/>
+					<textElement textAlignment="Justified" markup="html">
+						<font fontName="Courier New" size="10" isBold="false" pdfFontName="Courier" isPdfEmbedded="true"/>
+						<paragraph firstLineIndent="30"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Solicito por meio deste, o pagamento das despesas de viagem para o(a) agente de fiscalização, Sr(a). <b>" + $F{nomeFiscal} + "</b>, efetivar os serviços de fiscalização na(s) seguinte(s) cidade(s):"]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<textField>
+				<reportElement uuid="0d00a936-b32a-44f5-882f-84d90fe5f988" positionType="Float" x="353" y="263" width="67" height="20"/>
+				<textElement textAlignment="Left">
+					<font fontName="Courier New" size="10" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valorTotalDiaria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="57c33083-0ffd-416f-8318-7c2399b890a6" positionType="Float" x="353" y="283" width="67" height="20"/>
+				<textElement textAlignment="Left">
+					<font fontName="Courier New" size="10" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valorTotalKm}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="5ac73893-7921-40ba-8617-94cce9620ae3" positionType="Float" x="337" y="263" width="12" height="20"/>
+				<textElement textAlignment="Left">
+					<font fontName="Courier New" size="10" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[=]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d01fb779-cf95-4d9e-95e0-f79fc247e1ac" positionType="Float" x="337" y="283" width="12" height="20"/>
+				<textElement textAlignment="Left">
+					<font fontName="Courier New" size="10" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[=]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0c49eaeb-7467-4f91-8142-b5ade5a47cd1" positionType="Float" x="94" y="303" width="39" height="20"/>
+				<textElement markup="none">
+					<font fontName="Courier New" size="10" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="348a39c3-36ac-452e-840a-91500732ef1d" positionType="Float" x="138" y="303" width="86" height="20"/>
+				<textElement>
+					<font fontName="Courier New" size="10" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valorTotal}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="08e368a2-faaa-4af3-b320-db5bf6de00f1" positionType="Float" x="105" y="263" width="28" height="20"/>
+				<textElement>
+					<font fontName="Courier New" size="10" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{almocos} + "/4"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9b7dd8dd-5568-4ede-9133-a5591cc0e328" positionType="Float" x="241" y="263" width="28" height="20"/>
+				<textElement>
+					<font fontName="Courier New" size="10" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{almocos} + "/4"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="69252f5b-377c-4fd6-bf32-b23769aa2164" positionType="Float" x="66" y="202" width="417" height="61"/>
+				<textElement markup="html">
+					<font fontName="Courier New" size="10" isBold="false" pdfFontName="Courier" isPdfEmbedded="true"/>
+					<paragraph firstLineIndent="30"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Os serviços serão realizados no período de <b>"+ new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{inicio}) + "</b> a <b>" + new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{fim}) + "</b>, conforme Ordem de Serviço nº:<b>" + $F{idOrdemServico} + "</b> anexa:"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="af60cb70-e678-4235-977b-568a621fc0dd" x="41" y="2" width="472" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="fbc693ff-4993-4f33-912f-f1024ccc623d" x="41" y="61" width="472" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="9090ea88-13f3-46fc-9763-2b28c8b1b67c" x="41" y="87" width="472" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="fc6b8dc4-d2ff-4b32-8fcc-39d6886b6185" x="41" y="113" width="472" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="32aaf554-c946-4d9f-861a-afb2da5e3d75" x="45" y="73" width="86" height="20"/>
+				<textElement>
+					<font fontName="Courier New" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numMemo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c4e9a0ec-5d5b-4255-bda0-b98a8d8645b6" x="132" y="73" width="189" height="20"/>
+				<textElement>
+					<font fontName="Courier New" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Departamento de Fiscalização"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="60ef6c4c-583c-41a4-830d-dd8966a4beba" x="325" y="73" width="156" height="20"/>
+				<textElement>
+					<font fontName="Courier New" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Presidência do CREA-GO"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2db7a6fd-314d-4a4f-af95-a55b98ce9fd9" x="132" y="88" width="100" height="20"/>
+				<textElement>
+					<font fontName="Courier New" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Assunto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="41793295-a870-4bac-bc3a-19368dda27f1" x="132" y="99" width="214" height="20"/>
+				<textElement>
+					<font fontName="Courier New" isBold="false" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Pagamento de despesas de viagem]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="ad580da4-b137-408f-a7f0-183e6a48508b" positionType="Float" stretchType="RelativeToBandHeight" x="512" y="3" width="1" height="403"/>
+			</line>
+			<line>
+				<reportElement uuid="ba1c7500-99e1-4b04-8656-79f812018a08" positionType="Float" stretchType="RelativeToBandHeight" x="41" y="3" width="1" height="403"/>
+			</line>
+			<line>
+				<reportElement uuid="7f0a2881-d5d1-45be-94e8-0d7f2aeaef16" x="128" y="62" width="1" height="51"/>
+			</line>
+			<line>
+				<reportElement uuid="11edd01c-69cc-4abb-bdf6-84640ccfe305" x="321" y="61" width="1" height="27"/>
+			</line>
+			<image>
+				<reportElement uuid="b6081f8c-5675-4e50-af6e-f47bda51bf1f" x="462" y="5" width="50" height="55"/>
+				<imageExpression><![CDATA["C:\\Users\\creago\\Documents\\NetBeansProjects\\fiscalizacao\\web\\WEB-INF\\relatorios\\minerva.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="a64b3f85-dc2b-4e34-86a5-d0933abba6f0" x="93" y="28" width="369" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" isBold="true" pdfFontName="Courier-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[CONSELHO REGIONAL DE ENGENHARIA E AGRONOMIA DE GOIÁS]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="5215dc46-fad6-40a4-bc90-beb28cc0430f" x="44" y="5" width="48" height="55"/>
+				<imageExpression><![CDATA["C:\\Users\\creago\\Documents\\NetBeansProjects\\fiscalizacao\\web\\WEB-INF\\relatorios\\armas.jpg"]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="98e2a622-6dd3-4b9e-aaba-2c060375f1b9" positionType="Float" x="96" y="171" width="386" height="43"/>
+				<textElement markup="none">
+					<font fontName="Times New Roman" isItalic="true" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cidades}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="129" splitType="Stretch">
+			<line>
+				<reportElement uuid="9b50888e-41bd-4cc8-b809-76c3dd070ab3" positionType="Float" x="156" y="67" width="229" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="c86b9416-b906-4c8d-9dfd-e71191b54415" positionType="Float" x="66" y="106" width="417" height="20"/>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Courier New" size="10" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[mat.850]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2ec58c84-761a-46e8-9aab-038d6e8d3f37" positionType="Float" x="66" y="4" width="417" height="23"/>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Courier New" size="10" pdfFontName="Courier" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Fixed" lineSpacingSize="10.0"/>
+				</textElement>
+				<text><![CDATA[Atenciosamente,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5c7709b2-58ab-4a4f-b881-4c4e54a6716f" positionType="Float" x="66" y="80" width="417" height="20"/>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Courier New" size="10" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Gestor do Departamento de Fiscalização]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="23460e4c-5572-4df6-888d-fb62d2950eed" positionType="Float" x="66" y="67" width="417" height="20"/>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Courier New" size="10" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Eng. Mecânico Walter da Silva Santana]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d8786f60-05ef-419f-9d17-061c7b629879" positionType="Float" x="66" y="93" width="417" height="20"/>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Courier New" size="10" pdfFontName="Courier" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[CREA 14.439/D-GO]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="82549928-081b-4354-8566-aab586d855ac" positionType="Float" stretchType="RelativeToBandHeight" x="41" y="0" width="1" height="129"/>
+			</line>
+			<line>
+				<reportElement uuid="904b93ed-cb70-4b89-9f9b-ee423130e86f" positionType="Float" stretchType="RelativeToBandHeight" x="512" y="0" width="1" height="129"/>
+			</line>
+			<line>
+				<reportElement uuid="31e8c844-14e2-44e6-89c4-5a8d71449b02" x="42" y="128" width="470" height="1"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

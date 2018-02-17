@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/03/2015 11:54:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="creago.dfisc.afg.sifis.planejamento.entities.Feriado" table="feriado" catalog="sifis" optimistic-lock="version">
+        <id name="idferiado" type="java.lang.Long">
+            <column name="idferiado" />
+            <generator class="identity" />
+        </id>
+        <property name="nome" type="string">
+            <column name="nome" length="45" />
+        </property>
+        <property name="data" type="timestamp">
+            <column name="data" length="19" />
+        </property>
+        <property name="isFixo" type="java.lang.Boolean">
+            <column name="isFixo" />
+        </property>
+        <set name="cidades" table="feriado_has_cidade" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="feriado_idferiado" not-null="true" />
+            </key>
+            <many-to-many entity-name="creago.dfisc.afg.sifis.planejamento.entities.Cidade">
+                <column name="cidade_idcidade" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

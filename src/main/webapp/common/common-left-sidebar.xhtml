@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <body>
+        <ui:composition>
+
+            <!-- BEGIN SIDEBAR LEFT -->
+            <div class="sidebar-left sidebar-nicescroller">
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="index.xhtml">
+                            <i class="fa fa-home icon-sidebar"></i>
+                            Página Inicial
+                        </a>
+                    </li>
+                    <li>
+                        <a href="viagens-schedule.xhtml">
+                            <i class="fa  fa-calendar icon-sidebar"></i>
+                            <i class="fa fa-angle-right chevron-icon-sidebar"></i>
+                            Planejamento
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="inspetorias-list.xhtml">Inspetorias</a></li>
+                            <li><a href="cidades-list.xhtml">Cidades</a></li>
+                            <li><a href="feriados-list.xhtml">Feriados</a></li>
+                            <li><a href="fiscais-list.xhtml">Fiscais</a></li>
+                            <li><a href="rotas-list.xhtml">Rotas</a></li>
+                            <li><a href="viagens-list.xhtml">Viagens</a></li>
+                            <li><a href="ordem-list.xhtml">Ordem</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="procedimentos-list.xhtml">
+                            <i class="fa fa-stack-overflow icon-sidebar"></i>
+                            <i class="fa fa-angle-right chevron-icon-sidebar"></i>
+                            Procedimentos
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="procedimentos-list.xhtml">Listar procedimentos</a></li>
+                            <li><a href="#{procedimentoBean.newProcedimento()}.xhtml">Cadastrar procedimento</a></li>
+                        </ul>
+                    </li>
+
+                    <br/><br/>
+                    <li class="static">CONFIGURAÇÕES DO SISTEMA</li>
+                    <li>
+                        <a href="categorias-list.xhtml">
+                            <i class="fa fa-delicious icon-sidebar"></i>
+                            Categorias
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="valores-list.xhtml">
+                            <i class="fa fa-money icon-sidebar"></i>
+                            Valores de Pagamento
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="usuarios-list.xhtml">
+                            <i class="fa fa-users icon-sidebar"></i>
+                            Usuários
+                        </a>
+                    </li>
+                </ul>
+            </div><!-- /.sidebar-left -->
+            <!-- END SIDEBAR LEFT -->
+        </ui:composition>
+    </body>
+</html>

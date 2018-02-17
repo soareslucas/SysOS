@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+        <title>Login | SIFIS - CreaGO</title>
+
+        <!-- BOOTSTRAP CSS (REQUIRED ALL PAGE)-->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
+
+        <!-- PLUGINS CSS -->
+        <link href="assets/plugins/weather-icon/css/weather-icons.min.css" rel="stylesheet"/>
+        <link href="assets/plugins/prettify/prettify.min.css" rel="stylesheet"/>
+        <link href="assets/plugins/magnific-popup/magnific-popup.min.css" rel="stylesheet"/>
+        <link href="assets/plugins/owl-carousel/owl.carousel.min.css" rel="stylesheet"/>
+        <link href="assets/plugins/owl-carousel/owl.theme.min.css" rel="stylesheet"/>
+        <link href="assets/plugins/owl-carousel/owl.transitions.min.css" rel="stylesheet"/>
+        <link href="assets/plugins/chosen/chosen.min.css" rel="stylesheet"/>
+        <link href="assets/plugins/icheck/skins/all.css" rel="stylesheet"/>
+        <link href="assets/plugins/datepicker/datepicker.min.css" rel="stylesheet"/>
+        <link href="assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet"/>
+        <link href="assets/plugins/validator/bootstrapValidator.min.css" rel="stylesheet"/>
+        <link href="assets/plugins/summernote/summernote.min.css" rel="stylesheet"/>
+        <link href="assets/plugins/markdown/bootstrap-markdown.min.css" rel="stylesheet"/>
+        <link href="assets/plugins/datatable/css/bootstrap.datatable.min.css" rel="stylesheet"/>
+        <link href="assets/plugins/morris-chart/morris.min.css" rel="stylesheet"/>
+        <link href="assets/plugins/c3-chart/c3.min.css" rel="stylesheet"/>
+        <link href="assets/plugins/slider/slider.min.css" rel="stylesheet"/>
+
+        <!-- MAIN CSS (REQUIRED ALL PAGE)-->
+        <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="assets/css/style.css" rel="stylesheet"/>
+        <link href="assets/css/style-responsive.css" rel="stylesheet"/>
+    </h:head>
+    <h:body class="login tooltips">
+        <div class="login-header text-center">
+            <img src="assets/img/logo-login.png" class="logo" alt="Logo"/>
+        </div>
+        <div class="login-wrapper">
+            <p:panel rendered="#{param.erro}">
+                <div class="alert alert-danger alert-bold-border fade in alert-dismissable">
+                    <strong>Atenção! </strong><br/>
+                    <h:outputText value="O usuário ou senha inseridos estão incorretos."/>
+                </div>
+            </p:panel><br/>
+
+            <form method="post" action="j_spring_security_check">
+                <div class="form-group has-feedback lg left-feedback no-label">
+                    <input name="j_username" type="text" class="form-control no-border input-lg rounded" placeholder="Usuário" />
+                    <span class="fa fa-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback lg left-feedback no-label">
+                    <input name="j_password" type="password" class="form-control no-border input-lg rounded" placeholder="Senha"/>
+                    <span class="fa fa-unlock-alt form-control-feedback"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-warning btn-lg btn-perspective btn-block">LOGIN</button>
+                </div>
+            </form>
+            <p class="text-center"><strong><a href="forgot-password.html">Esqueceu sua senha?</a></strong></p>
+        </div>
+    </h:body>
+</html>
+

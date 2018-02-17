@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <style>
+        .ui-picklist-list {
+            height:300px !important;
+            width:315px !important;
+        }
+    </style>
+    <h:body>
+        <ui:composition template="common/common-layout.xhtml">
+            <ui:define name="content" >
+                <h1 class="page-heading"><i class="fa fa-code-fork icon-sidebar"></i> Seleção de Inspetoria</h1>
+                <!-- End page heading -->
+
+                <!-- Begin breadcrumb -->
+                <ol class="breadcrumb default square rsaquo sm">
+                    <li><a href="index.xhtml"><i class="fa fa-home"></i></a></li>
+                    <li><a href="rotas-list.xhtml">Lista de rotas</a></li>
+                    <li class="active">Seleção de Inspetoria</li>
+                </ol>
+                <!-- End breadcrumb -->
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <i class="fa fa-code-fork icon-sidebar"></i>
+                        SELEÇÃO DE INSPETORIA
+                        <br/>
+                    </div>
+                    <h:form id="selecaoInspetoriaForm">
+                        <p:growl id="msg" showDetail="true" escape="false" />
+                        <div class="the-box">
+                            <div class="form-group">
+                                <h:outputLabel for="inspetoria"
+                                               value="SELECIONE UMA INSPETORIA:"
+                                               style="font-weight: bold"/><br/>
+                                <h:selectOneMenu  id="inspetoria"
+                                                  required="true"
+                                                  styleClass="form-control"
+                                                  value="#{rotaBean.rota.inspetoria.idinspetoria}"
+                                                  requiredMessage="Selecione a inspetoria resposável pela nova rota"
+                                                  label="inspetoria">
+
+                                    <f:selectItem itemLabel="Selecione" itemValue="" />
+                                    <f:selectItems value="#{rotaBean.inspetorias}"
+                                                   var="inspetoria"
+                                                   itemLabel="#{inspetoria.nome}"
+                                                   itemValue="#{inspetoria.idinspetoria}"/>
+                                </h:selectOneMenu>
+                                <p:message for="inspetoria" />
+                            </div>
+                            <p:commandButton id="proximo"
+                                             value="Próximo"
+                                             action="#{rotaBean.processaInspetoria()}"
+                                             ajax="false"
+                                             styleClass="btn btn-info btn-rounded-lg"/>&nbsp;
+                            <p:commandButton id="resetar"
+                                             value="Limpar"
+                                             type="reset"
+                                             ajax="false"
+                                             styleClass="btn btn-danger btn-rounded-lg"/>
+                        </div>
+                    </h:form>
+                </div>
+            </ui:define>
+            <ui:define name="javascript" >
+                <script src="assets/js/bootstrap.min.js"></script>
+                <script src="assets/plugins/retina/retina.min.js"></script>
+                <script src="assets/plugins/nicescroll/jquery.nicescroll.js"></script>
+                <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+                <script src="assets/plugins/backstretch/jquery.backstretch.min.js"></script>
+
+                <!-- PLUGINS -->
+                <script src="assets/plugins/skycons/skycons.js"></script>
+                <script src="assets/plugins/prettify/prettify.js"></script>
+                <script src="assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+                <script src="assets/plugins/owl-carousel/owl.carousel.min.js"></script>
+                <script src="assets/plugins/chosen/chosen.jquery.min.js"></script>
+                <script src="assets/plugins/icheck/icheck.min.js"></script>
+                <script src="assets/plugins/datepicker/bootstrap-datepicker.js"></script>
+                <script src="assets/plugins/timepicker/bootstrap-timepicker.js"></script>
+                <script src="assets/plugins/mask/jquery.mask.min.js"></script>
+                <script src="assets/plugins/validator/bootstrapValidator.min.js"></script>
+                <script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+                <script src="assets/plugins/datatable/js/bootstrap.datatable.js"></script>
+                <script src="assets/plugins/summernote/summernote.min.js"></script>
+                <script src="assets/plugins/markdown/markdown.js"></script>
+                <script src="assets/plugins/markdown/to-markdown.js"></script>
+                <script src="assets/plugins/markdown/bootstrap-markdown.js"></script>
+                <script src="assets/plugins/slider/bootstrap-slider.js"></script>
+
+                <!-- EASY PIE CHART JS -->
+                <script src="assets/plugins/easypie-chart/easypiechart.min.js"></script>
+                <script src="assets/plugins/easypie-chart/jquery.easypiechart.min.js"></script>
+
+                <!-- KNOB JS -->
+                <!--[if IE]>
+                <script type="text/javascript" src="assets/plugins/jquery-knob/excanvas.js"></script>
+                <![endif]-->
+                <script src="assets/plugins/jquery-knob/jquery.knob.js"></script>
+                <script src="assets/plugins/jquery-knob/knob.js"></script>
+
+                <!-- FLOT CHART JS -->
+                <script src="assets/plugins/flot-chart/jquery.flot.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.tooltip.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.resize.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.selection.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.stack.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.time.js"></script>
+
+                <!-- MORRIS JS -->
+                <script src="assets/plugins/morris-chart/raphael.min.js"></script>
+                <script src="assets/plugins/morris-chart/morris.min.js"></script>
+
+                <!-- C3 JS -->
+                <script src="assets/plugins/c3-chart/d3.v3.min.js" charset="utf-8"></script>
+                <script src="assets/plugins/c3-chart/c3.min.js"></script>
+
+                <!-- MAIN APPS JS -->
+                <script src="assets/js/apps.js"></script>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

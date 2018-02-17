@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="common/common-layout.xhtml">
+            <ui:define name="content">
+                <h1 class="page-heading"><i class="fa fa-university icon-sidebar"></i>  inspetoria de #{inspetoriaBean.selectedInspetoria.nome}</h1>
+                <!-- End page heading -->
+
+                <!-- Begin breadcrumb -->
+                <ol class="breadcrumb default square rsaquo sm">
+                    <li><a href="index.xhtml"><i class="fa fa-home"></i></a></li>
+                    <li><a href="inspetorias-list.xhtml">Lista de inspetorias</a></li>
+                    <li class="active">Detalhes da inspetoria</li>
+                </ol>
+                <!-- End breadcrumb -->
+
+                <!-- BEGIN PANEL COLLAPSE -->
+                <div class="panel with-nav-tabs panel-primary">
+                    <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#panel-home-1" data-toggle="tab"><i class="fa fa-building-o icon-sidebar"></i>  Cidades atendidas</a></li>
+                            <li><a href="#panel-fiscais" data-toggle="tab"><i class="fa fa-users icon-sidebar"></i>  Fiscais lotados</a></li>
+                            <li><a href="#panel-rotas" data-toggle="tab"><i class="fa fa-code-fork icon-sidebar"></i>  Rotas</a></li>
+                        </ul>
+                    </div>
+                    <div id="panel-collapse-1" class="collapse in">
+                        <div class="panel-body">
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active" id="panel-home-1">
+                                    <h:form id="cidadesForm">
+                                        <p:growl id="messages" showDetail="false"/>
+                                        <p:dataTable id="cidadesTable"
+                                                     var="cidades"
+                                                     value="#{inspetoriaBean.selectedInspetoria.cidades}"
+                                                     emptyMessage="Nenhuma cidade cadastrada para essa inspetoria"
+                                                     widgetVar="cidadesTable"
+                                                     paginator="true"
+                                                     style="text-align: center;"
+                                                     rows="10"
+                                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+                                            <f:facet name="header">
+                                                <div align="right">
+                                                    <p:outputPanel>
+                                                        <h:outputText value="Pesquisa: " />
+                                                        <p:inputText id="globalFilter"
+                                                                     onkeyup="PF('cidadesTable').filter()"
+                                                                     style="width:250px"
+                                                                     placeholder="Digite sua busca aqui..."/>
+                                                    </p:outputPanel>
+                                                </div>
+                                            </f:facet>
+                                            <p:column headerText="NOME"
+                                                      filterBy="#{cidades.nome}"
+                                                      filterMatchMode="contains"
+                                                      filterStyle="display:none" >
+                                                <h:outputText value="#{cidades.nome}" />
+                                            </p:column>
+                                        </p:dataTable>
+                                    </h:form>
+                                </div>
+                                <div class="tab-pane fade" id="panel-fiscais">
+                                    <h:form id="fiscaisForm">
+                                        <p:growl id="messages" showDetail="false"/>
+                                        <p:dataTable id="fiscaisTable"
+                                                     var="fiscais"
+                                                     value="#{inspetoriaBean.selectedInspetoria.fiscals}"
+                                                     emptyMessage="Nenhum fiscal lotado nessa inspetoria"
+                                                     widgetVar="fiscaisTable"
+                                                     paginator="true"
+                                                     style="text-align: center;"
+                                                     rows="10"
+                                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+                                            <f:facet name="header">
+                                                <div align="right">
+                                                    <p:outputPanel>
+                                                        <h:outputText value="Pesquisa: " />
+                                                        <p:inputText id="globalFilter"
+                                                                     onkeyup="PF('fiscaisTable').filter()"
+                                                                     style="width:250px"
+                                                                     placeholder="Digite sua busca aqui..."/>
+                                                    </p:outputPanel>
+                                                </div>
+                                            </f:facet>
+                                            <p:column headerText="NOME"
+                                                      filterBy="#{fiscais.nome}"
+                                                      filterMatchMode="contains"
+                                                      filterStyle="display:none" >
+                                                <h:outputText value="#{fiscais.nome}" />
+                                            </p:column>
+                                            <p:column id="sobrenomeFiscal"
+                                                      headerText="SOBRENOME"
+                                                      rendered="true"
+                                                      filterBy="#{fiscais.sobrenome}"
+                                                      filterMatchMode="contains"
+                                                      filterStyle="display:none">
+                                                <h:outputText value="#{fiscais.sobrenome}"/>
+                                            </p:column>
+                                            <p:column id="siglaFiscal"
+                                                      headerText="SIGLA"
+                                                      rendered="true"
+                                                      filterBy="#{fiscais.sigla}"
+                                                      filterMatchMode="contains"
+                                                      filterStyle="display:none"
+                                                      style="width:60px">
+                                                <h:outputText value="#{fiscais.sigla}"/>
+                                            </p:column>
+                                            <p:column id="matriculaFiscal"
+                                                      headerText="MAT."
+                                                      rendered="true"
+                                                      filterBy="#{fiscais.matricula}"
+                                                      filterMatchMode="contains"
+                                                      filterStyle="display:none"
+                                                      style="width:60px">
+                                                <h:outputText value="#{fiscais.matricula}"/>
+                                            </p:column>
+                                            <p:column id="fiscalAtivo"
+                                                      headerText="ATIVO"
+                                                      style="width:65px">
+                                                <h:outputText value="SIM" rendered="#{fiscais.isAtivo}"/>
+                                                <h:outputText value="NÃO" rendered="#{not fiscais.isAtivo}"/>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </h:form>
+                                </div>
+                                <div class="tab-pane fade" id="panel-rotas">
+                                    <h:form id="rotasForm">
+                                        <p:growl id="messages" showDetail="false"/>
+                                        <p:dataTable id="rotasTable"
+                                                     var="rotas"
+                                                     value="#{inspetoriaBean.selectedInspetoria.rotas}"
+                                                     emptyMessage="Nenhuma rota cadastrada para essa inspetoria"
+                                                     widgetVar="rotasTable"
+                                                     paginator="true"
+                                                     style="text-align: center;"
+                                                     rows="10"
+                                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+                                            <f:facet name="header">
+                                                <div align="right">
+                                                    <p:outputPanel>
+                                                        <h:outputText value="Pesquisa: " />
+                                                        <p:inputText id="globalFilter"
+                                                                     onkeyup="PF('rotasTable').filter()"
+                                                                     style="width:250px"
+                                                                     placeholder="Digite sua busca aqui..."/>
+                                                    </p:outputPanel>
+                                                </div>
+                                            </f:facet>
+                                            <p:column headerText="ROTA"
+                                                      filterBy="#{rotas.nome}"
+                                                      filterMatchMode="contains"
+                                                      filterStyle="display:none" >
+                                                <h:outputText value="#{rotas.nome}" />
+                                            </p:column>
+                                            <p:column headerText="REVISITA"
+                                                      filterBy="#{rotas.criterioRevisita}"
+                                                      filterMatchMode="contains"
+                                                      filterStyle="display:none" >
+                                                <h:outputText value="#{rotas.criterioRevisita} dias" />
+                                            </p:column>
+                                            <p:column headerText="KM"
+                                                      filterBy="#{rotas.quilometragem}"
+                                                      filterMatchMode="contains"
+                                                      filterStyle="display:none" >
+                                                <h:outputText value="#{rotas.quilometragem} km" />
+                                            </p:column>
+                                            <p:column headerText="DIÁRIAS"
+                                                      filterBy="#{rotas.diaria}"
+                                                      filterMatchMode="contains"
+                                                      filterStyle="display:none" >
+                                                <h:outputText value="#{rotas.diaria}" />
+                                            </p:column>
+                                            <p:column headerText="ALMOÇOS"
+                                                      filterBy="#{rotas.almoco}"
+                                                      filterMatchMode="contains"
+                                                      filterStyle="display:none" >
+                                                <h:outputText value="#{rotas.almoco}" />
+                                            </p:column>
+
+                                            <p:column style="width:37px">
+                                                <f:facet name="header">
+                                                    <span class="ui-icon ui-icon-search" title="Detalhes"></span>
+                                                </f:facet>
+                                                <p:commandLink id="selectButton"
+                                                               update=":rotasForm"
+                                                               styleClass="ui-icon ui-icon-search"
+                                                               title="Detalhes"
+                                                               action="inspetorias-details-rota">
+                                                    <f:setPropertyActionListener value="#{rotas}"
+                                                                                 target="#{inspetoriaBean.selectedRota}" />
+                                                </p:commandLink>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

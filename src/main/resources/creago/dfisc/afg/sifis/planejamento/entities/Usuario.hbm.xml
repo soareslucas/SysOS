@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/03/2015 11:54:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="creago.dfisc.afg.sifis.security.entities.Usuario" table="usuario" catalog="sifis" optimistic-lock="version">
+        <id name="idusuario" type="java.lang.Long">
+            <column name="idusuario" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="fiscal" class="creago.dfisc.afg.sifis.planejamento.entities.Fiscal" fetch="select">
+            <column name="fiscal_idfiscal" />
+        </many-to-one>
+        <property name="username" type="string">
+            <column name="username" length="45" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="45" />
+        </property>
+        <property name="nome" type="string">
+            <column name="nome" length="45" />
+        </property>
+        <property name="sobrenome" type="string">
+            <column name="sobrenome" length="45" />
+        </property>
+        <property name="matricula" type="java.lang.Integer">
+            <column name="matricula" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="45" />
+        </property>
+        <property name="avatar" type="string">
+            <column name="avatar" length="45" />
+        </property>
+        <set name="roles" table="role_has_usuario" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="usuario_idusuario" not-null="true" />
+            </key>
+            <many-to-many entity-name="creago.dfisc.afg.sifis.security.entities.Role">
+                <column name="role_idrole" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

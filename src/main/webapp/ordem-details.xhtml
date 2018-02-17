@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition template="common/common-layout.xhtml">
+            <ui:define name="content">
+                <h1 class="page-heading"><i class="fa fa-car icon-sidebar"></i>  Detalhes da Ordem de Serviço</h1>
+                <!-- End page heading -->
+
+                <!-- Begin breadcrumb -->
+                <ol class="breadcrumb default square rsaquo sm">
+                    <li><a href="index.xhtml"><i class="fa fa-home"></i></a></li>
+                    <li><a href="ordem-list.xhtml">Lista de Ordens</a></li>
+                    <li class="active">Detalhes da Ordem de Serviço</li>
+                </ol>
+                <!-- End breadcrumb -->
+
+                <div class="the-box">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <i class="fa fa-car icon-sidebar"></i>
+                            DETALHES DA ORDEM DE SERVIÇO
+                            <br/>
+                        </div>
+                    </div>
+                    <h:panelGrid columns="2">   
+                        <h:outputText value="NÚMERO OS:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="#{ordemBean.selectedOrdem.identificador}" style="padding-left:20px;"/>
+                        <h:outputText value="NÚMERO MEMORANDO:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="#{ordemBean.selectedOrdem.numeroMemo}" style="padding-left:20px;"/>
+
+
+                        <h:outputText value="DATA DE INÍCIO:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="#{ordemBean.selectedOrdem.inicio}" style="padding-left:20px;">
+                            <f:convertDateTime pattern="EEEE, dd/MM/yyyy"
+                                               timeZone="America/Sao_Paulo"/>
+                        </h:outputText>
+
+                        <h:outputText value="DATA DE TÉRMINO:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="#{ordemBean.selectedOrdem.fim}" style="padding-left:20px;">
+                            <f:convertDateTime pattern="EEEE, dd/MM/yyyy"
+                                               timeZone="America/Sao_Paulo"/>
+                        </h:outputText>
+
+
+                        <h:outputText value="CATEGORIA:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="#{ordemBean.selectedOrdem.categoria.nome}" style="padding-left:20px;"/>
+
+                        <h:outputText value="OBSERVAÇÕES:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="#{ordemBean.selectedOrdem.observacao}" style="padding-left:20px;"/>
+
+                    </h:panelGrid>
+                    
+                    <br/>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <i class="fa fa-user icon-sidebar"></i>
+                            DETALHES DE PAGAMENTO
+                            <br/>
+                        </div>
+                    </div>
+                    <h:panelGrid columns="2">
+          
+                        <h:outputText value="Diárias e almoços:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="#{ordemBean.selectedOrdem.qtdDiaria} Diaria(s) e  #{ordemBean.selectedOrdem.qtdAlmoco} Almoço(s)" style="padding-left:20px;"/>
+
+                        <h:outputText value="Quilometragem:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="#{ordemBean.selectedOrdem.qtdKm} Km" style="padding-left:20px;"/>
+
+                        <h:outputText value="Total Pagamento de Diárias e almoços:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="R$ #{ordemBean.selectedOrdem.totalDiaria} + R$ #{ordemBean.selectedOrdem.totalAlmoco}" style="padding-left:20px;"/>
+
+                        <h:outputText value="Total Pagamento de Km:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="R$ #{ordemBean.selectedOrdem.totalKm}" style="padding-left:20px;"/> 
+
+                        <h:outputText value="" style="font-weight:bold;padding-left:20px;"/>
+                         <h:outputText value="" style="font-weight:bold;padding-left:20px;"/>
+                        
+                        <h:outputText value="VALOR TOTAL PAGO:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="R$ #{ordemBean.selectedOrdem.valorTotal}" style="padding-left:20px;"/>
+
+                    </h:panelGrid>
+
+                    <br/>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <i class="fa fa-user icon-sidebar"></i>
+                            DETALHES DO FISCAL
+                            <br/>
+                        </div>
+                    </div>
+                    <h:panelGrid columns="2">
+                        <h:outputText value="NOME:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="#{ordemBean.selectedOrdem.fiscal.nome} #{ordemBean.selectedOrdem.fiscal.sobrenome}" style="padding-left:20px;"/>
+
+                        <h:outputText value="SIGLA:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="#{ordemBean.selectedOrdem.fiscal.sigla}" style="padding-left:20px;"/>
+
+                        <h:outputText value="MATRÍCULA:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="#{ordemBean.selectedOrdem.fiscal.matricula}" style="padding-left:20px;"/>
+
+                        <h:outputText value="LOTAÇÃO:" style="font-weight:bold;padding-left:20px;" />
+                        <h:outputText value="#{ordemBean.selectedOrdem.fiscal.inspetoria.nome}" style="padding-left:20px;"/>
+                    </h:panelGrid>
+
+                    
+                    
+                    <br/>
+                    <h:panelGrid columns="1">
+                        <p:dataTable id="cidadesTable"
+                                     var="cidades"
+                                     value="#{ordemBean.selectedOrdem.jurisdicaos}"
+                                     emptyMessage="Cidades não cadastradas para esta rota"
+                                     widgetVar="rotasTable"
+                                     style="text-align: center;">
+
+                            <p:column headerText="CIDADE"
+                                      filterBy="#{cidades.cidade.nome}" 
+                                      filterMatchMode="contains"
+                                      filterStyle="display:none" >
+                                <h:outputText value="#{cidades.cidade.nome}" />
+                            </p:column>
+                            <p:column headerText="JURISDIÇÃO"
+                                      filterBy="#{cidades.nome}"
+                                      filterMatchMode="contains"
+                                      filterStyle="display:none" >
+                                <h:outputText value="#{cidades.nome}" />
+                            </p:column>
+                        </p:dataTable>
+                    </h:panelGrid>
+
+
+
+
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,285 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="common/common-layout.xhtml">
+            <ui:define name="content" >
+                <h1 class="page-heading"><i class="fa fa-car icon-sidebar"></i> Cadastro de viagem</h1>
+                <!-- End page heading -->
+
+                <!-- Begin breadcrumb -->
+                <ol class="breadcrumb default square rsaquo sm">
+                    <li><a href="index.xhtml"><i class="fa fa-home"></i></a></li>
+                    <li><a href="viagens-list.xhtml">Lista de viagens</a></li>
+                    <li class="active">Cadastro de viagem</li>
+                </ol>
+                <!-- End breadcrumb -->
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <i class="fa fa-car icon-sidebar"></i>
+                        CADASTRO DE VIAGEM
+                        <br/>
+                    </div>
+                    <h:form id="novaViagemForm">
+                        <p:growl id="msg" showDetail="true"/>
+                        <div class="the-box">
+                            <div class="form-group">
+                                <h:outputLabel for="inspetoria"
+                                               value="INSPETORIA:"
+                                               style="font-weight: bold"/> <br/>
+                                <h:selectOneMenu  id="inspetoria"
+                                                  required="true"
+                                                  styleClass="form-control"
+                                                  value="#{viagemBean.selectedInspetoria.idinspetoria}"
+                                                  requiredMessage="Selecione uma inspetoria"
+                                                  label="inspetoria">
+                                    <f:ajax listener="#{viagemBean.onInspetoriaChange}" execute="inspetoria" render="rota painelRota fiscal inicio fim" />
+                                    <f:selectItem itemLabel="Selecione" itemValue="" />
+                                    <f:selectItems value="#{inspetoriaBean.inspetorias}"
+                                                   var="inspetoria"
+                                                   itemLabel="#{inspetoria.nome}"
+                                                   itemValue="#{inspetoria.idinspetoria}"/>
+                                </h:selectOneMenu>
+                                <p:message for="inspetoria" />
+                                
+                            </div>
+
+                            <div class="form-group">
+                                
+                                <h:outputLabel for="rota"
+                                               value="ROTA:"
+                                               style="font-weight: bold"/> <br/>
+                                <h:selectOneMenu  id="rota"
+                                                  required="true"
+                                                  styleClass="form-control"
+                                                  value="#{viagemBean.viagem.rota.idrota}"
+                                                  requiredMessage="Selecione a rota da viagem!"
+                                                  label="rota">
+                                    <f:ajax listener="#{viagemBean.onRotaChange}" render="painelRota inicio fim fiscal" execute="rota"/>
+                                    <f:selectItem itemLabel="Selecione" itemValue="" />
+                                    <f:selectItems value="#{viagemBean.rotas}"
+                                                   var="rota"
+                                                   itemLabel="#{rota.nome}"
+                                                   itemValue="#{rota.idrota}"/>
+                                </h:selectOneMenu>                           
+                                <p:message for="rota" />
+                                
+                                
+                                <p:panel id="painelRota" style="border: 1px solid #ddd;"
+                                         header="ROTA SELECIONADA"
+                                         closable="true" closeTitle="Fechar"
+                                         styleClass="alert alert-defalt alert-block fade in alert-dismissable"
+                                         visible="#{viagemBean.painelRota}">
+                                    <h:panelGrid columns="2" width="100%">
+                                        <h:panelGrid columns="2">
+                                            <h:outputText value="NOME:" style="font-weight:bold"/>
+                                            <h:outputText value="#{viagemBean.viagem.rota.nome}" style="padding-left:15px;"/>
+
+                                            <h:outputText value="INSPETORIA:" style="font-weight:bold"/>
+                                            <h:outputText value="#{viagemBean.viagem.rota.inspetoria.nome}" style="padding-left:15px;"/>
+
+                                            <h:outputText value="REVISITA:" style="font-weight:bold"/>
+                                            <h:outputText value="#{viagemBean.viagem.rota.criterioRevisita} dias" style="padding-left:15px;"/>
+
+                                            <h:outputText value="QUILOMETRAGEM:" style="font-weight:bold"/>
+                                            <h:outputText value="#{viagemBean.viagem.rota.quilometragem} km" style="padding-left:15px;"/>
+
+                                            <h:outputText value="DIÁRIAS:" style="font-weight:bold"/>
+                                            <h:outputText value="#{viagemBean.viagem.rota.diaria}" style="padding-left:15px;"/>
+
+                                            <h:outputText value="ALMOÇOS:" style="font-weight:bold"/>
+                                            <h:outputText value="#{viagemBean.viagem.rota.almoco}" style="padding-left:15px;"/>
+                                        </h:panelGrid>
+                                        <h:panelGrid columns="2">
+                                            <p:dataList value="#{viagemBean.viagem.rota.jurisdicaos}"
+                                                        var="cidade">
+                                                <h:outputText value="#{cidade.cidade.nome}"/>
+                                                <h:outputText value="  -  #{cidade.nome}" style="padding-right:20px;"/>
+                                            </p:dataList>
+                                        </h:panelGrid>
+                                    </h:panelGrid>
+                                </p:panel>
+                            </div>
+                            <h:panelGrid columns="2" width="100%">
+                                <h:panelGrid columns="1">
+                                    <div class="form-group">
+                                        <h:outputLabel for="inicio"
+                                                       value="DATA DE INÍCIO:"
+                                                       style="font-weight: bold"/>
+                                        <p:calendar id="inicio"
+                                                    locale="pt_BR"
+                                                    style="width:100%"
+                                                    showButtonPanel="true"
+                                                    effect="explode"
+                                                    navigator="true"
+                                                    readonlyInput="true"
+                                                    required="true" 
+                                                    requiredMessage="Informe a data de início da viagem"
+                                                    pattern="dd/MM/yyyy"
+                                                    value="#{viagemBean.viagem.inicio}"
+                                                    label="inicio">
+                                            <p:ajax event="dateSelect" update="msg fim fiscal" listener="#{viagemBean.onDateSelect}"/>
+                                        </p:calendar>
+                                        <p:message for="inicio" />
+                                    </div>
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="1">
+                                    <div class="form-group">
+                                        <h:outputLabel for="fim"
+                                                       value="DATA DE TÉRMINO:"
+                                                       style="font-weight: bold"/>
+                                        <p:calendar id="fim"
+                                                    locale="pt_BR"
+                                                    style="width:100%"
+                                                    showButtonPanel="true"
+                                                    effect="explode"
+                                                    navigator="true"
+                                                    readonlyInput="true"
+                                                    required="true"
+                                                    requiredMessage="Informe a data de término da viagem"
+                                                    pattern="dd/MM/yyyy"
+                                                    value="#{viagemBean.viagem.fim}"
+                                                    label="fim"/>
+                                        <p:message for="fim" />
+                                    </div>
+                                </h:panelGrid>
+
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="1">
+                                <div class="form-group">
+                                    <h:outputLabel for="observacao"
+                                                   value="OBSERVAÇÕES:"
+                                                   style="font-weight: bold;"/>
+
+                                    <p:inputTextarea id="observacao" rows="6" cols="50"  value="#{viagemBean.viagem.observacao}" counter="display" maxlength="400" counterTemplate="{0} caracteres restando." autoResize="true" label="observacao"/>
+                                    <h:outputText id="display" />
+                                    <p:message for="observacao" />
+                                </div>
+                            </h:panelGrid>
+
+
+
+
+
+
+                            <br/>
+                            <div class="form-group">
+                                <h:outputLabel for="fiscal"
+                                               value="FISCAL:"
+                                               style="font-weight: bold"/><br/>
+                                <h:selectOneMenu  id="fiscal"
+                                                  required="true"
+                                                  styleClass="form-control"
+                                                  value="#{viagemBean.viagem.fiscal.idfiscal}"
+                                                  requiredMessage="Selecione o fiscal que realizará a viagem!"
+                                                  label="fiscal">
+                                    <f:selectItem itemLabel="Selecione" itemValue="" />
+                                    <f:selectItems value="#{viagemBean.fiscais}"
+                                                   var="fiscal"
+                                                   itemLabel="#{fiscal.nome} #{fiscal.sobrenome}"
+                                                   itemValue="#{fiscal.idfiscal}"/>
+                                </h:selectOneMenu>
+                                <p:message for="fiscal" />
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputLabel for="categoria"
+                                               value="CATEGORIA:"
+                                               style="font-weight: bold"/><br/>
+                                <h:selectOneMenu  id="categoria"
+                                                  required="true"
+                                                  styleClass="form-control"
+                                                  value="#{viagemBean.viagem.categoria.idcategoria}"
+                                                  requiredMessage="Selecione a categoria da viagem!"
+                                                  label="categoria">
+                                    <f:selectItem itemLabel="Selecione" itemValue="" />
+                                    <f:selectItems value="#{categoriaBean.categorias}"
+                                                   var="categoria"
+                                                   itemLabel="#{categoria.nome}"
+                                                   itemValue="#{categoria.idcategoria}"/>
+                                </h:selectOneMenu>
+                                <p:message for="categoria" />
+                            </div>
+
+                            <p:commandButton id="voltar"
+                                             value="Voltar"
+                                             onclick="history.back()"
+                                             ajax="true"
+                                             styleClass="btn btn-danger btn-rounded-lg"/>&nbsp;
+                            <p:commandButton id="cadastrar"
+                                             styleClass="btn btn-primary btn-rounded-lg"
+                                             value="Cadastrar"
+                                             action="#{viagemBean.create()}"
+                                             ajax="false"/>
+                        </div>
+                    </h:form>
+                </div>
+
+            </ui:define>
+            <ui:define name="javascript" >
+                <script src="assets/js/bootstrap.min.js"></script>
+                <script src="assets/plugins/retina/retina.min.js"></script>
+                <script src="assets/plugins/nicescroll/jquery.nicescroll.js"></script>
+                <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+                <script src="assets/plugins/backstretch/jquery.backstretch.min.js"></script>
+
+                <!-- PLUGINS -->
+                <script src="assets/plugins/skycons/skycons.js"></script>
+                <script src="assets/plugins/prettify/prettify.js"></script>
+                <script src="assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+                <script src="assets/plugins/owl-carousel/owl.carousel.min.js"></script>
+                <script src="assets/plugins/chosen/chosen.jquery.min.js"></script>
+                <script src="assets/plugins/icheck/icheck.min.js"></script>
+                <script src="assets/plugins/timepicker/bootstrap-timepicker.js"></script>
+                <script src="assets/plugins/mask/jquery.mask.min.js"></script>
+                <script src="assets/plugins/validator/bootstrapValidator.min.js"></script>
+                <script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+                <script src="assets/plugins/datatable/js/bootstrap.datatable.js"></script>
+                <script src="assets/plugins/summernote/summernote.min.js"></script>
+                <script src="assets/plugins/markdown/markdown.js"></script>
+                <script src="assets/plugins/markdown/to-markdown.js"></script>
+                <script src="assets/plugins/markdown/bootstrap-markdown.js"></script>
+                <script src="assets/plugins/slider/bootstrap-slider.js"></script>
+
+                <!-- EASY PIE CHART JS -->
+                <script src="assets/plugins/easypie-chart/easypiechart.min.js"></script>
+                <script src="assets/plugins/easypie-chart/jquery.easypiechart.min.js"></script>
+
+                <!-- KNOB JS -->
+                <!--[if IE]>
+                <script type="text/javascript" src="assets/plugins/jquery-knob/excanvas.js"></script>
+                <![endif]-->
+                <script src="assets/plugins/jquery-knob/jquery.knob.js"></script>
+                <script src="assets/plugins/jquery-knob/knob.js"></script>
+
+                <!-- FLOT CHART JS -->
+                <script src="assets/plugins/flot-chart/jquery.flot.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.tooltip.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.resize.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.selection.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.stack.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.time.js"></script>
+
+                <!-- MORRIS JS -->
+                <script src="assets/plugins/morris-chart/raphael.min.js"></script>
+                <script src="assets/plugins/morris-chart/morris.min.js"></script>
+
+                <!-- C3 JS -->
+                <script src="assets/plugins/c3-chart/d3.v3.min.js" charset="utf-8"></script>
+                <script src="assets/plugins/c3-chart/c3.min.js"></script>
+
+                <!-- MAIN APPS JS -->
+                <script src="assets/js/apps.js"></script>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

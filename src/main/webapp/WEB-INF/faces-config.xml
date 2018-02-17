@@ -1,0 +1,376 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>usuarios-list</from-outcome>
+            <to-view-id>/usuarios-list.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>usuarios-details</from-outcome>
+            <to-view-id>/usuarios-details.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>usuarios-new</from-outcome>
+            <to-view-id>/usuarios-new.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- ================== CATEGORIA CONFIGURATION ================== -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>categorias-list</from-outcome>
+            <to-view-id>/categorias-list.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>categorias-new</from-outcome>
+            <to-view-id>/categorias-new.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- ================== FERIADO CONFIGURATION ================== -->
+    <!-- Listar feriados -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>feriados-list</from-outcome>
+            <to-view-id>/feriados-list.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- Cadastrar novo feriado -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>feriados-new</from-outcome>
+            <to-view-id>/feriados-new.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- ================== INSPETORIA CONFIGURATION ================== -->
+    <!-- Listar inspetorias -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>inspetorias-list</from-outcome>
+            <to-view-id>/inspetorias-list.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- Detalhar inspetoria -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>inspetorias-details</from-outcome>
+            <to-view-id>/inspetorias-details.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>inspetorias-details-rota</from-outcome>
+            <to-view-id>/inspetorias-details-rota.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- Cadastrar nova inspetoria -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>inspetorias-new</from-outcome>
+            <to-view-id>/inspetorias-new.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- ====================== CIDADES CONFIGURATION ====================== -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>cidades-list</from-outcome>
+            <to-view-id>/cidades-list.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- Detalhes da cidade -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>cidades-details</from-outcome>
+            <to-view-id>/cidades-details.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- Cadastrar nova cidade -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>cidades-new</from-outcome>
+            <to-view-id>/cidades-new.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- Cadastrar novo setor -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>cidades-new-jurisdicao</from-outcome>
+            <to-view-id>/cidades-new-jurisdicao.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- Selecionar feriado municipal -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>cidades-new-feriadomunicipal</from-outcome>
+            <to-view-id>/cidades-new-feriadomunicipal.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- Cadastrar novo feriado municipal -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>cidades-new-feriadomunicipal-new</from-outcome>
+            <to-view-id>/cidades-new-feriadomunicipal-new.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- ================== FISCAL CONFIGURATION ================== -->
+    <!-- Listar fiscais -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>fiscais-list</from-outcome>
+            <to-view-id>/fiscais-list.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- Cadastrar novo fiscal -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>fiscais-new</from-outcome>
+            <to-view-id>/fiscais-new.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- Detalhes do fiscal -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>fiscais-details</from-outcome>
+            <to-view-id>/fiscais-details.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>fiscais-details-viagem</from-outcome>
+            <to-view-id>/fiscais-details-viagem.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- Cadastrar novas férias -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>fiscais-new-ferias</from-outcome>
+            <to-view-id>/fiscais-new-ferias.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- ================== ROTA CONFIGURATION ================== -->
+    <!-- Listar rotas -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>rotas-list</from-outcome>
+            <to-view-id>/rotas-list.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- Cadastrar nova rota -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>rotas-inspetoria-selection</from-outcome>
+            <to-view-id>/rotas-inspetoria-selection.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>rotas-new</from-outcome>
+            <to-view-id>/rotas-new.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>rotas-details</from-outcome>
+            <to-view-id>/rotas-details.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>rotas-details-viagem</from-outcome>
+            <to-view-id>/rotas-details-viagem.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- ================== VIAGEM CONFIGURATION ================== -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>viagens-list</from-outcome>
+            <to-view-id>/viagens-list.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>viagens-new</from-outcome>
+            <to-view-id>/viagens-new.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>viagens-details</from-outcome>
+            <to-view-id>/viagens-details.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>viagens-schedule</from-outcome>
+            <to-view-id>/viagens-schedule.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    
+    
+    
+        <!-- ================== VIAGEM CONFIGURATION ================== -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>ordem-list</from-outcome>
+            <to-view-id>/ordem-list.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>ordem-new</from-outcome>
+            <to-view-id>/ordem-new.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>ordem-details</from-outcome>
+            <to-view-id>/ordem-details.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>ordem-schedule</from-outcome>
+            <to-view-id>/ordem-schedule.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    
+    
+    
+    <!-- ==================== PROCEDIMENTO CONFIGURATION ==================== -->
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>procedimentos-list</from-outcome>
+            <to-view-id>/procedimentos-list.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>procedimentos-new</from-outcome>
+            <to-view-id>/procedimentos-new.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>procedimentos-details</from-outcome>
+            <to-view-id>/procedimentos-details.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>procedimentos-edit</from-outcome>
+            <to-view-id>/procedimentos-edit.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    
+        <navigation-rule>
+        <navigation-case>
+            <from-outcome>insere-memorando</from-outcome>
+            <to-view-id>/insere-memorando.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    
+</faces-config>

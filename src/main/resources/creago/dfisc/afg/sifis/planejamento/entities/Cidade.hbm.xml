@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/03/2015 11:54:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="creago.dfisc.afg.sifis.planejamento.entities.Cidade" table="cidade" catalog="sifis" optimistic-lock="version">
+        <id name="idcidade" type="java.lang.Long">
+            <column name="idcidade" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="inspetoria" class="creago.dfisc.afg.sifis.planejamento.entities.Inspetoria" fetch="select">
+            <column name="inspetoria_idinspetoria" not-null="true" />
+        </many-to-one>
+        <property name="nome" type="string">
+            <column name="nome" length="45" />
+        </property>
+        <set name="jurisdicaos" table="jurisdicao" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cidade_idcidade" not-null="true" />
+            </key>
+            <one-to-many class="creago.dfisc.afg.sifis.planejamento.entities.Jurisdicao" />
+        </set>
+        <set name="feriados" table="feriado_has_cidade" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="cidade_idcidade" not-null="true" />
+            </key>
+            <many-to-many entity-name="creago.dfisc.afg.sifis.planejamento.entities.Feriado">
+                <column name="feriado_idferiado" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ordemServico_subreport2" pageWidth="555" pageHeight="482" whenNoDataType="BlankPage" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b5f07cdc-e3c2-4272-abb4-a294d4fb8f45">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="NUMERO_OS" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$F{ordem_de_servico_numero}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     informacoes.`informacoes` AS informacoes_informacoes,
+     ordem_de_servico.`numero` AS ordem_de_servico_numero
+FROM
+     `informacoes` informacoes INNER JOIN `ordem_de_servico` ordem_de_servico ON informacoes.`id_informacoes` = ordem_de_servico.`INFORMACOES_id_informacoes`
+WHERE
+     ordem_de_servico.`numero` = $P{NUMERO_OS}]]>
+	</queryString>
+	<field name="informacoes_informacoes" class="java.lang.String"/>
+	<field name="ordem_de_servico_numero" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="ae49f0a4-6380-4a11-925e-918a918b28d6" x="17" y="14" width="450" height="20"/>
+				<textElement textAlignment="Center" markup="html">
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[INFORMAÇÕES AO ANALISTA/AGENTE DE FISCALIZAÇÃO]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="205814c8-d0a6-42fa-8c11-33d8704d9f90" x="0" y="1" width="484" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="89bb9746-be15-4b23-b523-7d44ca1b60ef" x="0" y="2" width="1" height="38"/>
+			</line>
+			<line>
+				<reportElement uuid="b5b8a1c9-79d1-4c15-9820-986849d57d4a" x="483" y="2" width="1" height="38"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="eee7e530-af05-415b-8a3b-d92d1914c3ea" stretchType="RelativeToTallestObject" x="17" y="2" width="450" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Times New Roman" pdfFontName="Times-Roman" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{informacoes_informacoes}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="cc80389b-a4c4-4709-afca-0309431cffd7" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement uuid="630f6e0f-ad6a-4259-ab02-bf17752548f4" stretchType="RelativeToBandHeight" x="483" y="0" width="1" height="19"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="fd25062a-0b2d-44ad-afee-97ff696013ba" x="0" y="12" width="484" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="764c12a9-3a5c-42a3-8b0d-76451738677e" x="0" y="0" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement uuid="bb3ec29b-5aeb-4c3f-a59b-e163fcee29a2" x="483" y="0" width="1" height="12"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

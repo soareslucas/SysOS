@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition template="common/common-layout.xhtml">
+            <ui:define name="content">
+                <h1 class="page-heading"><i class="fa fa-money   icon-sidebar"></i> VALORES</h1>
+                <!-- End page heading -->
+
+                <!-- Begin breadcrumb -->
+                <ol class="breadcrumb default square rsaquo sm">
+                    <li><a href="index.xhtml"><i class="fa fa-home"></i></a></li>
+                    <li class="active">Configuração de Valores</li>
+                </ol>
+                <!-- End breadcrumb -->
+                <div class="the-box">
+                    <div class="table-responsive">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <i class="fa fa-money icon-sidebar"></i>
+                                CONFIGURAÇÃO DE VALORES
+                                <br/>
+                            </div>
+
+                            <p:growl id="messages" showDetail="false"/>
+
+                            <h:form id="DiariaForm">
+                                <div class="the-box" style="border: none">
+
+                                    <h:outputText value="VALOR DIÁRIA:" style="font-weight:bold"/>
+                                    <h:outputText value="#{valoresBean.valorDiaria}" style="padding-left:15px;"/>
+
+
+
+                                    <div class="form-group">
+                                        <h:outputLabel for="valorDiaria"
+                                                       value="Novo Valor Diaria:"
+                                                       style="font-weight: bold;"/><br/>
+                                        <p:inputText id="valorDiaria"
+                                                     required="true"
+                                                     style="width: 100%;"
+                                                     value="#{valorDiaria}"
+                                                     requiredMessage="Informe o novo valor de diária a ser utilizado"
+                                                     label="valorDiaria"/>
+                                        <p:message for="valorDiaria" />
+                                    </div>
+
+                                    <p:column   headerText="Atualizar Valor " style="width:70px">   
+                                        <p:commandButton id="pdftButton"
+                                                         update=":procView"
+                                                         action="valores-list"
+                                                         icon="ui-icon-arrowrefresh-1-w"
+                                                         title="PDF"
+                                                         ajax="false" >
+                                            <f:setPropertyActionListener value="#{valorDiaria}"
+                                                                         target="#{valoresBean.valorDiaria}" />
+                                        </p:commandButton>  
+                                    </p:column>
+                                    <br/>
+                                    <br/>
+                                    
+                                    </div>
+                            </h:form>
+                            
+                            
+                            
+                            
+                            <h:form id="kmForm">
+                                
+                                
+                                                <div class="the-box" style="border: none">
+                                <h:outputText value="VALOR KM:" style="font-weight:bold"/>
+                                <h:outputText value="#{valoresBean.valorKm}" style="padding-left:15px;"/>
+
+
+
+                                <div class="form-group">
+                                    <h:outputLabel for="valorKm"
+                                                   value="Novo Valor Km:"
+                                                   style="font-weight: bold;"/><br/>
+                                    <p:inputText id="valorKm"
+                                                 required="true"
+                                                 style="width: 100%;"
+                                                 value="#{valorKm}"
+                                                 requiredMessage="Informe o novo valor de diária a ser utilizado"
+                                                 label="valorKm"/>
+                                    <p:message for="valorKm" />
+                                </div>
+
+                                <p:column   headerText="Atualizar Valor " style="width:70px">   
+                                    <p:commandButton id="atualizaValorKm"
+                                                     update=":procView"
+                                                     action="valores-list"
+                                                     icon="ui-icon-arrowrefresh-1-w"
+                                                     title="PDF"
+                                                     ajax="false" >
+                                        <f:setPropertyActionListener value="#{valorKm}"
+                                                                   target="#{valoresBean.valorKm}" />
+                                    </p:commandButton>  
+                                </p:column>
+
+
+                        </div>
+                        </h:form>
+
+
+
+
+
+                    </div>
+                </div>
+                </div>
+
+            </ui:define>
+            <ui:define name="javascript" >
+                <script src="assets/js/bootstrap.min.js"></script>
+                <script src="assets/plugins/retina/retina.min.js"></script>
+                <script src="assets/plugins/nicescroll/jquery.nicescroll.js"></script>
+                <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+                <script src="assets/plugins/backstretch/jquery.backstretch.min.js"></script>
+
+                <!-- PLUGINS -->
+                <script src="assets/plugins/skycons/skycons.js"></script>
+                <script src="assets/plugins/prettify/prettify.js"></script>
+                <script src="assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+                <script src="assets/plugins/owl-carousel/owl.carousel.min.js"></script>
+                <script src="assets/plugins/chosen/chosen.jquery.min.js"></script>
+                <script src="assets/plugins/icheck/icheck.min.js"></script>
+                <script src="assets/plugins/datepicker/bootstrap-datepicker.js"></script>
+                <script src="assets/plugins/timepicker/bootstrap-timepicker.js"></script>
+                <script src="assets/plugins/mask/jquery.mask.min.js"></script>
+                <script src="assets/plugins/validator/bootstrapValidator.min.js"></script>
+                <script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+                <script src="assets/plugins/datatable/js/bootstrap.datatable.js"></script>
+                <script src="assets/plugins/summernote/summernote.min.js"></script>
+                <script src="assets/plugins/markdown/markdown.js"></script>
+                <script src="assets/plugins/markdown/to-markdown.js"></script>
+                <script src="assets/plugins/markdown/bootstrap-markdown.js"></script>
+                <script src="assets/plugins/slider/bootstrap-slider.js"></script>
+
+                <!-- EASY PIE CHART JS -->
+                <script src="assets/plugins/easypie-chart/easypiechart.min.js"></script>
+                <script src="assets/plugins/easypie-chart/jquery.easypiechart.min.js"></script>
+
+                <!-- KNOB JS -->
+                <!--[if IE]>
+                <script type="text/javascript" src="assets/plugins/jquery-knob/excanvas.js"></script>
+                <![endif]-->
+                <script src="assets/plugins/jquery-knob/jquery.knob.js"></script>
+                <script src="assets/plugins/jquery-knob/knob.js"></script>
+
+                <!-- FLOT CHART JS -->
+                <script src="assets/plugins/flot-chart/jquery.flot.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.tooltip.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.resize.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.selection.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.stack.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.time.js"></script>
+
+                <!-- MORRIS JS -->
+                <script src="assets/plugins/morris-chart/raphael.min.js"></script>
+                <script src="assets/plugins/morris-chart/morris.min.js"></script>
+
+                <!-- C3 JS -->
+                <script src="assets/plugins/c3-chart/d3.v3.min.js" charset="utf-8"></script>
+                <script src="assets/plugins/c3-chart/c3.min.js"></script>
+
+                <!-- MAIN APPS JS -->
+                <script src="assets/js/apps.js"></script>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

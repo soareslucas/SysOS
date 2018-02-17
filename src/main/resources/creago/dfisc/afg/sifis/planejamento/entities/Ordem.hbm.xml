@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/03/2015 11:54:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="creago.dfisc.afg.sifis.planejamento.entities.Ordem" table="ordem" catalog="sifis" optimistic-lock="version">
+        <id name="idordem" type="java.lang.Long">
+            <column name="idordem" />
+            <generator class="identity" />
+        </id>
+        <property name="identificador" type="string">
+            <column name="identificador" length="45" />
+        </property>
+        <property name="numeroMemo" type="string">
+            <column name="numeroMemo" length="45" />
+        </property>
+        <many-to-one name="categoria" class="creago.dfisc.afg.sifis.planejamento.entities.Categoria" fetch="select">
+            <column name="categoria_idcategoria" />
+        </many-to-one>
+        <many-to-one name="fiscal" class="creago.dfisc.afg.sifis.planejamento.entities.Fiscal" fetch="select">
+            <column name="fiscal_idfiscal" />
+        </many-to-one>
+        <property name="inicio" type="timestamp">
+            <column name="inicio" length="19" not-null="true" />
+        </property>
+        <property name="fim" type="timestamp">
+            <column name="fim" length="19" not-null="true" />
+        </property>
+        <property name="totalAlmoco" type="string">
+            <column name="totalAlmoco" length="45" />
+        </property>
+        <property name="totalDiaria" type="string">
+            <column name="totalDiaria" length="45"  />
+        </property>
+        <property name="totalKm" type="string">
+            <column name="totalKM" length="45" />
+        </property>
+        <property name="qtdAlmoco" type="string">
+            <column name="qtdAlmoco" length="45" />
+        </property>
+        <property name="qtdDiaria" type="string">
+            <column name="qtdDiaria" length="45" />
+        </property>
+        <property name="qtdKm" type="string">
+            <column name="qtdKM" length="45" />
+        </property>
+        <property name="valorTotal" type="string">
+            <column name="valorTotal" length="45" />
+        </property>
+        <property name="valorKm" type="string">
+            <column name="valorKM" length="45" />
+        </property>
+        <property name="valorDiaria" type="string">
+            <column name="valorDiaria" length="45" />
+        </property>
+        <property name="dataCadastro" type="timestamp">
+            <column name="dataCadastro" length="19" not-null="true" />
+        </property>
+        <property name="observacao" type="string">
+            <column name="observacao" length="400" />
+        </property>
+        <property name="memorando" type="java.lang.Boolean">
+            <column name="memorando" />
+        </property>
+        <set name="jurisdicaos" table="ordem_has_jurisdicao" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="ordem_idordem" not-null="true" />
+            </key>
+            <many-to-many entity-name="creago.dfisc.afg.sifis.planejamento.entities.Jurisdicao">
+                <column name="jurisdicao_idjurisdicao" not-null="true" />
+            </many-to-many>
+        </set>
+        <property name="idviagem" type="java.lang.Long">
+            <column name="idviagem"  length="20"/>   
+        </property>
+        
+        
+    </class>
+</hibernate-mapping>

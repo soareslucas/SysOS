@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/03/2015 11:54:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="creago.dfisc.afg.sifis.procedimento.entities.Procedimento" table="procedimento" catalog="sifis" optimistic-lock="version">
+        <id name="idprocedimento" type="java.lang.Long">
+            <column name="idprocedimento" />
+            <generator class="identity" />
+        </id>
+        <property name="identificador" type="string">
+            <column name="identificador" length="45" />
+        </property>
+        <property name="tipo" type="string">
+            <column name="tipo" length="45" />
+        </property>
+        <property name="assunto" type="string">
+            <column name="assunto" length="144" />
+        </property>
+        <property name="descricao" type="string">
+            <column name="descricao" length="65535" />
+        </property>
+        <property name="evidencia" type="string">
+            <column name="evidencia" length="65535" />
+        </property>
+        <property name="inicio" type="timestamp">
+            <column name="inicio" length="19" />
+        </property>
+        <property name="fim" type="timestamp">
+            <column name="fim" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

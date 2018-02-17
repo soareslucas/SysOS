@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sifis</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password"></property>
+    <mapping resource="creago/dfisc/afg/sifis/planejamento/entities/Rota.hbm.xml"/>
+    <mapping resource="creago/dfisc/afg/sifis/planejamento/entities/Ordem.hbm.xml"/>
+    <mapping resource="creago/dfisc/afg/sifis/planejamento/entities/Cidade.hbm.xml"/>
+    <mapping resource="creago/dfisc/afg/sifis/planejamento/entities/Categoria.hbm.xml"/>
+    <mapping resource="creago/dfisc/afg/sifis/planejamento/entities/Procedimento.hbm.xml"/>
+    <mapping resource="creago/dfisc/afg/sifis/planejamento/entities/Jurisdicao.hbm.xml"/>
+    <mapping resource="creago/dfisc/afg/sifis/planejamento/entities/Fiscal.hbm.xml"/>
+    <mapping resource="creago/dfisc/afg/sifis/planejamento/entities/Role.hbm.xml"/>
+    <mapping resource="creago/dfisc/afg/sifis/planejamento/entities/Usuario.hbm.xml"/>
+    <mapping resource="creago/dfisc/afg/sifis/planejamento/entities/Feriado.hbm.xml"/>
+    <mapping resource="creago/dfisc/afg/sifis/planejamento/entities/Ferias.hbm.xml"/>
+    <mapping resource="creago/dfisc/afg/sifis/planejamento/entities/Bairro.hbm.xml"/>
+    <mapping resource="creago/dfisc/afg/sifis/planejamento/entities/Viagem.hbm.xml"/>
+    <mapping resource="creago/dfisc/afg/sifis/planejamento/entities/Inspetoria.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

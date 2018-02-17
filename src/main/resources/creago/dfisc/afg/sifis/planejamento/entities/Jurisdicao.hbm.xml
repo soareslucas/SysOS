@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/03/2015 11:54:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="creago.dfisc.afg.sifis.planejamento.entities.Jurisdicao" table="jurisdicao" catalog="sifis" optimistic-lock="version">
+        <id name="idjurisdicao" type="java.lang.Long">
+            <column name="idjurisdicao" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cidade" class="creago.dfisc.afg.sifis.planejamento.entities.Cidade" fetch="select">
+            <column name="cidade_idcidade" not-null="true" />
+        </many-to-one>
+        <property name="nome" type="string">
+            <column name="nome" length="45" />
+        </property>
+        <set name="rotas" table="rota_has_jurisdicao" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="jurisdicao_idjurisdicao" not-null="true" />
+            </key>
+            <many-to-many entity-name="creago.dfisc.afg.sifis.planejamento.entities.Rota">
+                <column name="rota_idrota" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="ordems" table="ordem_has_jurisdicao" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="jurisdicao_idjurisdicao" not-null="true" />
+            </key>
+            <many-to-many entity-name="creago.dfisc.afg.sifis.planejamento.entities.Ordem">
+                <column name="ordem_idordem" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="bairros" table="bairro" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="jurisdicao_idjurisdicao" not-null="true" />
+            </key>
+            <one-to-many class="creago.dfisc.afg.sifis.planejamento.entities.Bairro" />
+        </set>
+    </class>
+</hibernate-mapping>

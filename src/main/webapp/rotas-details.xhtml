@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition template="common/common-layout.xhtml">
+            <ui:define name="content">
+                <h1 class="page-heading"><i class="fa fa-code-fork icon-sidebar"></i>  rota #{rotaBean.selectedRota.nome}</h1>
+                <!-- End page heading -->
+
+                <!-- Begin breadcrumb -->
+                <ol class="breadcrumb default square rsaquo sm">
+                    <li><a href="index.xhtml"><i class="fa fa-home"></i></a></li>
+                    <li><a href="rotas-list.xhtml">Lista de rotas</a></li>
+                    <li class="active">Detalhes da rota</li>
+                </ol>
+                <!-- End breadcrumb -->
+
+                <div class="the-box">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <i class="fa fa-code-fork icon-sidebar"></i>
+                            DETALHES DA ROTA
+                            <br/>
+                        </div>
+                    </div>
+                    <h:panelGrid columns="2">
+                        <h:outputText value="NOME:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="#{rotaBean.selectedRota.nome}" style="padding-left:20px;"/>
+
+                        <h:outputText value="INSPETORIA:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="#{rotaBean.selectedRota.inspetoria.nome}" style="padding-left:20px;"/>
+
+                        <h:outputText value="CRITÉRIO DE REVISITA:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="#{rotaBean.selectedRota.criterioRevisita} dias" style="padding-left:20px;"/>
+
+                        <h:outputText value="QUILOMETRAGEM:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="#{rotaBean.selectedRota.quilometragem} km" style="padding-left:20px;"/>
+
+                        <h:outputText value="DIÁRIAS:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="#{rotaBean.selectedRota.diaria}" style="padding-left:20px;"/>
+
+                        <h:outputText value="ALMOÇOS:" style="font-weight:bold;padding-left:20px;"/>
+                        <h:outputText value="#{rotaBean.selectedRota.almoco}" style="padding-left:20px;"/>
+                    </h:panelGrid>
+                    <br/>
+                    <div class="panel with-nav-tabs panel-primary">
+                        <div class="panel-heading">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#panel-cidades" data-toggle="tab"><i class="fa fa-building-o icon-sidebar"></i> Cidades</a></li>
+                                <li><a href="#panel-viagens" data-toggle="tab"><i class="fa fa-car icon-sidebar"></i> Viagens</a></li>
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="panel-cidades">
+                                <h:form id="cidadesForm">
+                                    <p:growl id="messages" showDetail="false"/>
+                                    <p:dataTable id="cidadesTable"
+                                                 var="cidades"
+                                                 value="#{rotaBean.selectedRota.jurisdicaos}"
+                                                 emptyMessage="Cidades não cadastradas para esta rota"
+                                                 widgetVar="rotasTable"
+                                                 paginator="true"
+                                                 style="text-align: center;"
+                                                 rows="10"
+                                                 editable="true"
+                                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+                                        <f:facet name="header">
+                                            <div align="right">
+                                                <p:outputPanel>
+                                                    <h:outputText value="Pesquisa: " />
+                                                    <p:inputText id="globalFilter"
+                                                                 onkeyup="PF('cidadesTable').filter()"
+                                                                 style="width:250px"
+                                                                 placeholder="Digite sua busca aqui..."/>
+                                                </p:outputPanel>
+                                            </div>
+                                        </f:facet>
+                                        <p:column headerText="CIDADE"
+                                                  filterBy="#{cidades.cidade.nome}"
+                                                  filterMatchMode="contains"
+                                                  filterStyle="display:none" >
+                                            <h:outputText value="#{cidades.cidade.nome}" />
+                                        </p:column>
+                                        <p:column headerText="JURISDIÇÃO"
+                                                  filterBy="#{cidades.nome}"
+                                                  filterMatchMode="contains"
+                                                  filterStyle="display:none" >
+                                            <h:outputText value="#{cidades.nome}" />
+                                        </p:column>
+                                    </p:dataTable>
+                                </h:form>
+                            </div>
+                            <div class="tab-pane fade" id="panel-viagens">
+                                <h:form id="viagensForm">
+                                    <p:growl id="messages" showDetail="false"/>
+                                    <p:dataTable var="viagens"
+                                                 value="#{rotaBean.selectedRota.viagems}"
+                                                 editable="true"
+                                                 widgetVar="viagensTable"
+                                                 emptyMessage="Nenhuma viagem encontrada"
+                                                 paginator="true"
+                                                 style="text-align: center;"
+                                                 rows="15"
+                                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+                                        
+                                        <f:facet name="header">
+                                            <div align="right">
+                                                <p:outputPanel>
+                                                    <h:outputText value="Pesquisa: " />
+                                                    <p:inputText id="globalFilter"
+                                                                 onkeyup="PF('viagensTable').filter()"
+                                                                 style="width:250px"
+                                                                 placeholder="Digite sua busca aqui..."/>
+                                                </p:outputPanel>
+                                            </div>
+                                        </f:facet>
+                                        <p:column headerText="FISCAL"
+                                                  rendered="true"
+                                                  filterBy="#{viagens.fiscal.sigla}"
+                                                  filterMatchMode="contains"
+                                                  filterStyle="display:none">
+                                            <h:outputText value="#{viagens.fiscal.sigla}"/>
+                                        </p:column>
+                                        <p:column headerText="CATEGORIA"
+                                                  rendered="true"
+                                                  filterBy="#{viagens.categoria.nome}"
+                                                  filterMatchMode="contains"
+                                                  filterStyle="display:none">
+                                            <h:outputText value="#{viagens.categoria.nome}"/>
+                                        </p:column>
+
+                                        <p:column id="inicioViagem"
+                                                  headerText="INÍCIO"
+                                                  rendered="true"
+                                                  filterBy="#{viagens.inicio}"
+                                                  filterMatchMode="contains"
+                                                  filterStyle="display:none">
+                                            <h:outputText value="#{viagens.inicio}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"
+                                                                   timeZone="America/Sao_Paulo"/>
+                                            </h:outputText>
+                                        </p:column>
+
+                                        <p:column id="fimViagem"
+                                                  headerText="FIM"
+                                                  rendered="true"
+                                                  filterBy="#{viagens.fim}"
+                                                  filterMatchMode="contains"
+                                                  filterStyle="display:none">
+                                            <h:outputText value="#{viagens.fim}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"
+                                                                   timeZone="America/Sao_Paulo"/>
+                                            </h:outputText>
+                                        </p:column>
+
+                                        <p:column style="width:37px">
+                                            <f:facet name="header">
+                                                <span class="ui-icon ui-icon-search" title="Detalhes"></span>
+                                            </f:facet>
+                                            <p:commandLink id="selectButton"
+                                                           update=":viagensForm"
+                                                           styleClass="ui-icon ui-icon-search"
+                                                           title="Detalhes"
+                                                           action="rotas-details-viagem">
+                                                <f:setPropertyActionListener value="#{viagens}"
+                                                                             target="#{rotaBean.selectedViagem}" />
+                                            </p:commandLink>
+                                        </p:column>
+                                    </p:dataTable>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

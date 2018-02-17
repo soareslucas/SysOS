@@ -1,0 +1,264 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="common/common-layout.xhtml">
+            <ui:define name="content">
+                <h1 class="page-heading"><i class="fa fa-code-fork icon-sidebar"></i> Lista de rotas</h1>
+                <!-- End page heading -->
+
+                <!-- Begin breadcrumb -->
+                <ol class="breadcrumb default square rsaquo sm">
+                    <li><a href="index.xhtml"><i class="fa fa-home"></i></a></li>
+                    <li class="active">Lista de rotas</li>
+                </ol>
+                <!-- End breadcrumb -->
+
+                <!-- BEGIN DATA TABLE -->
+                <div class="the-box">
+                    <div class="table-responsive">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <i class="fa fa-code-fork icon-sidebar"></i>
+                                LISTA DE ROTAS
+                                <br/>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        <h:form id="rotasForm">
+                            <p:growl id="messages" showDetail="false"/>
+                            <p:dataTable var="rotas"
+                                         value="#{rotaBean.rotas}"
+                                         editable="true"
+                                         widgetVar="rotasTable"
+                                         emptyMessage="Nenhuma rota encontrada"
+                                         paginator="true"
+                                         style="text-align: center;"
+                                         rows="50"
+                                         rowsPerPageTemplate="10, 25, 50, 100"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         filteredValue="#{rotaBean.filteredRotas}">
+
+                                <f:facet name="header">
+                                    <div align="right">
+                                        <p:outputPanel>
+                                            <h:outputText value="Pesquisa: " />
+                                            <p:inputText id="globalFilter"
+                                                         onkeyup="PF('rotasTable').filter()"
+                                                         style="width:250px"
+                                                         placeholder="Digite sua busca aqui..."/>
+                                        </p:outputPanel>
+                                    </div>
+                                </f:facet>
+
+                                <p:ajax event="rowEdit" listener="#{rotaBean.onRowEdit}" update=":rotasForm:messages" />
+                                <p:ajax event="rowEditCancel" listener="#{rotaBean.onCancel}" update=":rotasForm:messages" />
+
+                                <!-- Coluna com os nomes das inspetorias das rotas -->
+                                <p:column headerText="INSPETORIA"
+                                          rendered="true"
+                                          filterBy="#{rotas.inspetoria.nome}"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{rotas.inspetoria.nome}"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <h:selectOneMenu required="true"
+                                                             styleClass="form-control"
+                                                             value="#{rotas.inspetoria.idinspetoria}"
+                                                             requiredMessage="Informe a inspetoria da rota"
+                                                             label="inspetoria"
+                                                             style="width:100%">
+                                                <f:selectItem itemLabel="Selecione" />
+                                                <f:selectItems value="#{inspetoriaBean.inspetorias}"
+                                                               var="inspetoria"
+                                                               itemLabel="#{inspetoria.nome}"
+                                                               itemValue="#{inspetoria.idinspetoria}"/>
+                                            </h:selectOneMenu>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <!-- Coluna com os nomes das rotas -->
+                                <p:column headerText="ROTA"
+                                          style="width:100px"
+                                          rendered="true"
+                                          filterBy="#{rotas.nome}"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{rotas.nome}"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText required="true"
+                                                         style="width:100%"
+                                                         value="#{rotas.nome}"
+                                                         requiredMessage="Informe o nome da Rota"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+                                
+                                
+                                                                <p:column headerText="CIDADES"
+                                          rendered="true"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+
+
+                                    <p:dataList value="#{rotas.jurisdicaos}" var="cidades" type="definition">
+
+                                        #{cidades.cidade.nome}
+                                    </p:dataList>
+
+
+
+                                </p:column>
+                                
+                                
+
+                                <!-- Coluna com os critérios de revisita -->
+                                <p:column headerText="REVISITA"
+                                          style="width:90px"
+                                          rendered="true"
+                                          filterBy="#{rotas.criterioRevisita}"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{rotas.criterioRevisita} dias"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText required="true"
+                                                         style="width:100%"
+                                                         value="#{rotas.criterioRevisita}"
+                                                         requiredMessage="Informe o critério de revisita para essa rota"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <!-- Coluna com as quilometragens -->
+                                <p:column headerText="KM"
+                                          style="width:90px"
+                                          rendered="true"
+                                          filterBy="#{rotas.quilometragem}"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{rotas.quilometragem} km"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText required="true"
+                                                         style="width:100%"
+                                                         value="#{rotas.quilometragem}"
+                                                         requiredMessage="Informe a quilometragem da Rota"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <!-- Coluna com as diarias -->
+                                <p:column headerText="DIÁRIAS"
+                                          style="width:80px"
+                                          rendered="true"
+                                          filterBy="#{rotas.diaria}"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{rotas.diaria}"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText required="true"
+                                                         style="width:100%"
+                                                         value="#{rotas.diaria}"
+                                                         requiredMessage="Informe a quantidade de diárias"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <!-- Coluna com os almoços -->
+                                <p:column id="almocosRota"
+                                          style="width:100px"
+                                          headerText="ALMOÇOS"
+                                          rendered="true"
+                                          filterBy="#{rotas.almoco}"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{rotas.almoco}"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText id="diarias"
+                                                         required="true"
+                                                         style="width:100%"
+                                                         value="#{rotas.almoco}"
+                                                         requiredMessage="Informe a quantidade de almoços"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column style="width:37px">
+                                    <f:facet name="header">
+                                        <span class="ui-icon ui-icon-search" title="Ver Detalhes"></span>
+                                    </f:facet>
+                                    <p:commandLink id="selectButton"
+                                                   update=":rotasForm"
+                                                   styleClass="ui-icon ui-icon-search"
+                                                   title="Ver Detalhes"
+                                                   action="rotas-details">
+                                        <f:setPropertyActionListener value="#{rotas}"
+                                                                     target="#{rotaBean.selectedRota}" />
+                                    </p:commandLink>
+                                </p:column>
+
+                                <p:column style="width:37px">
+                                    <f:facet name="header">
+                                        <span class="ui-icon ui-icon-pencil" title="Editar"></span>
+                                    </f:facet>
+                                    <p:rowEditor id="editor" />
+                                    <p:tooltip for="editor" value="Editar"/>
+                                </p:column>
+
+                                <!-- Coluna com o botao de exclusão da rota (renderizada) -->
+                                <p:column style="width:37px">
+                                    <f:facet name="header">
+                                        <span class="ui-icon ui-icon-trash" title="Excluir"></span>
+                                    </f:facet>
+                                    <p:commandLink id="deletButton"
+                                                   update=":rotasForm"
+                                                   action="#{rotaBean.remove()}"
+                                                   styleClass="ui-icon ui-icon-trash"
+                                                   title="Excluir">
+                                        <f:setPropertyActionListener value="#{rotas}"
+                                                                     target="#{rotaBean.selectedRota}" />
+                                    </p:commandLink>
+                                </p:column>
+
+                                <f:facet name="footer">
+                                    <div align="left" style="padding: 15px 25px;">
+                                        <p:commandButton id="novaRota"
+                                                         value="Cadastrar nova rota"
+                                                         styleClass="btn btn-rounded-lg"
+                                                         action="#{rotaBean.newRota()}"/>
+                                    </div>
+                                </f:facet>
+                            </p:dataTable>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

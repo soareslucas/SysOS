@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="common/common-layout.xhtml">
+            <ui:define name="content">
+                <h1 class="page-heading"><i class="fa fa-stack-overflow icon-sidebar"></i> Lista de procedimentos</h1>
+                <!-- End page heading -->
+
+                <!-- Begin breadcrumb -->
+                <ol class="breadcrumb default square rsaquo sm">
+                    <li><a href="index.xhtml"><i class="fa fa-home"></i></a></li>
+                    <li class="active">Lista de procedimentos</li>
+                </ol>
+                <!-- End breadcrumb -->
+
+                <div class="the-box">
+                    <div class="table-responsive">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <i class="fa fa-stack-overflow icon-sidebar"></i>
+                                LISTA DE PROCEDIMENTOS
+                                <br/>
+                            </div>
+                        </div>
+                        <h:form id="procView">
+                            <p:growl id="messages" showDetail="false"/>
+                            <p:dataTable id="procedimentoTable"
+                                         var="procedimento" 
+                                         value="#{procedimentoBean.procedimentos}"
+                                         widgetVar="procedimentoTable"   
+                                         emptyMessage="Procedimentos não encontrados"
+                                         paginator="true"
+                                         rowStyleClass="#{procedimento.vigente ? 'rowGreen' : 'rowRed'}"
+                                         rows="30"
+                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="30, 50, 100">
+
+                                <f:facet name="header">
+                                    <div align="right">
+                                        <p:outputPanel>
+                                            <h:outputText value="Pesquisa: " />
+                                            <p:inputText id="globalFilter"
+                                                         onkeyup="PF('procedimentoTable').filter()"
+                                                         style="width:250px"
+                                                         placeholder="Digite sua busca aqui..."/>
+                                        </p:outputPanel>
+                                    </div>
+                                </f:facet>
+
+                                <!-- Coluna com a descricao do procedimento (não renderizada) -->
+                                <p:column id="descricao" 
+                                          filterBy="#{procedimento.descricao}"
+                                          headerText="DESCRIÇÃO" 
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none"
+                                          rendered="false">
+                                    <h:outputText value="#{procedimento.descricao}"/>
+                                </p:column> 
+
+                                <!-- Coluna com o identificador do procedimento (renderizada) -->
+                                <p:column id="idColumn" 
+                                          filterBy="#{procedimento.identificador}"
+                                          headerText="ID" 
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none"
+                                          style="width:90px; text-align: center;" >  
+                                    <h:outputText value="#{procedimento.identificador}" />  
+                                </p:column>
+
+                                <!-- Coluna com o tipo do procedimento (renderizada) -->
+                                <p:column id="tipo" 
+                                          filterBy="#{procedimento.tipo}"
+                                          headerText="TIPO" 
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none"
+                                          style="width:120px; text-align: center;">  
+                                    <h:outputText value="#{procedimento.tipo}"/>  
+                                </p:column>
+
+                                <!-- Coluna com a data de inicio do procedimento (não renderizada) -->
+                                <p:column id="dataInicio" 
+                                          filterBy="#{procedimento.inicio}"
+                                          headerText="INÍCIO" 
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none"
+                                          rendered="false">  
+                                    <h:outputText value="#{procedimento.inicio}">  
+
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+
+                                    </h:outputText>
+                                </p:column>
+
+                                <!-- Coluna com a data final do procedimento (não renderizada) -->
+                                <p:column id="dataFim" 
+                                          filterBy="#{procedimento.fim}"
+                                          headerText="TÉRMINO" 
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none"
+                                          rendered="false">  
+                                    <h:outputText value="#{procedimento.fim}">
+
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+
+                                    </h:outputText>
+                                </p:column>
+
+                                <!-- Coluna com o assunto do procedimento (renderizada) -->
+                                <p:column id="assunto" 
+                                          filterBy="#{procedimento.assunto}"
+                                          headerText="ASSUNTO" 
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+                                    <h:outputText value="#{procedimento.assunto}" />  
+                                </p:column>
+
+                                <!-- Coluna com o assunto do procedimento (não renderizada) -->
+                                <p:column id="evidencia" 
+                                          filterBy="#{procedimento.evidencia}"
+                                          headerText="EVIDÊNCIA" 
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none"
+                                          rendered="false">
+                                    <h:outputText value="#{procedimento.evidencia}" />  
+                                </p:column>
+
+                                <p:column   headerText="GERAR PDF " style="width:70px">   
+                                    <p:commandButton id="pdftButton"
+                                                   
+                                                     update=":procView"
+                                                     action="#{procedimentoBean.pdf}"
+                                                     icon="ui-icon-search"
+                                                     title="PDF"
+                                                     ajax="false" onclick="this.form.target = '_blank'">
+                                        <f:setPropertyActionListener value="#{procedimento}"
+                                                                     target="#{procedimentoBean.procedimento}" />
+                                    </p:commandButton>  
+                                </p:column>
+
+
+
+
+                                <p:column style="width:50px">
+                                    <f:facet name="header">
+                                        <span class="ui-icon ui-icon-search" title="Ver Detalhes"></span>
+                                    </f:facet>
+                                    <p:commandLink id="selectButton"
+                                                   update=":procView"
+                                                   styleClass="ui-icon ui-icon-search"
+                                                   title="Ver Detalhes"
+                                                   action="procedimentos-details">
+                                        <f:setPropertyActionListener value="#{procedimento}"
+                                                                     target="#{procedimentoBean.selectedProcedimento}" />
+                                    </p:commandLink>
+                                </p:column>
+
+                                <f:facet name="footer">
+                                    <div align="left" style="padding: 15px 25px;">
+                                        <p:commandButton id="novoProcedimento"
+                                                         value="Cadastrar Novo Procedimento"
+                                                         styleClass="btn btn-rounded-lg"
+                                                         action="#{procedimentoBean.newProcedimento()}"/>
+                                    </div>
+                                </f:facet>
+                            </p:dataTable>
+                        </h:form>
+                    </div>
+                </div>
+                <style> 
+                    .ui-datatable .ui-datatable-data .even-row td{  
+                        background-color:#EEDD82;
+                    }  
+
+                    .ui-datatable .ui-datatable-data .odd-row td{  
+                        background-color:#FFFACD;  
+                    }
+
+                    .rowRed {
+                        background-color: #e74c3c;
+                    }
+
+                    .rowGreen {
+                        background-color: #2ecc71;
+                    }
+
+                    .legenda{
+                        width: 15px;
+                        height: 15px;
+                        margin-bottom: 0px;
+                        border: none;
+                    }
+                </style> 
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

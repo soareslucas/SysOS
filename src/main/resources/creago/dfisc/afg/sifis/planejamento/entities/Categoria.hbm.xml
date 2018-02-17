@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 19/03/2015 11:54:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="creago.dfisc.afg.sifis.planejamento.entities.Categoria" table="categoria" catalog="sifis" optimistic-lock="version">
+        <id name="idcategoria" type="java.lang.Long">
+            <column name="idcategoria" />
+            <generator class="identity" />
+        </id>
+        <property name="nome" type="string">
+            <column name="nome" length="45" />
+        </property>
+        <property name="cor" type="string">
+            <column name="cor" length="45" />
+        </property>
+        <set name="ordems" table="ordem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="categoria_idcategoria" />
+            </key>
+            <one-to-many class="creago.dfisc.afg.sifis.planejamento.entities.Ordem" />
+        </set>
+        <set name="viagems" table="viagem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="categoria_idcategoria" not-null="true" />
+            </key>
+            <one-to-many class="creago.dfisc.afg.sifis.planejamento.entities.Viagem" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,250 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <ui:composition template="common/common-layout.xhtml">
+            <ui:define name="content">
+                <h1 class="page-heading"><i class="fa fa-users icon-sidebar"></i> Lista de fiscais</h1>
+                <!-- End page heading -->
+
+                <!-- Begin breadcrumb -->
+                <ol class="breadcrumb default square rsaquo sm">
+                    <li><a href="index.xhtml"><i class="fa fa-home"></i></a></li>
+                    <li class="active">Lista de fiscais</li>
+                </ol>
+                <!-- End breadcrumb -->
+
+                <!-- BEGIN DATA TABLE -->
+                <div class="the-box">
+                    <div class="table-responsive">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <i class="fa fa-users icon-sidebar"></i>
+                                LISTA DE FISCAIS
+                                <br/>
+                            </div>
+                        </div>
+                        <h:form id="fiscaisForm">
+                            <p:growl id="messages" showDetail="false"/>
+                            <p:dataTable id="fiscaisTable"
+                                         var="fiscais"
+                                         value="#{fiscalBean.fiscais}"
+                                         editable="true"
+                                         widgetVar="fiscaisTable"
+                                         emptyMessage="Nenhum fiscal encontrado"
+                                         paginator="true"
+                                         style="text-align: center;"
+                                         rows="50"
+                                         rowsPerPageTemplate="10, 25, 50, 100"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         filteredValue="#{fiscalBean.filteredFiscais}">
+
+                                <f:facet name="header">
+                                    <div align="right">
+                                        <p:outputPanel>
+                                            <h:outputText value="Pesquisa: " />
+                                            <p:inputText id="globalFilter"
+                                                         onkeyup="PF('fiscaisTable').filter()"
+                                                         style="width:250px"
+                                                         placeholder="Digite sua busca aqui..."/>
+                                        </p:outputPanel>
+                                    </div>
+                                </f:facet>
+
+                                <p:ajax event="rowEdit" listener="#{fiscalBean.onRowEdit}" update=":fiscaisForm:messages" />
+                                <p:ajax event="rowEditCancel" listener="#{fiscalBean.onCancel}" update=":fiscaisForm:messages" />
+
+                                <!-- Coluna com os nomes dos fiscais cadastrados -->
+                                <p:column id="nomeFiscal"
+                                          headerText="NOME"
+                                          rendered="true"
+                                          filterBy="#{fiscais.nome}"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{fiscais.nome}"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText id="nome"
+                                                         styleClass="form-control"
+                                                         required="true"
+                                                         style="width:100%"
+                                                         value="#{fiscais.nome}"
+                                                         requiredMessage="Informe o nome do fiscal"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <!-- Coluna com os sobrenomes dos fiscais cadastrados -->
+                                <p:column id="sobrenomeFiscal"
+                                          headerText="SOBRENOME"
+                                          rendered="true"
+                                          filterBy="#{fiscais.sobrenome}"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{fiscais.sobrenome}"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText id="sobrenome"
+                                                         styleClass="form-control"
+                                                         required="true"
+                                                         style="width:100%"
+                                                         value="#{fiscais.sobrenome}"
+                                                         requiredMessage="Informe o sobrenome do fiscal"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <!-- Coluna com as siglas dos fiscais cadastrados -->
+                                <p:column id="siglaFiscal"
+                                          headerText="SIGLA"
+                                          rendered="true"
+                                          filterBy="#{fiscais.sigla}"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none"
+                                          style="width:65px">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{fiscais.sigla}"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText id="sigla"
+                                                         styleClass="form-control"
+                                                         required="true"
+                                                         style="width:100%"
+                                                         value="#{fiscais.sigla}"
+                                                         requiredMessage="Informe a sigla do fiscal"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <!-- Coluna com as matriculas dos fiscais cadastrados -->
+                                <p:column id="matriculaFiscal"
+                                          headerText="MAT."
+                                          rendered="true"
+                                          filterBy="#{fiscais.matricula}"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none"
+                                          style="width:60px">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{fiscais.matricula}"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText id="matricula"
+                                                         styleClass="form-control"
+                                                         required="true"
+                                                         style="width:100%"
+                                                         value="#{fiscais.matricula}"
+                                                         requiredMessage="Informe a matrícula do fiscal"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <!-- Coluna com as lotações dos fiscais cadastrados -->
+                                <p:column id="lotacaoFiscal"
+                                          headerText="LOTAÇÃO"
+                                          rendered="true"
+                                          filterBy="#{fiscais.inspetoria.nome}"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{fiscais.inspetoria.nome}"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <h:selectOneMenu  id="lotacao"
+                                                              styleClass="form-control"
+                                                              required="true"
+                                                              value="#{fiscais.inspetoria.idinspetoria}"
+                                                              requiredMessage="Informe a lotação do novo fiscal"
+                                                              label="lotacao"
+                                                              style="width:100%">
+                                                <f:selectItem itemLabel="Selecione" />
+                                                <f:selectItems value="#{inspetoriaBean.inspetorias}"
+                                                               var="inspetoria"
+                                                               itemLabel="#{inspetoria.nome}"
+                                                               itemValue="#{inspetoria.idinspetoria}"/>
+                                            </h:selectOneMenu>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column id="fiscalAtivo"
+                                          headerText="SITUAÇÃO"
+                                          style="width:100px">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="ATIVO" rendered="#{fiscais.isAtivo}"/>
+                                            <h:outputText value="INATIVO" rendered="#{not fiscais.isAtivo}"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:selectBooleanCheckbox styleClass="form-control" 
+                                                                     value="#{fiscais.isAtivo}"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <!-- Coluna com o botao de visualização dos fiscais (renderizada) -->
+                                <p:column style="width:37px">
+                                    <f:facet name="header">
+                                        <span class="ui-icon ui-icon-search" title="Ver Detalhes"></span>
+                                    </f:facet>
+                                    <p:commandLink id="selectButton"
+                                                   update=":fiscaisForm"
+                                                   styleClass="ui-icon ui-icon-search"
+                                                   title="Ver Detalhes"
+                                                   action="fiscais-details">
+                                        <f:setPropertyActionListener value="#{fiscais}"
+                                                                     target="#{fiscalBean.selectedFiscal}" />
+                                    </p:commandLink>
+                                </p:column>
+
+                                <p:column style="width:37px;">
+                                    <f:facet name="header">
+                                        <span class="ui-icon ui-icon-pencil" title="Editar"></span>
+                                    </f:facet>
+                                    <p:rowEditor id="editor" />
+                                    <p:tooltip for="editor" value="Editar"/>
+                                </p:column>
+
+                                <!-- Coluna com o botao de exclusão do fiscal (renderizada) -->
+                                <p:column style="width:37px">
+                                    <f:facet name="header">
+                                        <span class="ui-icon ui-icon-trash" title="Excluir"></span>
+                                    </f:facet>
+                                    <p:commandLink id="deletButton"
+                                                   update=":fiscaisForm"
+                                                   action="#{fiscalBean.remove()}"
+                                                   styleClass="ui-icon ui-icon-trash"
+                                                   title="Excluir">
+                                        <f:setPropertyActionListener value="#{fiscais}"
+                                                                     target="#{fiscalBean.selectedFiscal}" />
+                                    </p:commandLink>
+                                </p:column>
+
+                                <f:facet name="footer">
+                                    <div align="left" style="padding: 15px 25px;">
+                                        <p:commandButton id="novoFiscal"
+                                                         value="Cadastrar Novo Fiscal"
+                                                         styleClass="btn btn-rounded-lg"
+                                                         action="#{fiscalBean.newFiscal()}"/>
+                                    </div>
+                                </f:facet>
+                            </p:dataTable>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="sifis"/>
+  <table-filter match-name="usuario_roles"/>
+  <table-filter match-name="inspetoria"/>
+  <table-filter match-name="jurisdicao"/>
+  <table-filter match-name="viagem"/>
+  <table-filter match-name="rota_has_jurisdicao"/>
+  <table-filter match-name="feriado_has_cidade"/>
+  <table-filter match-name="feriado"/>
+  <table-filter match-name="ferias"/>
+  <table-filter match-name="fiscal"/>
+  <table-filter match-name="categoria"/>
+  <table-filter match-name="rota"/>
+  <table-filter match-name="cidade"/>
+  <table-filter match-name="usuario"/>
+  <table-filter match-name="bairro"/>
+  <table-filter match-name="procedimento"/>
+</hibernate-reverse-engineering>

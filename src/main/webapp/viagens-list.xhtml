@@ -1,0 +1,449 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+
+    
+      
+      >
+
+
+
+    <h:body>
+        <ui:composition template="common/common-layout.xhtml">
+            <ui:define name="content">
+                <h1 class="page-heading"><i class="fa fa-code-fork icon-sidebar"></i> Lista de Viagens</h1>
+                <!-- End page heading -->
+
+                <!-- Begin breadcrumb -->
+                <ol class="breadcrumb default square rsaquo sm">
+                    <li><a href="index.xhtml"><i class="fa fa-home"></i></a></li>
+                    <li class="active">Lista de Viagens</li>
+                </ol>
+                <!-- End breadcrumb -->
+
+                <!-- BEGIN DATA TABLE -->
+                <div class="the-box">
+                    <div class="table-responsive">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <i class="fa fa-code-fork icon-sidebar"></i>
+                                LISTA DE VIAGENS
+                                <br/>
+                            </div>
+                        </div>
+
+                        <h:form id="periodo">
+
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <p:outputPanel>
+                                        <h:outputText value="Listar por período: " />
+                                        <div align="left">
+
+                                            <h:outputText value="De: " />
+                                            <p:calendar id="inicio"
+                                                        locale="pt_BR"
+                                                        style="width:100%"
+                                                        showButtonPanel="true"
+                                                        effect="explode"
+                                                        navigator="true"
+                                                        readonlyInput="true"
+                                                        required="true"
+                                                        pattern="dd/MM/yyyy"
+                                                        mask="true"
+                                                        value="#{viagemBean.inicioFilter}"
+                                                        label="inicio"/>
+                                            <h:outputText value="Para: " />
+                                            <p:calendar id="fim"
+                                                        locale="pt_BR"
+                                                        style="width:100%"
+                                                        showButtonPanel="true"
+                                                        effect="explode"
+                                                        navigator="true"
+                                                        readonlyInput="true"
+                                                        required="true"
+                                                        requiredMessage="Informe a data de término da viagem"
+                                                        mask="true"
+                                                        pattern="dd/MM/yyyy"
+                                                        value="#{viagemBean.fimFilter}"
+                                                        label="fim"/>
+
+
+                                            <p:commandButton id="Listar"
+                                                             value="Listar"
+                                                             action="#{viagemBean.listFilteredViagens()}"
+                                                             styleClass="btn-default "
+                                                             ajax="false"/>
+
+
+
+                                        </div>
+                                    </p:outputPanel>
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+                        </h:form>
+
+
+
+                        <h:form id="viagensForm" style="padding: 20px ">
+                            <p:growl id="messages" showDetail="false"/>
+
+                            <p:dataTable var="viagens"
+                                         value="#{viagemBean.viagens}"
+                                         editable="true"
+                                         widgetVar="viagensTable"
+                                         emptyMessage="Nenhuma viagem encontrada"
+                                         paginator="true"
+                                         style="text-align: center;"
+                                         rows="50"
+                                         rowsPerPageTemplate="10, 25, 50, 100"
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         filteredValue="#{viagemBean.filteredViagem}">
+
+                                <f:facet name="header">
+
+                                    <div class="row">
+                                        <div class="col-md-6"  style="padding: 15px 25px;"  >
+                                            <p:commandButton id="novaViagem"
+                                                             value="Cadastrar nova viagem"
+                                                             styleClass="btn btn-rounded-lg"
+                                                             action="#{viagemBean.newViagem()}"/>&nbsp;
+
+                                            <p:commandButton id="schedule"
+                                                             value="Visualizar na agenda"
+                                                             styleClass="btn btn-rounded-lg"
+                                                             action="viagens-schedule"/>
+                                        </div>
+
+                                        <div class="col-md-6"  style="padding: 15px 25px;" >
+                                            <p:outputPanel>
+                                                <h:outputText value="Pesquisa: "/>
+                                                <p:inputText id="globalFilter"
+                                                             onkeyup="PF('viagensTable').filter()"
+                                                             style="width:250px"
+                                                             placeholder="Digite sua busca aqui..."/>
+                                            </p:outputPanel>
+                                        </div>
+                                    </div>
+
+                                </f:facet>
+
+                                <p:ajax event="rowEdit" listener="#{viagemBean.onRowEdit}" update=":viagensForm:messages" />
+                                <p:ajax event="rowEditCancel" listener="#{viagemBean.onCancel}" update=":viagensForm:messages" />
+
+
+
+                                <!-- Coluna com a sigla dos fiscais  -->
+
+
+
+
+                                <!--  <f:facet name="filter">
+                                                   <p:selectOneMenu onchange="PF('carsTable').filter()" >
+                                           <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true" />
+                                           <f:selectItems value="#{fiscalBean.fiscais}" />
+                                           </p:selectOneMenu>
+                                      </f:facet>          -->
+
+
+                                <p:column headerText="FISCAL"
+                                          style="width:100px"
+                                          rendered="true"
+                                          filterBy="#{viagens.fiscal.sigla}"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{viagens.fiscal.sigla}"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText required="true"
+                                                         style="width:100%"
+                                                         value="#{viagens.fiscal.sigla}"
+                                                         requiredMessage="Informe o nome do fiscal"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+
+
+
+
+
+
+
+                                <p:column id="inicioViagem"
+                                          headerText="INICIO"
+                                          rendered="true"
+                                          filterBy="#{viagens.inicio}"
+                                          style="width: 100px"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{viagens.inicio}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"
+                                                                   timeZone="America/Sao_Paulo"/>
+                                            </h:outputText>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:calendar id="inputInicioViagem"
+                                                        locale="pt_BR"
+                                                        style="width:100%"
+                                                        showButtonPanel="true"
+                                                        effect="explode"
+                                                        navigator="true"
+                                                        readonlyInput="true"
+                                                        required="true"
+                                                        requiredMessage="Informe a data de início da viagem"
+                                                        pattern="dd/MM/yyyy"
+                                                        value="#{viagens.inicio}"
+                                                        label="inicioViagem"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>   
+
+
+
+
+
+
+                                <p:column id="fimViagem"
+                                          headerText="FIM"
+                                          rendered="true"
+                                          filterBy="#{viagens.fim}"
+                                          style="width: 100px"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{viagens.fim}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"
+                                                                   timeZone="America/Sao_Paulo"/>
+                                            </h:outputText>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:calendar id="inputFimViagem"
+                                                        locale="pt_BR"
+                                                        style="width:100%"
+                                                        showButtonPanel="true"
+                                                        effect="explode"
+                                                        navigator="true"
+                                                        readonlyInput="true"
+                                                        required="true"
+                                                        requiredMessage="Informe a data de término da viagem"
+                                                        pattern="dd/MM/yyyy"
+                                                        value="#{viagens.fim}"
+                                                        label="fimViagem"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>                                                  
+
+                                <!-- Coluna com os nomes das inspetorias das viagens -->
+                                <p:column headerText="CIDADES"
+                                          rendered="true"
+                                             style="width:100%"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+
+
+                                    <p:dataList value="#{viagens.rota.jurisdicaos}" var="cidades" type="definition">
+
+                                        #{cidades.cidade.nome}
+                                    </p:dataList>
+
+
+
+                                </p:column>
+
+                                <!-- Coluna com os nomes das Viagens -->
+                                <p:column headerText="ROTA"
+                                          style="width:100px"
+                                          rendered="true"
+                                          filterBy="#{viagens.rota.nome}"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{viagens.rota.nome}"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText required="true"
+                                                         style="width:100%"
+                                                         value="#{viagens.rota.nome}"
+                                                         requiredMessage="Informe o nome da Rota"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <!-- Coluna com os critérios de revisita -->
+                                <p:column headerText="INSPETORIA"
+
+                                          rendered="true"
+                                          filterBy="#{viagens.rota.inspetoria.nome}"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{viagens.rota.inspetoria.nome}"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText required="true"
+                                                         style="width:100%"
+                                                         value="#{viagens.rota.inspetoria.nome}"
+                                                         requiredMessage="Informe o critério de revisita para essa rota"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <!-- Coluna com as quilometragens -->
+                                <p:column headerText="KM"
+                                          style="width:90px"
+                                          rendered="true"
+                                          filterBy="#{viagens.rota.quilometragem}"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{viagens.rota.quilometragem} km"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText required="true"
+                                                         style="width:100%"
+                                                         value="#{viagens.rota.quilometragem}"
+                                                         requiredMessage="Informe a quilometragem da Rota"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <!-- Coluna com as diarias -->
+                                <p:column headerText="DIÁRIAS"
+                                          style="width:80px"
+                                          rendered="true"
+                                          filterBy="#{viagens.rota.diaria}"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{viagens.rota.diaria}"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText required="true"
+                                                         style="width:100%"
+                                                         value="#{viagens.rota.diaria}"
+                                                         requiredMessage="Informe a quantidade de diárias"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <!-- Coluna com os almoços -->
+                                <p:column id="almocosRota"
+                                          style="width:100px"
+                                          headerText="ALMOÇOS"
+                                          rendered="true"
+                                          filterBy="#{viagens.rota.almoco}"
+                                          filterMatchMode="contains"
+                                          filterStyle="display:none">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{viagens.rota.almoco}"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText id="diarias"
+                                                         required="true"
+                                                         style="width:100%"
+                                                         value="#{viagens.rota.almoco}"
+                                                         requiredMessage="Informe a quantidade de almoços"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+
+                                <p:column   headerText="GERAR ORDEM " style="width:110px">
+
+                                  
+                                    <p:commandButton value="Gerar" icon="ui-icon-extlink" action="#{viagemBean.gerarOS(false)}" >
+                                            <f:setPropertyActionListener value="#{viagens}"
+                                                                         target="#{viagemBean.viagem}" />   
+                                        </p:commandButton>                      
+
+                                </p:column>
+
+
+
+
+
+
+
+
+
+
+
+
+                                <p:column style="width:37px">
+                                    <f:facet name="header">
+                                        <span class="ui-icon ui-icon-search" title="Detalhes"></span>
+                                    </f:facet>
+                                    <p:commandLink id="selectButton"
+                                                   update=":viagensForm"
+                                                   styleClass="ui-icon ui-icon-search"
+                                                   title="Detalhes"
+                                                   action="viagens-details">
+                                        <f:setPropertyActionListener value="#{viagens}"
+                                                                     target="#{viagemBean.selectedViagem}" />
+                                    </p:commandLink>
+
+
+
+                                </p:column>
+
+
+
+                                <p:column style="width:37px">
+                                    <f:facet name="header">
+                                        <span class="ui-icon ui-icon-pencil" title="Editar"></span>
+                                    </f:facet>
+                                    <p:rowEditor id="editor" />
+                                    <p:tooltip for="editor" value="Editar"/>
+                                </p:column>
+
+                                <!-- Coluna com o botao de exclusão da rota (renderizada) -->
+                                <p:column style="width:37px">
+                                    <f:facet name="header">
+                                        <span class="ui-icon ui-icon-trash" title="Excluir"></span>
+                                    </f:facet>
+                                    <p:commandLink id="deletButton"
+                                                   update=":viagensForm"
+                                                   action="#{viagemBean.remove()}"
+                                                   styleClass="ui-icon ui-icon-trash"
+                                                   title="Excluir">
+                                        <f:setPropertyActionListener value="#{viagens}"
+                                                                     target="#{viagemBean.selectedViagem}" />
+                                    </p:commandLink>
+                                </p:column>
+
+
+
+
+
+
+                            </p:dataTable>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

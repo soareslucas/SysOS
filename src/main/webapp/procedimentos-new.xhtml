@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition template="common/common-layout.xhtml">
+            <ui:define name="content">
+                <h1 class="page-heading"><i class="fa fa-stack-overflow icon-sidebar"></i> Cadastro de procedimento</h1>
+                <!-- End page heading -->
+
+                <!-- Begin breadc   rumb -->
+                <ol class="breadcrumb default square rsaquo sm">
+                    <li><a href="index.xhtml"><i class="fa fa-home"></i></a></li>
+                    <li><a href="procedimentos-list.xhtml">Lista de procedimentos</a></li>
+                    <li class="active">Cadastro de procedimento</li>
+                </ol>
+                <!-- End breadcrumb -->
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <i class="fa fa-stack-overflow icon-sidebar"></i>
+                        CADASTRO DE PROCEDIMENTO
+                        <br/>
+                    </div>
+                    <h:form id="ProcedimentoForm">
+                        <div class="the-box" style="border: none">
+                            <div class="form-group">
+                                <h:outputLabel for="codigo" 
+                                               value="CÓDIGO:" 
+                                               style="font-weight: bold"/><br/>
+                                <p:inputText value="#{procedimentoBean.procedimento.identificador}"   
+                                             id="codigo" style="width: 100%"
+                                             disabled="true"
+                                             required="true" 
+                                             label="codigo" />
+                                <p:message for="codigo"/>
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputText value="PERÍODO DE VIGÊNCIA DO PROCEDIMENTO:" 
+                                              style="font-weight: bold"/><br/>
+                                <h:panelGrid columns="1" >
+                                    <h:outputLabel for="dataInicio"
+                                                   value="DE:" 
+                                                   style="font-weight: bold;padding-left:20px;"/>
+                                    <p:calendar id="dataInicio"
+                                                style="padding-left:20px;"
+                                                locale="pt_BR" 
+                                                showButtonPanel="true" 
+                                                effect="explode" 
+                                                navigator="true"
+                                                readonlyInput="true"
+                                                required="true" 
+                                                requiredMessage="Informe a data de início do procedimento."
+                                                pattern="dd/MM/yyyy"
+                                                value="#{procedimentoBean.procedimento.inicio}"
+                                                label="dataInicio"/>
+                                    <p:message for="dataInicio" />
+
+                                    <h:outputLabel for="dataFim" 
+                                                   value="ATÉ:"
+                                                   style="font-weight: bold;padding-left:20px;"/>
+                                    <p:calendar id="dataFim" 
+                                                style="padding-left:20px;"
+                                                locale="pt_BR"
+                                                showButtonPanel="true" 
+                                                effect="explode" 
+                                                navigator="true"
+                                                readonlyInput="true"
+                                                required="false"
+                                                pattern="dd/MM/yyyy"
+                                                value="#{procedimentoBean.procedimento.fim}"
+                                                label="dataFim"/>
+                                    <p:message for="dataFim" />
+                                </h:panelGrid>
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputLabel for="options"
+                                               value="TIPO:"
+                                               style="font-weight: bold"/>  
+                                <p:selectOneRadio id="options"
+                                                  value="#{procedimentoBean.procedimento.tipo}"
+                                                  required="true" 
+                                                  requiredMessage="Selecione um tipo de procedimento."
+                                                  style="font-weight: bold"
+                                                  label="options">  
+                                    <f:selectItem itemLabel="Empresa" 
+                                                  itemValue="Empresa"/>
+                                    <f:selectItem itemLabel="Profissional" 
+                                                  itemValue="Profissional"/>  
+                                    <f:selectItem itemLabel="Leigo" 
+                                                  itemValue="Leigo"/>  
+                                    <f:selectItem itemLabel="Órgão Público" 
+                                                  itemValue="Órgão Público"/>
+                                    <f:selectItem itemLabel="Serviços" 
+                                                  itemValue="Serviços"/>
+                                </p:selectOneRadio>
+                                <p:message for="options" />
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputLabel for="assunto"
+                                               value="ASSUNTO:"
+                                               style="font-weight: bold"/><br/>
+                                <p:inputTextarea id="assunto"
+                                                 rows="1" 
+                                                 style="width: 100%"
+                                                 required="true"
+                                                 requiredMessage="Informe resumidamente o assunto do procedimento."
+                                                 counter="counter"
+                                                 maxlength="144"       
+                                                 counterTemplate="{0} caracteres restantes"
+                                                 value="#{procedimentoBean.procedimento.assunto}"
+                                                 label="assunto"/><br/>
+                                <h:outputText id="counter" style="font-style: italic;font-size: 12px;"/>
+                                <p:message for="assunto" />
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputLabel for="descricao"
+                                               value="DESCRIÇÃO:"
+                                               style="font-weight: bold"/><br/>
+                                <p:editor  id="descricao"
+                                           height="400"
+                                           required="true"
+                                           requiredMessage="Informe o conteúdo do procedimento."
+                                           value="#{procedimentoBean.procedimento.descricao}"/>
+                                <p:message for="descricao" />
+                            </div>
+
+                            <div class="form-group">
+                                <h:outputLabel for="evidencia"
+                                               value="EVIDÊNCIA:"
+                                               style="font-weight: bold"/><br/>
+                                <p:inputTextarea id="evidencia"
+                                                 rows="1" 
+                                                 style="width: 100%"
+                                                 cols="100" 
+                                                 required="true"
+                                                 requiredMessage="Informe a evidencia o procedimento."
+                                                 value="#{procedimentoBean.procedimento.evidencia}"
+                                                 label="evidencia"/>
+                                <p:message for="evidencia" />
+                            </div>
+                            <p:commandButton id="cadastrar"
+                                             styleClass="btn btn-primary btn-rounded-lg"
+                                             value="Cadastrar"
+                                             action="#{procedimentoBean.create()}"
+                                             ajax="false"/>&nbsp;
+                            <p:commandButton id="resetar"
+                                             value="Limpar"
+                                             type="reset"
+                                             ajax="false"
+                                             styleClass="btn btn-danger btn-rounded-lg"/>
+                        </div>
+                    </h:form>
+                </div>
+            </ui:define>
+            <ui:define name="javascript" >
+                <script src="assets/js/bootstrap.min.js"></script>
+                <script src="assets/plugins/retina/retina.min.js"></script>
+                <script src="assets/plugins/nicescroll/jquery.nicescroll.js"></script>
+                <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+                <script src="assets/plugins/backstretch/jquery.backstretch.min.js"></script>
+
+                <!-- PLUGINS -->
+                <script src="assets/plugins/skycons/skycons.js"></script>
+                <script src="assets/plugins/prettify/prettify.js"></script>
+
+                <script src="assets/plugins/owl-carousel/owl.carousel.min.js"></script>
+                <script src="assets/plugins/chosen/chosen.jquery.min.js"></script>
+                <script src="assets/plugins/icheck/icheck.min.js"></script>
+                <script src="assets/plugins/timepicker/bootstrap-timepicker.js"></script>
+                <script src="assets/plugins/mask/jquery.mask.min.js"></script>
+                <script src="assets/plugins/validator/bootstrapValidator.min.js"></script>
+                <script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+                <script src="assets/plugins/datatable/js/bootstrap.datatable.js"></script>
+                <script src="assets/plugins/summernote/summernote.min.js"></script>
+                <script src="assets/plugins/markdown/markdown.js"></script>
+                <script src="assets/plugins/markdown/to-markdown.js"></script>
+                <script src="assets/plugins/markdown/bootstrap-markdown.js"></script>
+                <script src="assets/plugins/slider/bootstrap-slider.js"></script>
+
+                <!-- EASY PIE CHART JS -->
+                <script src="assets/plugins/easypie-chart/easypiechart.min.js"></script>
+                <script src="assets/plugins/easypie-chart/jquery.easypiechart.min.js"></script>
+
+                <!-- KNOB JS -->
+                <!--[if IE]>
+                <script type="text/javascript" src="assets/plugins/jquery-knob/excanvas.js"></script>
+                <![endif]-->
+                <script src="assets/plugins/jquery-knob/jquery.knob.js"></script>
+                <script src="assets/plugins/jquery-knob/knob.js"></script>
+
+                <!-- FLOT CHART JS -->
+                <script src="assets/plugins/flot-chart/jquery.flot.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.tooltip.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.resize.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.selection.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.stack.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.time.js"></script>
+
+                <!-- MORRIS JS -->
+                <script src="assets/plugins/morris-chart/raphael.min.js"></script>
+                <script src="assets/plugins/morris-chart/morris.min.js"></script>
+
+                <!-- C3 JS -->
+                <script src="assets/plugins/c3-chart/d3.v3.min.js" charset="utf-8"></script>
+                <script src="assets/plugins/c3-chart/c3.min.js"></script>
+
+                <!-- MAIN APPS JS -->
+                <script src="assets/js/apps.js"></script>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

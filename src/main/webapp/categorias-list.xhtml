@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition template="common/common-layout.xhtml">
+            <ui:define name="content">
+                <h1 class="page-heading"><i class="fa fa-delicious icon-sidebar"></i> Lista de Categorias</h1>
+                <!-- End page heading -->
+
+                <!-- Begin breadcrumb -->
+                <ol class="breadcrumb default square rsaquo sm">
+                    <li><a href="index.xhtml"><i class="fa fa-home"></i></a></li>
+                    <li class="active">Lista de Categorias</li>
+                </ol>
+                <!-- End breadcrumb -->
+                <div class="the-box">
+                    <div class="table-responsive">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <i class="fa fa-delicious icon-sidebar"></i>
+                                LISTA DE CATEGORIAS
+                                <br/>
+                            </div>
+                            <h:form id="categoriasForm">
+                                <p:growl id="messages" showDetail="false"/>
+                                <p:dataTable var="categorias"
+                                             value="#{categoriaBean.categorias}"
+                                             editable="true"
+                                             widgetVar="categoriasTable"
+                                             emptyMessage="Nenhuma categoria encontrada"
+                                             paginator="true"
+                                             style="text-align: center;"
+                                             rows="50"
+                                             rowsPerPageTemplate="10, 25, 50, 100"
+                                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                             filteredValue="#{categoriaBean.filteredCategorias}">
+
+                                    <f:facet name="header">
+                                        <div align="right">
+                                            <p:outputPanel>
+                                                <h:outputText value="Pesquisa: " />
+                                                <p:inputText id="globalFilter"
+                                                             onkeyup="PF('categoriasTable').filter()"
+                                                             style="width:250px"
+                                                             placeholder="Digite sua busca aqui..."/>
+                                            </p:outputPanel>
+                                        </div>
+                                    </f:facet>
+
+                                    <p:ajax event="rowEdit" listener="#{categoriaBean.onRowEdit}" update=":categoriasForm:messages" />
+                                    <p:ajax event="rowEditCancel" listener="#{categoriaBean.onCancel}" update=":categoriasForm:messages" />
+
+                                    <p:column headerText="COR"
+                                              style="width: 30%"
+                                              rendered="true">
+                                        <p:cellEditor>
+                                            <f:facet name="output">
+                                                <p:graphicImage width="80%"
+                                                                height="20px"
+                                                                style="background-color: \##{categorias.cor}"/>
+                                            </f:facet>
+                                            <f:facet name="input">
+                                                <p:colorPicker id="popupCor"
+                                                               required="true"
+                                                               requiredMessage="Selecione uma cor de identificação!" 
+                                                               value="#{categorias.cor}"/>
+                                            </f:facet>
+                                        </p:cellEditor>
+                                    </p:column>
+
+                                    <p:column headerText="NOME"
+                                              rendered="true"
+                                              filterBy="#{categorias.nome}"
+                                              filterMatchMode="contains"
+                                              filterStyle="display:none">
+                                        <p:cellEditor>
+                                            <f:facet name="output">
+                                                <h:outputText value="#{categorias.nome}"/>
+                                            </f:facet>
+                                            <f:facet name="input">
+                                                <p:inputText id="nomeCat"
+                                                             required="true"
+                                                             style="width:100%"
+                                                             value="#{categorias.nome}"
+                                                             requiredMessage="Informe o nome da nova categoria"/>
+                                            </f:facet>
+                                        </p:cellEditor>
+                                    </p:column>
+
+                                    <p:column style="width:37px"
+                                              rendered="#{!(facesContext.externalContext.isUserInRole('ROLE_SUPERADMIN')
+                                                          or facesContext.externalContext.isUserInRole('ROLE_PLANEJAMENTO_ADMIN'))}">
+                                        <f:facet name="header">
+                                            <span class="ui-icon ui-icon-pencil" title="Editar"></span>
+                                        </f:facet>
+                                        <p:rowEditor id="editor" />
+                                        <p:tooltip for="editor" value="Editar"/>
+                                    </p:column>
+
+                                    <!-- Coluna com o botao de exclusão da rota (renderizada) -->
+                                    <p:column style="width:37px">
+                                        <f:facet name="header">
+                                            <span class="ui-icon ui-icon-trash" title="Excluir"></span>
+                                        </f:facet>
+                                        <p:commandLink id="deletButton"
+                                                       update=":categoriasForm"
+                                                       action="#{categoriaBean.remove()}"
+                                                       styleClass="ui-icon ui-icon-trash"
+                                                       title="Excluir">
+                                            <f:setPropertyActionListener value="#{categorias}"
+                                                                         target="#{categoriaBean.selectedCategoria}" />
+                                        </p:commandLink>
+                                    </p:column>
+
+                                    <f:facet name="footer">
+                                        <div align="left" style="padding: 15px 25px;">
+                                            <p:commandButton id="novaRota"
+                                                             value="Cadastrar nova categoria"
+                                                             styleClass="btn btn-rounded-lg"
+                                                             action="#{categoriaBean.newCategoria()}"/>
+                                        </div>
+                                    </f:facet>
+                                </p:dataTable>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+
+            </ui:define>
+            <ui:define name="javascript" >
+                <script src="assets/js/bootstrap.min.js"></script>
+                <script src="assets/plugins/retina/retina.min.js"></script>
+                <script src="assets/plugins/nicescroll/jquery.nicescroll.js"></script>
+                <script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+                <script src="assets/plugins/backstretch/jquery.backstretch.min.js"></script>
+
+                <!-- PLUGINS -->
+                <script src="assets/plugins/skycons/skycons.js"></script>
+                <script src="assets/plugins/prettify/prettify.js"></script>
+                <script src="assets/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+                <script src="assets/plugins/owl-carousel/owl.carousel.min.js"></script>
+                <script src="assets/plugins/chosen/chosen.jquery.min.js"></script>
+                <script src="assets/plugins/icheck/icheck.min.js"></script>
+                <script src="assets/plugins/datepicker/bootstrap-datepicker.js"></script>
+                <script src="assets/plugins/timepicker/bootstrap-timepicker.js"></script>
+                <script src="assets/plugins/mask/jquery.mask.min.js"></script>
+                <script src="assets/plugins/validator/bootstrapValidator.min.js"></script>
+                <script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+                <script src="assets/plugins/datatable/js/bootstrap.datatable.js"></script>
+                <script src="assets/plugins/summernote/summernote.min.js"></script>
+                <script src="assets/plugins/markdown/markdown.js"></script>
+                <script src="assets/plugins/markdown/to-markdown.js"></script>
+                <script src="assets/plugins/markdown/bootstrap-markdown.js"></script>
+                <script src="assets/plugins/slider/bootstrap-slider.js"></script>
+
+                <!-- EASY PIE CHART JS -->
+                <script src="assets/plugins/easypie-chart/easypiechart.min.js"></script>
+                <script src="assets/plugins/easypie-chart/jquery.easypiechart.min.js"></script>
+
+                <!-- KNOB JS -->
+                <!--[if IE]>
+                <script type="text/javascript" src="assets/plugins/jquery-knob/excanvas.js"></script>
+                <![endif]-->
+                <script src="assets/plugins/jquery-knob/jquery.knob.js"></script>
+                <script src="assets/plugins/jquery-knob/knob.js"></script>
+
+                <!-- FLOT CHART JS -->
+                <script src="assets/plugins/flot-chart/jquery.flot.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.tooltip.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.resize.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.selection.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.stack.js"></script>
+                <script src="assets/plugins/flot-chart/jquery.flot.time.js"></script>
+
+                <!-- MORRIS JS -->
+                <script src="assets/plugins/morris-chart/raphael.min.js"></script>
+                <script src="assets/plugins/morris-chart/morris.min.js"></script>
+
+                <!-- C3 JS -->
+                <script src="assets/plugins/c3-chart/d3.v3.min.js" charset="utf-8"></script>
+                <script src="assets/plugins/c3-chart/c3.min.js"></script>
+
+                <!-- MAIN APPS JS -->
+                <script src="assets/js/apps.js"></script>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
