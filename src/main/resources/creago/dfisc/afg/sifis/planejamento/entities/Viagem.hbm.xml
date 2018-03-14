@@ -26,10 +26,5 @@
         <property name="observacao" type="string">
             <column name="observacao" length="65535" />
         </property>
-        <property name="gerouOrdem" type="boolean">
-            <column name="gerou_ordem" />
-        </property>
-        
-        
     </class>
 </hibernate-mapping>

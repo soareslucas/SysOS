@@ -9,8 +9,50 @@
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["/"]]></defaultValueExpression>
 	</parameter>
-	
-
+	<queryString>
+		<![CDATA[SELECT
+     fiscal.`nome` AS fiscal_nome,
+     informacoes.`data_inicio` AS informacoes_data_inicio,
+     informacoes.`data_fim` AS informacoes_data_fim,
+     informacoes.`valor_diaria` AS informacoes_valor_diaria,
+     informacoes.`quantidade_diaria` AS informacoes_quantidade_diaria,
+     informacoes.`valor_almoco` AS informacoes_valor_almoco,
+     informacoes.`quantidade_almoco` AS informacoes_quantidade_almoco,
+     informacoes.`valor_km` AS informacoes_valor_km,
+     informacoes.`quantidade_km` AS informacoes_quantidade_km,
+     informacoes.`valor_total` AS informacoes_valor_total,
+     informacoes.`valor_total_extenso` AS informacoes_valor_total_extenso,
+     informacoes.`informacoes` AS informacoes_informacoes,
+     informacoes.`valor_diaria_final` AS informacoes_valor_diaria_final,
+     informacoes.`valor_km_final` AS informacoes_valor_km_final,
+     ordem_de_servico.`numero` AS ordem_de_servico_numero,
+     ordem_de_servico.`data` AS ordem_de_servico_data,
+     ordem_de_servico.`numeroMemorando` AS ordem_de_servico_numeroMemorando,
+     ordem_de_servico.`observacoesMemorando` AS ordem_de_servico_observacoesMemorando
+FROM
+     `fiscal` fiscal INNER JOIN `ordem_de_servico` ordem_de_servico ON fiscal.`codigo` = ordem_de_servico.`FISCAL_codigo`
+     INNER JOIN `informacoes` informacoes ON ordem_de_servico.`INFORMACOES_id_informacoes` = informacoes.`id_informacoes`
+WHERE
+     ordem_de_servico.`numero` = $P{NUMERO_OS}]]>
+	</queryString>
+	<field name="fiscal_nome" class="java.lang.String"/>
+	<field name="informacoes_data_inicio" class="java.sql.Date"/>
+	<field name="informacoes_data_fim" class="java.sql.Date"/>
+	<field name="informacoes_valor_diaria" class="java.lang.String"/>
+	<field name="informacoes_quantidade_diaria" class="java.lang.String"/>
+	<field name="informacoes_valor_almoco" class="java.lang.String"/>
+	<field name="informacoes_quantidade_almoco" class="java.lang.String"/>
+	<field name="informacoes_valor_km" class="java.lang.String"/>
+	<field name="informacoes_quantidade_km" class="java.lang.Integer"/>
+	<field name="informacoes_valor_total" class="java.lang.String"/>
+	<field name="informacoes_valor_total_extenso" class="java.lang.String"/>
+	<field name="informacoes_informacoes" class="java.lang.String"/>
+	<field name="informacoes_valor_diaria_final" class="java.lang.String"/>
+	<field name="informacoes_valor_km_final" class="java.lang.String"/>
+	<field name="ordem_de_servico_numero" class="java.lang.String"/>
+	<field name="ordem_de_servico_data" class="java.sql.Date"/>
+	<field name="ordem_de_servico_numeroMemorando" class="java.lang.String"/>
+	<field name="ordem_de_servico_observacoesMemorando" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -211,6 +253,28 @@
 				</textElement>
 				<textFieldExpression><![CDATA["Os serviços serão realizados no período de <b>"+ new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{informacoes_data_inicio}) + "</b> a <b>" + new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{informacoes_data_fim}) + "</b>, conforme Ordem de Serviço nº:<b>" + $F{ordem_de_servico_numero} + "</b> anexa:"]]></textFieldExpression>
 			</textField>
+			<subreport>
+				<reportElement uuid="0b50e12a-81c2-4645-97f5-b5dcc1c75a29" x="94" y="180" width="379" height="20"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NUMERO_OS">
+					<subreportParameterExpression><![CDATA[$P{NUMERO_OS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[getClass().getResource( $P{SUBREPORT_DIR} + "relatorios/memorando_subreport1.jasper")]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="b2897f0c-33f4-4a5c-910d-90971889a23b" positionType="Float" x="66" y="350" width="417" height="38" isRemoveLineWhenBlank="true"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="NUMERO_OS">
+					<subreportParameterExpression><![CDATA[$P{NUMERO_OS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[getClass().getResource( $P{SUBREPORT_DIR} + "relatorios/memorando_subreport2.jasper")]]></subreportExpression>
+			</subreport>
 			<line>
 				<reportElement uuid="af60cb70-e678-4235-977b-568a621fc0dd" x="41" y="2" width="472" height="1"/>
 			</line>

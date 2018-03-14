@@ -52,7 +52,6 @@
                             <ul class="nav nav-tabs">
                                 <li class="active"><a href="#panel-ferias" data-toggle="tab"><i class="fa fa-suitcase icon-sidebar"></i> Férias</a></li>
                                 <li><a href="#panel-viagens" data-toggle="tab"><i class="fa fa-car icon-sidebar"></i> Viagens</a></li>
-                                <li><a href="#panel-ordens" data-toggle="tab"><i class="fa fa-car icon-sidebar"></i> Ordens</a></li>
                             </ul>
                         </div>
                         <div class="tab-content">
@@ -239,97 +238,6 @@
                                     </p:dataTable>
                                 </h:form>
                             </div>
-
-                            <div class="tab-pane fade" id="panel-ordens">
-                                <h:form id="ordensForm">
-                                    <p:growl id="messages" showDetail="false"/>
-                                    <p:dataTable var="ordens"
-                                                 value="#{fiscalBean.selectedFiscal.ordems}"
-                                                 editable="true"
-                                                 widgetVar="viagensTable"
-                                                 emptyMessage="Nenhuma ordem encontrada"
-                                                 paginator="true"
-                                                 style="text-align: center;"
-                                                 rows="15"
-                                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-
-                                        <f:facet name="header">
-                                            <div align="right">
-                                                <p:outputPanel>
-                                                    <h:outputText value="Pesquisa: " />
-                                                    <p:inputText id="globalFilter"
-                                                                 onkeyup="PF('ordensTable').filter()"
-                                                                 style="width:250px"
-                                                                 placeholder="Digite sua busca aqui..."/>
-                                                </p:outputPanel>
-                                            </div>
-                                        </f:facet>
-
-                                <p:column headerText="CIDADES"
-                                          rendered="true"
-                                          filterMatchMode="contains"
-                                          filterStyle="display:none">
-                                    <p:dataList value="#{ordens.jurisdicaos}" var="cidades" type="definition">
-
-                                        #{cidades.cidade.nome}
-                                    </p:dataList>
-                                </p:column>
-
-                                        <p:column id="inicioViagem"
-                                                  headerText="INÍCIO"
-                                                  rendered="true"
-                                                  filterBy="#{ordens.inicio}"
-                                                  filterMatchMode="contains"
-                                                  filterStyle="display:none">
-                                            <h:outputText value="#{ordens.inicio}">
-                                                <f:convertDateTime pattern="dd/MM/yyyy"
-                                                                   timeZone="America/Sao_Paulo"/>
-                                            </h:outputText>
-                                        </p:column>
-
-                                        <p:column id="fimViagem"
-                                                  headerText="FIM"
-                                                  rendered="true"
-                                                  filterBy="#{ordens.fim}"
-                                                  filterMatchMode="contains"
-                                                  filterStyle="display:none">
-                                            <h:outputText value="#{ordens.fim}">
-                                                <f:convertDateTime pattern="dd/MM/yyyy"
-                                                                   timeZone="America/Sao_Paulo"/>
-                                            </h:outputText>
-                                        </p:column>
-
-
-                                        <p:column headerText="VALOR"
-                                                  rendered="true"
-                                                  filterBy="#{ordens.valorTotal}"
-                                                  filterMatchMode="contains"
-                                                  filterStyle="display:none">
-                                            <h:outputText value="R$ #{ordens.valorTotal}"/>
-                                        </p:column>
-
-
-
-                                        <p:column style="width:37px">
-                                            <f:facet name="header">
-                                                <span class="ui-icon ui-icon-search" title="Detalhes"></span>
-                                            </f:facet>
-                                            <p:commandLink id="selectButton"
-                                                           update=":ordensForm"
-                                                           styleClass="ui-icon ui-icon-search"
-                                                           title="Detalhes"
-                                                           action="ordem-details">
-                                                <f:setPropertyActionListener value="#{ordens}"
-                                                                             target="#{ordemBean.selectedOrdem}" />
-                                            </p:commandLink>
-                                        </p:column>
-
-                                    </p:dataTable>
-                                </h:form>
-                            </div>
-
-
-
                         </div>
                     </div>
                 </div>

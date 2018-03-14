@@ -20,7 +20,6 @@ import creago.dfisc.afg.sifis.planejamento.facade.RotaFacade;
 import creago.dfisc.afg.sifis.planejamento.facade.ViagemFacade;
 import creago.dfisc.afg.sifis.planejamento.utils.GerarPDF;
 import java.io.Serializable;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -35,7 +34,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
-import org.primefaces.event.TransferEvent;
 import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.DualListModel;
@@ -46,8 +44,8 @@ import org.primefaces.model.ScheduleModel;
  *
  * @author Tiago Borges Pereira
  */
-@SessionScoped
 @ManagedBean
+@ViewScoped
 public class OrdemBean extends AbstractBean implements Serializable {
 
     //SCHEDULE
@@ -90,7 +88,6 @@ public class OrdemBean extends AbstractBean implements Serializable {
     private FiscalFacade fiscalFacade;
     private FeriadoFacade feriadoFacade;
     private FeriasFacade feriasFacade;
-    private ViagemFacade viagemFacade;
 
     //PAINEL CONTROLE DE VISIBILIDADE
     private boolean painelMemo = false;
@@ -149,62 +146,61 @@ public class OrdemBean extends AbstractBean implements Serializable {
         }
         return feriasFacade;
     }
-    
-        public ViagemFacade getViagemFacade() {
-        if (viagemFacade == null) {
-            viagemFacade = new ViagemFacade();
-        }
-        return viagemFacade;
-    }
+
     // CRUD
     public String create() {
         try {
 
-            System.out.println("entrou");
-
-            FacesContext context = FacesContext.getCurrentInstance();
-            ValoresBean bean = context.getApplication().evaluateExpressionGet(context, "#{valoresBean}", ValoresBean.class);
-
             if (ordem.getMemorando()) {
                 double qtdAlmoco = Double.parseDouble(ordem.getQtdAlmoco());
-                double valorDiaria = bean.getValorDiaria();
+                double valorDiaria = Double.parseDouble(ordem.getValorDiaria());
                 double qtdDiaria = Double.parseDouble(ordem.getQtdDiaria());
-                double valorKm = bean.getValorKm();
+                double valorKm = Double.parseDouble(ordem.getValorKm());
                 double qtdKm = Double.parseDouble(ordem.getQtdKm());
-                double totalAlmoco = qtdAlmoco * (valorDiaria / 4);
+                double totalAlmoco = qtdAlmoco * (valorDiaria / 5);
                 double totalDiarias = valorDiaria * qtdDiaria;
                 double totalKm = valorKm * qtdKm;
                 double total = totalAlmoco + totalDiarias + totalKm;
-
-                ordem.setValorKm(String.valueOf(valorKm));
-                ordem.setValorDiaria(String.valueOf(valorDiaria));
+                
                 ordem.setTotalAlmoco(String.valueOf(totalAlmoco));
                 ordem.setTotalDiaria(String.valueOf(totalDiarias));
                 ordem.setTotalKm(String.valueOf(totalKm));
                 ordem.setValorTotal(String.valueOf(total));
-            } 
+            } else {
+                ordem.setQtdAlmoco("0");
+                ordem.setQtdDiaria("0");
+                ordem.setQtdKm("0");
+                ordem.setTotalAlmoco("0.0");
+                ordem.setTotalDiaria("0.0");
+                ordem.setTotalKm("0.0");
+                ordem.setValorTotal("0.0");
 
+            }
+
+            if (ordem.getObservacao() == null) {
+                ordem.setObservacao("");
+            }
 
             Iterator it = jurisdicoes.getTarget().iterator();
+
             while (it.hasNext()) {
                 ordem.getJurisdicaos().add((Jurisdicao) it.next());
             }
 
-
             Date dt = new Date();
+            
             ordem.setDataCadastro(dt);
-
+            
+            
             getOrdemFacade().create(ordem);
-
             displayInfoMessageToUser("Ordem cadastrada com sucesso!");
             loadOrdens();
             resetOrdem();
-
             return "ordem-list";
 
         } catch (Exception e) {
-            displayErrorMessageToUser("Erro ao cadastrar a nova ordem!");
-            return "ordem-new";
+            displayErrorMessageToUser("Erro ao cadastrar a nova rota!");
+            return "rotas-inspetoria-selection";
         }
     }
 
@@ -212,7 +208,6 @@ public class OrdemBean extends AbstractBean implements Serializable {
 
         fiscais = new ArrayList<>();
         resetOrdem();
-        geraCidades();
         painelMemo = false;
         return "ordem-new";
     }
@@ -224,20 +219,7 @@ public class OrdemBean extends AbstractBean implements Serializable {
 
     public String remove() {
         try {
-
-            if (selectedOrdem.getIdviagem() != null) {
-                FacesContext context = FacesContext.getCurrentInstance();
-                ViagemBean bean = context.getApplication().evaluateExpressionGet(context, "#{viagemBean}", ViagemBean.class);
-                Long id = selectedOrdem.getIdviagem();
-                Viagem viagemOrdem = getViagemFacade().find(id);
-                viagemOrdem.setGerouOrdem(false);
-                getViagemFacade().update(viagemOrdem);
-                bean.loadViagens();
-                bean.resetViagem();
-            }
-
             getOrdemFacade().delete(selectedOrdem);
-
             displayInfoMessageToUser("Ordem excluída com sucesso!");
             loadOrdens();
             resetOrdem();
@@ -265,6 +247,8 @@ public class OrdemBean extends AbstractBean implements Serializable {
     public Ordem getOrdem() {
         if (ordem == null) {
             resetOrdem();
+            geraCidades();
+            resetValores();
 
         }
         return ordem;
@@ -363,11 +347,11 @@ public class OrdemBean extends AbstractBean implements Serializable {
     }
 
     // LOADERS AND RESETERS
-    public void loadOrdens() {
+    private void loadOrdens() {
         ordens = getOrdemFacade().listAll();
     }
 
-    public void resetOrdem() {
+    private void resetOrdem() {
         ordem = new Ordem();
 
         ordem.setCategoria(new Categoria());
@@ -381,6 +365,12 @@ public class OrdemBean extends AbstractBean implements Serializable {
             int year = cal.get(1);
             ordem.setIdentificador((new StringBuilder()).append("0001/").append(year).toString());
         }
+    }
+
+    public void resetValores() {
+        ordem.setValorDiaria("190");
+        ordem.setValorKm("0.34");
+
     }
 
     /**
@@ -689,10 +679,9 @@ public class OrdemBean extends AbstractBean implements Serializable {
     public void setJurisdicoes(DualListModel<Jurisdicao> jurisdicoes) {
         this.jurisdicoes = jurisdicoes;
     }
-
-    public void pdf() {
-
-        Double valorKm = Double.parseDouble(ordem.getTotalKm());
+    
+      public void pdf() {
+        Double valorKm = Double.parseDouble(ordem.getValorKm());
         Double valorDiarias = Double.parseDouble(ordem.getTotalDiaria()) + Double.parseDouble(ordem.getTotalAlmoco());
         Double valorTotal = valorKm + valorDiarias;
         String nomeFiscal = ordem.getFiscal().getNome() + " " + ordem.getFiscal().getSobrenome();
@@ -700,61 +689,36 @@ public class OrdemBean extends AbstractBean implements Serializable {
         String cidades = "";
 
         Set<Jurisdicao> jur = ordem.getJurisdicaos();
-
-        List<Jurisdicao> list = new ArrayList<Jurisdicao>(jur);
-
+        
+       List<Jurisdicao> list = new ArrayList<Jurisdicao>(jur);
+        
         for (Jurisdicao iterador : list) {
             cidades += iterador.getCidade().getNome();
-
-            if (!"JURISDIÇÃO 01".equals(iterador.getNome()) || "GOIÂNIA".equals(iterador.getCidade().getNome())) {
-
-                cidades += " " + iterador.getNome();
-            }
-
-            if (list.get(list.size() - 1) == iterador) {
+            if(list.get(list.size()-1) == iterador ){
                 cidades += ".";
-            } else {
+            } else{
                 cidades += ", ";
-            }
-
+            }               
         }
-
-        DecimalFormat fmt = new DecimalFormat("0.00");
+        
+        System.out.println(ordem.getDataCadastro().toString());
 
         OrdemServico os = new OrdemServico(ordem.getIdentificador(), nomeFiscal,
                 ordem.getFiscal().getMatricula(),
                 ordem.getFiscal().getInspetoria().getNome(),
-                ordem.getQtdKm(),
+                Integer.parseInt(ordem.getQtdKm()),
                 ordem.getInicio(), ordem.getFim(),
-                ordem.getDataCadastro(),
-                ordem.getQtdDiaria(),
-                ordem.getQtdAlmoco(),
-                fmt.format(valorKm), fmt.format(valorDiarias), fmt.format(valorTotal),
-                ordem.getObservacao(), cidades,
-                ordem.getValorKm(),
-                ordem.getValorDiaria(),
-                ordem.getNumeroMemo(),
-                ordem.getMemorando()
-        );
+                ordem.getDataCadastro(), ordem.getJurisdicaos(),
+                Integer.parseInt(ordem.getQtdDiaria()),
+                Integer.parseInt(ordem.getQtdAlmoco()),
+                valorKm, valorDiarias, valorTotal,
+                ordem.getObservacao(), cidades, ordem.getValorKm(), 
+                ordem.getValorDiaria());
 
         GerarPDF.imprimirRelatorioOS(os);
     }
-
-    public void onTransfer(TransferEvent event) {
-        StringBuilder builder = new StringBuilder();
-        for (Object item : event.getItems()) {
-            builder.append(((Jurisdicao) item).getCidade().getNome())
-                    .append(" - ")
-                    .append(((Jurisdicao) item).getNome()).append("<br/>");
-        }
-
-        System.out.println(">>>>>>>>>>>>>" + jurisdicaoTarget.size());
-        FacesMessage msg = new FacesMessage();
-        msg.setSeverity(FacesMessage.SEVERITY_INFO);
-        msg.setSummary("Cidade(s) selecionada(s):");
-        msg.setDetail(builder.toString());
-
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
+    
+    
+    
 
 }

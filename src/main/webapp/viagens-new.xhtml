@@ -166,6 +166,13 @@
                             </h:panelGrid>
 
 
+                            <h:panelGrid columns="1" style="margin-top:20px" cellpadding="5">
+                                <h:outputText value="Pagar diárias e km? " />
+                                <p:selectBooleanCheckbox value="#{viagemBean.pagamento}">
+                                    <p:ajax update="msg" listener="#{viagemBean.addMessage}" />
+                                </p:selectBooleanCheckbox>
+                            </h:panelGrid>
+
 
 
 

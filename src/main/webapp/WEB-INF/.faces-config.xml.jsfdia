@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::0" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="index::#index.xhtml" NAME="output"
+    PATH="/index.xhtml" TARGET="rules:#index.xhtml" TITLE="index" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::1" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::1" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="login::#login.xhtml" NAME="output"
+    PATH="/login.xhtml" TARGET="rules:#login.xhtml" TITLE="login" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::2" SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::2" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="usuarios-list::#usuarios-list.xhtml"
+    NAME="output" PATH="/usuarios-list.xhtml"
+    TARGET="rules:#usuarios-list.xhtml" TITLE="usuarios-list" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::3" SHAPE="32,353,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::3" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="usuarios-details::#usuarios-details.xhtml"
+    NAME="output" PATH="/usuarios-details.xhtml"
+    TARGET="rules:#usuarios-details.xhtml" TITLE="usuarios-details" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::4" SHAPE="32,465,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::4" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="usuarios-new::#usuarios-new.xhtml"
+    NAME="output" PATH="/usuarios-new.xhtml"
+    TARGET="rules:#usuarios-new.xhtml" TITLE="usuarios-new" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::5" SHAPE="32,577,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::5" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="categorias-list::#categorias-list.xhtml"
+    NAME="output" PATH="/categorias-list.xhtml"
+    TARGET="rules:#categorias-list.xhtml" TITLE="categorias-list" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::6" SHAPE="32,689,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::6" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="categorias-new::#categorias-new.xhtml"
+    NAME="output" PATH="/categorias-new.xhtml"
+    TARGET="rules:#categorias-new.xhtml" TITLE="categorias-new" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::7" SHAPE="32,801,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::7" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="feriados-list::#feriados-list.xhtml"
+    NAME="output" PATH="/feriados-list.xhtml"
+    TARGET="rules:#feriados-list.xhtml" TITLE="feriados-list" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::8" SHAPE="32,913,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::8" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="feriados-new::#feriados-new.xhtml"
+    NAME="output" PATH="/feriados-new.xhtml"
+    TARGET="rules:#feriados-new.xhtml" TITLE="feriados-new" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::9" SHAPE="32,1025,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::9" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="inspetorias-list::#inspetorias-list.xhtml"
+    NAME="output" PATH="/inspetorias-list.xhtml"
+    TARGET="rules:#inspetorias-list.xhtml" TITLE="inspetorias-list" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::10" SHAPE="32,1137,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::10" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="inspetorias-details::#inspetorias-details.xhtml" NAME="output"
+    PATH="/inspetorias-details.xhtml"
+    TARGET="rules:#inspetorias-details.xhtml"
+    TITLE="inspetorias-details" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::11" SHAPE="32,1249,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::11" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="inspetorias-details-rota::#inspetorias-details-rota.xhtml"
+    NAME="output" PATH="/inspetorias-details-rota.xhtml"
+    TARGET="rules:#inspetorias-details-rota.xhtml"
+    TITLE="inspetorias-details-rota" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::12" SHAPE="32,1361,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::12" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="inspetorias-new::#inspetorias-new.xhtml"
+    NAME="output" PATH="/inspetorias-new.xhtml"
+    TARGET="rules:#inspetorias-new.xhtml" TITLE="inspetorias-new" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::13" SHAPE="32,1473,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::13" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="cidades-list::#cidades-list.xhtml"
+    NAME="output" PATH="/cidades-list.xhtml"
+    TARGET="rules:#cidades-list.xhtml" TITLE="cidades-list" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::14" SHAPE="32,1585,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::14" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="cidades-details::#cidades-details.xhtml"
+    NAME="output" PATH="/cidades-details.xhtml"
+    TARGET="rules:#cidades-details.xhtml" TITLE="cidades-details" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::15" SHAPE="32,1697,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::15" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="cidades-new::#cidades-new.xhtml"
+    NAME="output" PATH="/cidades-new.xhtml"
+    TARGET="rules:#cidades-new.xhtml" TITLE="cidades-new" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::16" SHAPE="32,1809,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::16" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="cidades-new-jurisdicao::#cidades-new-jurisdicao.xhtml"
+    NAME="output" PATH="/cidades-new-jurisdicao.xhtml"
+    TARGET="rules:#cidades-new-jurisdicao.xhtml"
+    TITLE="cidades-new-jurisdicao" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::17" SHAPE="32,1921,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::17" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="cidades-new-feriadomunicipal::#cidades-new-feriadomunicipal.xhtml"
+    NAME="output" PATH="/cidades-new-feriadomunicipal.xhtml"
+    TARGET="rules:#cidades-new-feriadomunicipal.xhtml"
+    TITLE="cidades-new-feriadomunicipal" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::18" SHAPE="32,2033,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::18" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="cidades-new-feriadomunicipal-new::#cidades-new-feriadomunicipal-new.xhtml"
+    NAME="output" PATH="/cidades-new-feriadomunicipal-new.xhtml"
+    TARGET="rules:#cidades-new-feriadomunicipal-new.xhtml"
+    TITLE="cidades-new-feriadomunicipal-new" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::19" SHAPE="32,2145,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::19" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="fiscais-list::#fiscais-list.xhtml"
+    NAME="output" PATH="/fiscais-list.xhtml"
+    TARGET="rules:#fiscais-list.xhtml" TITLE="fiscais-list" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::20" SHAPE="32,2257,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::20" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="fiscais-new::#fiscais-new.xhtml"
+    NAME="output" PATH="/fiscais-new.xhtml"
+    TARGET="rules:#fiscais-new.xhtml" TITLE="fiscais-new" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::21" SHAPE="32,2369,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::21" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="fiscais-details::#fiscais-details.xhtml"
+    NAME="output" PATH="/fiscais-details.xhtml"
+    TARGET="rules:#fiscais-details.xhtml" TITLE="fiscais-details" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::22" SHAPE="32,2481,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::22" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="fiscais-details-viagem::#fiscais-details-viagem.xhtml"
+    NAME="output" PATH="/fiscais-details-viagem.xhtml"
+    TARGET="rules:#fiscais-details-viagem.xhtml"
+    TITLE="fiscais-details-viagem" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::23" SHAPE="32,2593,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::23" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="fiscais-new-ferias::#fiscais-new-ferias.xhtml" NAME="output"
+    PATH="/fiscais-new-ferias.xhtml"
+    TARGET="rules:#fiscais-new-ferias.xhtml" TITLE="fiscais-new-ferias" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::24" SHAPE="32,2705,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::24" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="rotas-list::#rotas-list.xhtml" NAME="output"
+    PATH="/rotas-list.xhtml" TARGET="rules:#rotas-list.xhtml"
+    TITLE="rotas-list" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::25" SHAPE="32,2817,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::25" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="rotas-inspetoria-selection::#rotas-inspetoria-selection.xhtml"
+    NAME="output" PATH="/rotas-inspetoria-selection.xhtml"
+    TARGET="rules:#rotas-inspetoria-selection.xhtml"
+    TITLE="rotas-inspetoria-selection" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::26" SHAPE="32,2929,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::26" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="rotas-new::#rotas-new.xhtml" NAME="output"
+    PATH="/rotas-new.xhtml" TARGET="rules:#rotas-new.xhtml"
+    TITLE="rotas-new" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::27" SHAPE="32,3041,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::27" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="rotas-details::#rotas-details.xhtml"
+    NAME="output" PATH="/rotas-details.xhtml"
+    TARGET="rules:#rotas-details.xhtml" TITLE="rotas-details" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::28" SHAPE="32,3153,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::28" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="rotas-details-viagem::#rotas-details-viagem.xhtml" NAME="output"
+    PATH="/rotas-details-viagem.xhtml"
+    TARGET="rules:#rotas-details-viagem.xhtml"
+    TITLE="rotas-details-viagem" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::29" SHAPE="32,3265,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::29" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="viagens-list::#viagens-list.xhtml"
+    NAME="output" PATH="/viagens-list.xhtml"
+    TARGET="rules:#viagens-list.xhtml" TITLE="viagens-list" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::30" SHAPE="32,3489,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::30" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="viagens-new::#viagens-new.xhtml"
+    NAME="output" PATH="/viagens-new.xhtml"
+    TARGET="rules:#viagens-new.xhtml" TITLE="viagens-new" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::31" SHAPE="32,3601,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::31" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="viagens-details::#viagens-details.xhtml"
+    NAME="output" PATH="/viagens-details.xhtml"
+    TARGET="rules:#viagens-details.xhtml" TITLE="viagens-details" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::32" SHAPE="32,3713,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::32" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="viagens-schedule::#viagens-schedule.xhtml"
+    NAME="output" PATH="/viagens-schedule.xhtml"
+    TARGET="rules:#viagens-schedule.xhtml" TITLE="viagens-schedule" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::33" SHAPE="32,3377,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::33" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="ordem-list::#ordem-list.xhtml" NAME="output"
+    PATH="/ordem-list.xhtml" TARGET="rules:#ordem-list.xhtml"
+    TITLE="ordem-list" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::34" SHAPE="32,3825,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::34" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="ordem-new::#ordem-new.xhtml" NAME="output"
+    PATH="/ordem-new.xhtml" TARGET="rules:#ordem-new.xhtml"
+    TITLE="ordem-new" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::35" SHAPE="32,3937,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::35" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="ordem-details::#ordem-details.xhtml"
+    NAME="output" PATH="/ordem-details.xhtml"
+    TARGET="rules:#ordem-details.xhtml" TITLE="ordem-details" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::36" SHAPE="32,4049,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::36" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="ordem-schedule::#ordem-schedule.xhtml"
+    NAME="output" PATH="/ordem-schedule.xhtml"
+    TARGET="rules:#ordem-schedule.xhtml" TITLE="ordem-schedule" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::37" SHAPE="32,4161,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::37" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="procedimentos-list::#procedimentos-list.xhtml" NAME="output"
+    PATH="/procedimentos-list.xhtml"
+    TARGET="rules:#procedimentos-list.xhtml" TITLE="procedimentos-list" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::38" SHAPE="32,4273,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::38" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="procedimentos-new::#procedimentos-new.xhtml"
+    NAME="output" PATH="/procedimentos-new.xhtml"
+    TARGET="rules:#procedimentos-new.xhtml" TITLE="procedimentos-new" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::39" SHAPE="32,4385,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::39" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="procedimentos-details::#procedimentos-details.xhtml"
+    NAME="output" PATH="/procedimentos-details.xhtml"
+    TARGET="rules:#procedimentos-details.xhtml"
+    TITLE="procedimentos-details" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules::40" SHAPE="32,4497,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::40" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="procedimentos-edit::#procedimentos-edit.xhtml" NAME="output"
+    PATH="/procedimentos-edit.xhtml"
+    TARGET="rules:#procedimentos-edit.xhtml" TITLE="procedimentos-edit" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
+  SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#viagens-details.xhtml"
+  PATH="/viagens-details.xhtml" SHAPE="240,3617,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#feriados-list.xhtml"
+  PATH="/feriados-list.xhtml" SHAPE="240,817,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#rotas-list.xhtml" PATH="/rotas-list.xhtml"
+  SHAPE="240,2721,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#viagens-new.xhtml" PATH="/viagens-new.xhtml"
+  SHAPE="240,3505,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ordem-details.xhtml"
+  PATH="/ordem-details.xhtml" SHAPE="240,3953,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#viagens-schedule.xhtml"
+  PATH="/viagens-schedule.xhtml" SHAPE="240,3729,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#cidades-new-feriadomunicipal.xhtml"
+  PATH="/cidades-new-feriadomunicipal.xhtml" SHAPE="240,1937,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#rotas-details.xhtml"
+  PATH="/rotas-details.xhtml" SHAPE="240,3057,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#procedimentos-new.xhtml"
+  PATH="/procedimentos-new.xhtml" SHAPE="240,4289,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#categorias-new.xhtml"
+  PATH="/categorias-new.xhtml" SHAPE="240,705,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#fiscais-details-viagem.xhtml"
+  PATH="/fiscais-details-viagem.xhtml" SHAPE="240,2497,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#categorias-list.xhtml"
+  PATH="/categorias-list.xhtml" SHAPE="240,593,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#inspetorias-details.xhtml"
+  PATH="/inspetorias-details.xhtml" SHAPE="240,1153,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#fiscais-list.xhtml"
+  PATH="/fiscais-list.xhtml" SHAPE="240,2161,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#index.xhtml" PATH="/index.xhtml"
+  SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ordem-schedule.xhtml"
+  PATH="/ordem-schedule.xhtml" SHAPE="240,4065,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#cidades-new-jurisdicao.xhtml"
+  PATH="/cidades-new-jurisdicao.xhtml" SHAPE="240,1825,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#rotas-new.xhtml" PATH="/rotas-new.xhtml"
+  SHAPE="240,2945,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#cidades-list.xhtml"
+  PATH="/cidades-list.xhtml" SHAPE="240,1489,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ordem-new.xhtml" PATH="/ordem-new.xhtml"
+  SHAPE="240,3841,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#rotas-inspetoria-selection.xhtml"
+  PATH="/rotas-inspetoria-selection.xhtml" SHAPE="240,2833,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#usuarios-details.xhtml"
+  PATH="/usuarios-details.xhtml" SHAPE="240,369,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#fiscais-new-ferias.xhtml"
+  PATH="/fiscais-new-ferias.xhtml" SHAPE="240,2609,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#rotas-details-viagem.xhtml"
+  PATH="/rotas-details-viagem.xhtml" SHAPE="240,3169,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#viagens-list.xhtml"
+  PATH="/viagens-list.xhtml" SHAPE="256,3281,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#inspetorias-list.xhtml"
+  PATH="/inspetorias-list.xhtml" SHAPE="240,1041,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#cidades-new.xhtml" PATH="/cidades-new.xhtml"
+  SHAPE="240,1713,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#fiscais-new.xhtml" PATH="/fiscais-new.xhtml"
+  SHAPE="240,2273,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#inspetorias-new.xhtml"
+  PATH="/inspetorias-new.xhtml" SHAPE="240,1377,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#cidades-details.xhtml"
+  PATH="/cidades-details.xhtml" SHAPE="240,1601,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#usuarios-new.xhtml"
+  PATH="/usuarios-new.xhtml" SHAPE="240,481,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#cidades-new-feriadomunicipal-new.xhtml"
+  PATH="/cidades-new-feriadomunicipal-new.xhtml" SHAPE="240,2049,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#usuarios-list.xhtml"
+  PATH="/usuarios-list.xhtml" SHAPE="240,257,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#procedimentos-list.xhtml"
+  PATH="/procedimentos-list.xhtml" SHAPE="240,4177,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#procedimentos-details.xhtml"
+  PATH="/procedimentos-details.xhtml" SHAPE="240,4401,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#procedimentos-edit.xhtml"
+  PATH="/procedimentos-edit.xhtml" SHAPE="240,4513,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#feriados-new.xhtml"
+  PATH="/feriados-new.xhtml" SHAPE="240,929,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#fiscais-details.xhtml"
+  PATH="/fiscais-details.xhtml" SHAPE="240,2385,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#inspetorias-details-rota.xhtml"
+  PATH="/inspetorias-details-rota.xhtml" SHAPE="240,1265,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules::41" SHAPE="32,4609,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::41" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="insere-memorando::#insere-memorando.xhtml"
+    NAME="output" PATH="/insere-memorando.xhtml"
+    TARGET="rules:#insere-memorando.xhtml" TITLE="insere-memorando" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#insere-memorando.xhtml"
+  PATH="/insere-memorando.xhtml" SHAPE="240,4737,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ordem-list.xhtml" PATH="/ordem-list.xhtml"
+  SHAPE="240,4625,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

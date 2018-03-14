@@ -51,6 +51,10 @@
                             <p:message for="codigo"/>
                         </div>
 
+
+
+
+
                         <div class="the-box">
 
                             <div class="form-group">
@@ -73,6 +77,8 @@
                                 </h:selectOneMenu>
 
                                 <p:message for="fiscal" />
+
+
 
 
                                 <h:outputLabel for="cidadesPickList"
@@ -107,6 +113,7 @@
                                 </p:pickList>
                                 <p:message for="cidadesPickList"/>
                             </div>
+
 
                             <h:panelGrid columns="2" width="100%">
                                 <h:panelGrid columns="1">
@@ -188,7 +195,7 @@
                                                        value="Número Memorando:"
                                                        style="font-weight: bold;"/><br/>
                                         <p:inputText id="numMemo"
-                                                     required="false"
+                                                     required="true"
                                                      style="width: 100%;"
                                                      value="#{ordemBean.ordem.numeroMemo}"
                                                      requiredMessage="Informe o número do memorando"
@@ -196,14 +203,17 @@
                                         <p:message for="numMemo" />
                                     </div>
                                     
-
+                                    
+                                    
+                                    
+                                    
 
                                     <div class="form-group">
                                         <h:outputLabel for="diarias"
                                                        value="DIÁRIAS COMPLETAS:"
                                                        style="font-weight: bold;"/><br/>
                                         <p:inputText id="diarias"
-                                                     required="false"
+                                                     required="true"
                                                      style="width: 100%;"
                                                      value="#{ordemBean.ordem.qtdDiaria}"
                                                      requiredMessage="Informe a quantidade de diárias completas da nova Rota"
@@ -215,7 +225,7 @@
                                                        value="ALMOÇOS:"
                                                        style="font-weight: bold;"/><br/>
                                         <p:inputText id="almocos"
-                                                     required="false"
+                                                     required="true"
                                                      style="width: 100%;"
                                                      value="#{ordemBean.ordem.qtdAlmoco}"
                                                      requiredMessage="Informe a quantidade de almoços da nova Rota"
@@ -228,7 +238,7 @@
                                                        value="QUILÔMETROS:"
                                                        style="font-weight: bold;"/><br/>
                                         <p:inputText id="kilometragem"
-                                                     required="false"
+                                                     required="true"
                                                      style="width: 100%;"
                                                      value="#{ordemBean.ordem.qtdKm}"
                                                      requiredMessage="Informe a quantidade de kilômetros da nova Rota"
@@ -237,15 +247,28 @@
                                     </div>
 
                                     <div class="form-group">
-                                  <h:outputText value="Valor Km:" style="font-weight:bold"/>
-                                  <h:outputText value="#{valoresBean.valorKm}" style="padding-left:15px;"/>
-
+                                        <h:outputLabel for="valorkm"
+                                                       value="Valor km:"
+                                                       style="font-weight: bold;"/><br/>
+                                        <p:inputText id="valorkm"
+                                                     required="true"
+                                                     style="width: 100%;"
+                                                     value="#{ordemBean.ordem.valorKm}"
+                                                     requiredMessage="Informe o valor do kilômetro da nova OS"
+                                                     label="valorkm"/>
+                                        <p:message for="valorkm" />
                                     </div>
                                     <div class="form-group">
-                                   
-                                  <h:outputText value="Valor Diaria:" style="font-weight:bold"/>
-                                  <h:outputText value="#{valoresBean.valorDiaria}"  style="padding-left:15px;"/>
-
+                                        <h:outputLabel for="valorDiaria"
+                                                       value="Valor Diária:"
+                                                       style="font-weight: bold;"/><br/>
+                                        <p:inputText id="valorDiaria"
+                                                     required="true"
+                                                     style="width: 100%;"
+                                                     value="#{ordemBean.ordem.valorDiaria}"
+                                                     requiredMessage="Informe o valor do kilômetro da nova OS"
+                                                     label="valorDiaria"/>
+                                        <p:message for="valorDiaria" />
                                     </div>
 
                                 </h:panelGrid>
@@ -256,7 +279,7 @@
                                                value="CATEGORIA:"
                                                style="font-weight: bold"/><br/>
                                 <h:selectOneMenu  id="categoria"
-                                                  required="false"
+                                                  required="true"
                                                   styleClass="form-control"
                                                   value="#{ordemBean.ordem.categoria.idcategoria}"
                                                   requiredMessage="Selecione a categoria da viagem!"
@@ -270,9 +293,6 @@
                                 <p:message for="categoria" />
                             </div>
 
-                            
-                            
-                            
                             <p:commandButton id="voltar"
                                              value="Voltar"
                                              onclick="history.back()"

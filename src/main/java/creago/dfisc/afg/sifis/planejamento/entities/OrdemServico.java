@@ -6,6 +6,8 @@
 package creago.dfisc.afg.sifis.planejamento.entities;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -17,24 +19,23 @@ public class OrdemServico {
     private String nomeFiscal;
     private Integer matricula;
     private String lotacao;
-    private String quilometragem;
+    private Integer quilometragem;
     private Date inicio;
     private Date fim;
     private Date dataCadastro;
     private String cidades;
-    private String diarias;
-    private String almocos;
-    private String valorTotalKm;
-    private String valorTotalDiaria;
-    private String valorTotal;
+    private Set<Jurisdicao> jurisdicoes;
+    private Integer diarias;
+    private Integer almocos;
+    private Double valorTotalKm;
+    private Double valorDiarias;
+    private Double valorTotal;
     private String observacao;
     private Rota rota;
     private String valorKm;
     private String valorDiaria;
-    private String numMemo;
-    private Boolean memorando;
 
-    public OrdemServico(String idOrdemServico, String nomeFiscal, Integer matricula, String lotacao, String quantidadeKm, Date inicio, Date fim, Date dataCadastro,  String diarias, String almocos, String valorTotalKm, String valorTotalDiaria, String valorTotal, String observacao, String cidades, String valorKm, String valorDiaria, String numMemo, Boolean memorando) {
+    public OrdemServico(String idOrdemServico, String nomeFiscal, Integer matricula, String lotacao, Integer quantidadeKm, Date inicio, Date fim, Date dataCadastro, Set<Jurisdicao> jurisdicoes, Integer diarias, Integer almocos, Double valorTotalKm, Double valorDiarias, Double valorTotal, String observacao, String cidades, String valorKm, String valorDiaria) {
 
         this.observacao = observacao;
         this.idOrdemServico = idOrdemServico;
@@ -43,20 +44,17 @@ public class OrdemServico {
         this.matricula = matricula;
         this.lotacao = lotacao;
         this.quilometragem = quantidadeKm;
-
+        this.jurisdicoes = jurisdicoes;
         this.inicio = inicio;
         this.fim = fim;
         this.diarias = diarias;
         this.almocos = almocos;
         this.valorTotalKm = valorTotalKm;
-        this.valorTotalDiaria = valorTotalDiaria;
+        this.valorDiarias = valorDiarias;
         this.valorTotal = valorTotal;
         this.cidades = cidades;
         this.valorDiaria = valorDiaria;
         this.valorKm = valorKm;
-        this.dataCadastro = dataCadastro;
-        this.numMemo = numMemo;
-        this.memorando = memorando;
     }
 
     public String getIdOrdemServico() {
@@ -91,11 +89,11 @@ public class OrdemServico {
         this.lotacao = lotacao;
     }
 
-    public String getQuilometragem() {
+    public Integer getQuilometragem() {
         return quilometragem;
     }
 
-    public void setQuilometragem(String quantidadeKm) {
+    public void setQuilometragem(Integer quantidadeKm) {
         this.quilometragem = quantidadeKm;
     }
 
@@ -119,43 +117,43 @@ public class OrdemServico {
         this.cidades = cidades;
     }
 
-    public String getDiarias() {
+    public Integer getDiarias() {
         return diarias;
     }
 
-    public void setDiarias(String diarias) {
+    public void setDiarias(Integer diarias) {
         this.diarias = diarias;
     }
 
-    public String getAlmocos() {
+    public Integer getAlmocos() {
         return almocos;
     }
 
-    public void setAlmocos(String almocos) {
+    public void setAlmocos(Integer almocos) {
         this.almocos = almocos;
     }
 
-    public String getValorTotalKm() {
+    public Double getValorTotalKm() {
         return valorTotalKm;
     }
 
-    public void setValorTotalKm(String valorTotalKm) {
+    public void setValorTotalKm(Double valorTotalKm) {
         this.valorTotalKm = valorTotalKm;
     }
 
-    public String getValorDiarias() {
-        return valorTotalDiaria;
+    public Double getValorDiarias() {
+        return valorDiarias;
     }
 
-    public void setValorDiarias(String valorDiarias) {
-        this.valorTotalDiaria = valorDiarias;
+    public void setValorDiarias(Double valorDiarias) {
+        this.valorDiarias = valorDiarias;
     }
 
-    public String getValorTotal() {
+    public Double getValorTotal() {
         return valorTotal;
     }
 
-    public void setValorTotal(String valorTotal) {
+    public void setValorTotal(Double valorTotal) {
         this.valorTotal = valorTotal;
     }
 
@@ -204,34 +202,4 @@ public class OrdemServico {
         this.valorDiaria = valorDiaria;
     }
 
-    public String getValorTotalDiaria() {
-        return valorTotalDiaria;
-    }
-
-    public void setValorTotalDiaria(String valorTotalDiaria) {
-        this.valorTotalDiaria = valorTotalDiaria;
-    }
-
-    public String getNumMemo() {
-        return numMemo;
-    }
-
-    public void setNumMemo(String numMemo) {
-        this.numMemo = numMemo;
-    }
-
-    public Boolean getMemorando() {
-        return memorando;
-    }
-
-    public void setMemorando(Boolean memorando) {
-        this.memorando = memorando;
-    }
-    
-    
-    
-
-    
-    
-    
 }

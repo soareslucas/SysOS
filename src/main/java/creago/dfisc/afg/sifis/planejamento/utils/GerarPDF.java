@@ -58,8 +58,6 @@ public class GerarPDF {
         JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(ordemList);
         HashMap parameters = new HashMap();
 
-        System.out.println(ordem.getDataCadastro().toString());
-
         try {
             FacesContext context = FacesContext.getCurrentInstance();
 
@@ -69,15 +67,9 @@ public class GerarPDF {
 
             response.setContentType("application/pdf");
 
-            response.addHeader("Content-disposition", "inline; filename=\"ordem.-" + ordem.getIdOrdemServico() + ".pdf\"");
-           
-            JasperPrint impressao;
-            
-            if (ordem.getMemorando()) {
-                impressao = JasperFillManager.fillReport(servletContext.getRealPath("/WEB-INF/relatorios/ordemServico.jasper"), parameters, ds);
-            } else {
-                impressao = JasperFillManager.fillReport(servletContext.getRealPath("/WEB-INF/relatorios/ordemServico2.jasper"), parameters, ds);
-            }
+            response.addHeader("Content-disposition", "inline; filename=\"Proc.-" + ordem.getIdOrdemServico() + ".pdf\"");
+
+            JasperPrint impressao = JasperFillManager.fillReport(servletContext.getRealPath("/WEB-INF/relatorios/ordemServico.jasper"), parameters, ds);
 
             JasperExportManager.exportReportToPdfStream(impressao, response.getOutputStream());
 

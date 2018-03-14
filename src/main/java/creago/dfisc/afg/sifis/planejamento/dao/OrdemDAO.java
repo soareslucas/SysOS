@@ -40,8 +40,7 @@ public class OrdemDAO {
 
     @SuppressWarnings("unchecked")
     public List<Ordem> findAll() {
-    
-        return entityManager.createQuery("FROM " + Ordem.class.getName() + " o ORDER BY o.identificador desc")
+        return entityManager.createQuery("FROM " + Ordem.class.getName() + " v ORDER BY v.inicio desc")
                 .getResultList();
     }
 

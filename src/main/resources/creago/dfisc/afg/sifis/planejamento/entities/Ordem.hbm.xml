@@ -70,10 +70,5 @@
                 <column name="jurisdicao_idjurisdicao" not-null="true" />
             </many-to-many>
         </set>
-        <property name="idviagem" type="java.lang.Long">
-            <column name="idviagem"  length="20"/>   
-        </property>
-        
-        
     </class>
 </hibernate-mapping>

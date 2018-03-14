@@ -7,28 +7,31 @@ import creago.dfisc.afg.sifis.planejamento.entities.Ferias;
 import creago.dfisc.afg.sifis.planejamento.entities.Fiscal;
 import creago.dfisc.afg.sifis.planejamento.entities.Inspetoria;
 import creago.dfisc.afg.sifis.planejamento.entities.Ordem;
+import creago.dfisc.afg.sifis.planejamento.entities.OrdemServico;
 import creago.dfisc.afg.sifis.planejamento.entities.Rota;
 import creago.dfisc.afg.sifis.planejamento.entities.Viagem;
 import creago.dfisc.afg.sifis.planejamento.facade.FeriadoFacade;
 import creago.dfisc.afg.sifis.planejamento.facade.FeriasFacade;
 import creago.dfisc.afg.sifis.planejamento.facade.FiscalFacade;
 import creago.dfisc.afg.sifis.planejamento.facade.InspetoriaFacade;
+import creago.dfisc.afg.sifis.planejamento.facade.OrdemFacade;
 import creago.dfisc.afg.sifis.planejamento.facade.RotaFacade;
 import creago.dfisc.afg.sifis.planejamento.facade.ViagemFacade;
+import creago.dfisc.afg.sifis.planejamento.utils.GerarPDF;
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
+import javax.annotation.PostConstruct;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import org.primefaces.context.RequestContext;
 
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
@@ -41,8 +44,8 @@ import org.primefaces.model.ScheduleModel;
  *
  * @author Tiago Borges Pereira
  */
-@SessionScoped
 @ManagedBean
+@ViewScoped
 public class ViagemBean extends AbstractBean implements Serializable {
 
     //SCHEDULE
@@ -54,23 +57,22 @@ public class ViagemBean extends AbstractBean implements Serializable {
     private List<Viagem> viagens;
     private Viagem selectedViagem;
     private List<Viagem> filteredViagem;
-    private boolean viagensFiltradas;
-
-    private Date inicioFilter;
-    private Date fimFilter;
-
-    private List<Viagem> filteredViagens;
 
     //FERIADO
     private List<Feriado> feriados;
+    private Feriado feriado;
 
     //FERIAS
     private List<Ferias> feriasList;
+    private Ferias ferias;
 
     //INSPETORIA
     private Inspetoria selectedInspetoria;
 
     //BOOLEAN
+    private boolean isViagem;
+    private boolean isFeriado;
+    private boolean isFerias;
     private boolean pagamento;
 
     //ROTAS E FISCAIS
@@ -88,139 +90,12 @@ public class ViagemBean extends AbstractBean implements Serializable {
     //PAINEL CONTROLE DE VISIBILIDADE
     private boolean painelRota = false;
 
-    private String numMemo;
-
-    public ViagemBean() {
-        this.numMemo = "";
+    public boolean isPagamento() {
+        return pagamento;
     }
 
-    // GETTERS AND SETTERS
-    // VIAGEM
-    public Viagem getViagem() {
-        if (viagem == null) {
-            viagem = new Viagem();
-            viagem.setCategoria(new Categoria());
-            viagem.setFiscal(new Fiscal());
-            viagem.setRota(new Rota());
-        }
-        return viagem;
-    }
-
-    public void setViagem(Viagem viagem) {
-        this.viagem = viagem;
-    }
-
-    public List<Viagem> getViagens() {
-        
-        this.viagensFiltradas = false;
-        viagens = findAll();
-        return viagens;
-    }
-
-    public void setViagens(List<Viagem> viagens) {
-        this.viagens = viagens;
-    }
-
-    public List<Feriado> getFeriados() {
-        return feriados;
-    }
-
-    public void setFeriados(List<Feriado> feriados) {
-        this.feriados = feriados;
-    }
-
-    public List<Ferias> getFeriasList() {
-        return feriasList;
-    }
-
-    public void setFeriasList(List<Ferias> feriasList) {
-        this.feriasList = feriasList;
-    }
-
-    public Viagem getSelectedViagem() {
-        return selectedViagem;
-    }
-
-    public void setSelectedViagem(Viagem selectedViagem) {
-        this.selectedViagem = selectedViagem;
-    }
-
-    // INSPETORIA
-    public Inspetoria getSelectedInspetoria() {
-        if (selectedInspetoria == null) {
-            selectedInspetoria = new Inspetoria();
-        }
-        return selectedInspetoria;
-    }
-
-    public void setSelectedInspetoria(Inspetoria selectedInspetoria) {
-        this.selectedInspetoria = selectedInspetoria;
-    }
-
-    // ROTA E FISCAL
-    public List<Rota> getRotas() {
-        return rotas;
-    }
-
-    public void setRotas(List<Rota> rotas) {
-        this.rotas = rotas;
-    }
-
-    public List<Fiscal> getFiscais() {
-        return fiscais;
-    }
-
-    public void setFiscais(List<Fiscal> fiscais) {
-        this.fiscais = fiscais;
-    }
-
-    public String getNumMemo() {
-        return numMemo;
-    }
-
-    public void setNumMemo(String numMemo) {
-        this.numMemo = numMemo;
-    }
-
-    public Date getInicioFilter() {
-        return inicioFilter;
-    }
-
-    public void setInicioFilter(Date inicioFilter) {
-        this.inicioFilter = inicioFilter;
-    }
-
-    public Date getFimFilter() {
-        return fimFilter;
-    }
-
-    public void setFimFilter(Date fimFilter) {
-        this.fimFilter = fimFilter;
-    }
-
-    public boolean isViagensFiltradas() {
-        return viagensFiltradas;
-    }
-
-    public void setViagensFiltradas(boolean viagensFiltradas) {
-        this.viagensFiltradas = viagensFiltradas;
-    }
-
-    //PAINEL CONTROLE VISIBILIDADE
-    public boolean isPainelRota() {
-        return painelRota;
-    }
-
-    public void setPainelRota(boolean painelRota) {
-        this.painelRota = painelRota;
-    }
-
-    public List<Viagem> getFilteredViagens() {
-        return filteredViagens;
-    }
-
-    public void setFilteredViagens(List<Viagem> filteredViagens) {
-        this.filteredViagens = filteredViagens;
+    public void setPagamento(boolean pagamento) {
+        this.pagamento = pagamento;
     }
 
     public List<Viagem> getFilteredViagem() {
@@ -326,18 +201,103 @@ public class ViagemBean extends AbstractBean implements Serializable {
         displayInfoMessageToUser("Atualização cancelada com sucesso!");
     }
 
+    // GETTERS AND SETTERS
+    // VIAGEM
+    public Viagem getViagem() {
+        if (viagem == null) {
+            viagem = new Viagem();
+            viagem.setCategoria(new Categoria());
+            viagem.setFiscal(new Fiscal());
+            viagem.setRota(new Rota());
+        }
+        return viagem;
+    }
+
+    public void setViagem(Viagem viagem) {
+        this.viagem = viagem;
+    }
+
+    public List<Viagem> getViagens() {
+        viagens = findAll();
+        return viagens;
+    }
+
+    public void setViagens(List<Viagem> viagens) {
+        this.viagens = viagens;
+    }
+
+    public List<Feriado> getFeriados() {
+        return feriados;
+    }
+
+    public void setFeriados(List<Feriado> feriados) {
+        this.feriados = feriados;
+    }
+
+    public List<Ferias> getFeriasList() {
+        return feriasList;
+    }
+
+    public void setFeriasList(List<Ferias> feriasList) {
+        this.feriasList = feriasList;
+    }
+
+    public Viagem getSelectedViagem() {
+        return selectedViagem;
+    }
+
+    public void setSelectedViagem(Viagem selectedViagem) {
+        this.selectedViagem = selectedViagem;
+    }
+
+    // INSPETORIA
+    public Inspetoria getSelectedInspetoria() {
+        if (selectedInspetoria == null) {
+            selectedInspetoria = new Inspetoria();
+        }
+        return selectedInspetoria;
+    }
+
+    public void setSelectedInspetoria(Inspetoria selectedInspetoria) {
+        this.selectedInspetoria = selectedInspetoria;
+    }
+
+    // ROTA E FISCAL
+    public List<Rota> getRotas() {
+        return rotas;
+    }
+
+    public void setRotas(List<Rota> rotas) {
+        this.rotas = rotas;
+    }
+
+    public List<Fiscal> getFiscais() {
+        return fiscais;
+    }
+
+    public void setFiscais(List<Fiscal> fiscais) {
+        this.fiscais = fiscais;
+    }
+
+    //PAINEL CONTROLE VISIBILIDADE
+    public boolean isPainelRota() {
+        return painelRota;
+    }
+
+    public void setPainelRota(boolean painelRota) {
+        this.painelRota = painelRota;
+    }
+
     // LOADERS AND RESETERS
-    public void loadViagens() {
+    private void loadViagens() {
         viagens = getViagemFacade().listAll();
     }
 
-    public void resetViagem() {
+    private void resetViagem() {
         viagem = new Viagem();
         viagem.setCategoria(new Categoria());
         viagem.setFiscal(new Fiscal());
         viagem.setRota(new Rota());
-        viagem.setGerouOrdem(false);
-
     }
 
     /**
@@ -525,94 +485,72 @@ public class ViagemBean extends AbstractBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));
     }
 
-    public void addMessage(String summary, String detail) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
-        FacesContext.getCurrentInstance().addMessage(null, message);
-    }
-
-    public void dialog() {
-        RequestContext.getCurrentInstance().openDialog("insere-memorando");
-    }
+    
 
     public String gerarOrdem() {
-
-        FacesContext context = FacesContext.getCurrentInstance();
-        ValoresBean bean = context.getApplication().evaluateExpressionGet(context, "#{valoresBean}", ValoresBean.class);
-        OrdemBean oBean = context.getApplication().evaluateExpressionGet(context, "#{ordemBean}", OrdemBean.class);
-
-        oBean.resetOrdem();
-
-        Double valorKm = viagem.getRota().getQuilometragem() * bean.getValorKm();
-        Double valorAlmoco = (viagem.getRota().getAlmoco() * (bean.getValorDiaria() / 4.0));
-        Double valorDiaria = (viagem.getRota().getDiaria() * bean.getValorDiaria());
+        
+        Double valorKm = viagem.getRota().getQuilometragem() * 0.3;
+        Double valorAlmoco = (viagem.getRota().getAlmoco() * 38.0);
+        Double valorDiaria = (viagem.getRota().getDiaria() * 190.0);
         Double valorTotal = valorKm + valorDiaria + valorAlmoco;
 
         Date dt = new Date();
+        
+
+      //  OrdemFacade of = new OrdemFacade();
+        
+      //  String id = of.consultaId();
 
         Ordem os = new Ordem(viagem.getCategoria(), viagem.getFiscal(), viagem.getInicio(), viagem.getFim(),
                 String.valueOf(valorAlmoco), String.valueOf(valorDiaria), String.valueOf(valorKm),
                 String.valueOf(viagem.getRota().getAlmoco()), String.valueOf(viagem.getRota().getDiaria()),
-                String.valueOf(viagem.getRota().getQuilometragem()), String.valueOf(valorTotal), String.valueOf(bean.getValorKm()),
-                String.valueOf(bean.getValorDiaria()), dt, viagem.getObservacao(), true);
+                String.valueOf(viagem.getRota().getQuilometragem()), String.valueOf(valorTotal), String.valueOf(0.35),
+                String.valueOf(190.0), dt, viagem.getObservacao(), true, "000/2000", viagem.getRota().getJurisdicaos());
 
-        String id = getViagemFacade().consultaId();
-        if (id != null) {
-            os.setIdentificador(id);
-        } else {
-            Calendar cal = Calendar.getInstance();
-            int year = cal.get(1);
-            os.setIdentificador((new StringBuilder()).append("0001/").append(year).toString());
-        }
+         os.setIdentificador("xxxx/2015");
+        
+//        if (id != null) {
+//            os.setIdentificador(id);
+//        } else {
+//            Calendar cal = Calendar.getInstance();
+//            int year = cal.get(1);
+//            os.setIdentificador((new StringBuilder()).append("0001/").append(year).toString());
+//        }
 
-        os.setNumeroMemo(numMemo);
-        os.setIdviagem(viagem.getIdviagem());
-
-        Iterator it = viagem.getRota().getJurisdicaos().iterator();
-
-        while (it.hasNext()) {
-            os.getJurisdicaos().add((Jurisdicao) it.next());
-        }
-
-        getViagemFacade().createOrdem(os);
-
-        viagem.setGerouOrdem(true);
-        getViagemFacade().update(viagem);
-        oBean.loadOrdens();
-        oBean.resetOrdem();
+     //   of.create(os);
+         
+       getViagemFacade().createOrdem(os);
         displayInfoMessageToUser("Ordem cadastrada com sucesso!");
-
-        if (viagensFiltradas) {
-            return "viagens-periodo-list";
-        } else {
-            return "viagens-list";
-        }
-    }
-
-    public String gerarOS(boolean viagensFiltradas) {
-
-        this.viagensFiltradas = viagensFiltradas;
-        FacesContext context = FacesContext.getCurrentInstance();
-
-        OrdemBean oBean = context.getApplication().evaluateExpressionGet(context, "#{ordemBean}", OrdemBean.class);
-        oBean.resetOrdem();
-
-        if (viagem.getGerouOrdem() != null && viagem.getGerouOrdem() == true) {
-            displayErrorMessageToUser("Já foi gerada ordem de serviço para essa viagem!");
-            return "viagens-list";
-        } else {
-            return "insere-memorando";
-        }
+        return "ordem-list";
 
     }
 
-    public String listFilteredViagens() throws ParseException {
-
-        SimpleDateFormat formatter5 = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
-        String inicio = formatter5.format(this.inicioFilter);
-        String fim = formatter5.format(this.fimFilter);
-
-        this.filteredViagens = getViagemFacade().getViagensPorPeriodo(inicio, fim);
-        return "viagens-periodo-list";
-    }
-
+//    public void onEventSelect(SelectEvent selectEvent) {
+//        event = (ScheduleEvent) selectEvent.getObject();
+//        System.out.println("EVENTO SELECIONADO!");
+//
+//        if (event != null) {
+//            if (event.getStyleClass().contains("categoria")) {
+//                selectedViagem = (Viagem) event.getData();
+//                isViagem = true;
+//                isFeriado = false;
+//                isFerias = false;
+//                System.out.println("É UMA VIAGEM");
+//            }
+//            if (event.getStyleClass().equals("feriado")) {
+//                feriado = (Feriado) event.getData();
+//                isViagem = false;
+//                isFeriado = true;
+//                isFerias = false;
+//                System.out.println("É UM FERIADO");
+//            }
+//            if (event.getStyleClass().equals("ferias")) {
+//                ferias = (Ferias) event.getData();
+//                isViagem = false;
+//                isFeriado = false;
+//                isFerias = true;
+//                System.out.println("SÃO FÉRIAS");
+//            }
+//        }
+//    }
 }
